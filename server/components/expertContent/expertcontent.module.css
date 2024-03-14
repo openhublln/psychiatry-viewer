@@ -1,0 +1,7 @@
+.expertContent {
+  display: inline-flex;
+  min-height: 300;
+  background-color: var(--primary-background-color);
+  width: 100vw;
+  height: 77vh;
+}

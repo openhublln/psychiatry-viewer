@@ -1,0 +1,15 @@
+# result data path
+resultDataPath: D:\Projects\Node\psychiatry-viewer\Test\test_data\resultData
+
+# Warning: Dont change thie registration URL
+registrationURL: http://localhost:3000/registration/
+
+# Warning: Don't change. Issuer and label for OTP authorization
+otpIssuer: 'PsychiatryViewer'
+
+# Warning: Don't remove. The user has to change the path where the secretdata.yaml is stored.
+# Warning: Without WHITESPACE or SPECIAL characters
+secretsPath: ..\secretPaths\secretdata.yaml
+
+# Warning: Don't change here
+redcapEndpoint: https://redcap.saintluc.be/redcap/api/

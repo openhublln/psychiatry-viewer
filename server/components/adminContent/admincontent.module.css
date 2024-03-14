@@ -1,0 +1,156 @@
+.header {
+  width: 50vw;
+  height: 50px;
+}
+
+.adminContent,
+.configContent,
+.manageUserContent {
+  display: inline-flex;
+  min-height: 300;
+  background-color: var(--primary-background-color);
+  width: 100%;
+  height: 77vh;
+}
+
+.paginationDiv {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-top: 5px;
+  margin-left: 20%;
+}
+
+.deleteAiModelRowIcon {
+  font-size: 20px;
+  color: red;
+  width: 20px;
+  cursor: pointer;
+}
+
+.userTable {
+  border-collapse: separate;
+  width: 100%;
+  overflow: auto;
+  font-size: 14px;
+  padding: 4px;
+  text-align: center;
+  height: auto;
+  border-spacing: 1px;
+  max-height: 100%;
+}
+
+.userTable thead tr:nth-child(1) th {
+  position: sticky;
+  border-collapse: separate;
+  top: 0;
+  z-index: 1;
+}
+
+.headerStyle {
+  border: solid 1px black;
+  text-align: center;
+  font-size: 14px;
+  padding: 2px;
+  background: #dae3ef;
+  color: black;
+  height: 40px;
+  max-height: 40px;
+}
+
+.tdStyle {
+  padding: 1px;
+  border: solid 1px lightgrey;
+  font-size: 14px;
+  text-align: center;
+  cursor: default;
+  color: black;
+}
+
+.deleteAiModelRowIcon {
+  font-size: 20px;
+  color: red;
+  width: 20px;
+  cursor: pointer;
+}
+
+.configTable {
+  border-collapse: separate;
+  overflow: auto;
+  font-size: 14px;
+  padding: 4px;
+  text-align: center;
+  border-spacing: 1px;
+  width: 85%;
+}
+
+.configTableDiv {
+  position: absolute;
+  top: 65px;
+  left: 200px;
+  width: inherit;
+  height: 75%;
+  min-height: 70%;
+  max-height: 90%;
+}
+
+.configTable thead tr:nth-child(1) th {
+  position: sticky;
+  border-collapse: separate;
+  top: 0;
+  z-index: 1;
+}
+
+.deleteBtnIcon {
+  font-size: 30px;
+  color: red;
+  width: 30px;
+  cursor: pointer;
+}
+
+.addNewConfigBtn {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: darkblue;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.userModifyTD {
+  font-size: 30px;
+  color: black;
+  width: 30px;
+  cursor: pointer;
+}
+
+.modifyConfigTD {
+  font-size: 30px;
+  color: black;
+  width: 40px;
+  cursor: pointer;
+}
+
+.modifyConfigInput {
+  width: 100%;
+  color: black;
+  margin-top: 20px;
+}
+
+.userDataForm {
+  max-width: 50rem;
+  padding-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.nissInput {
+  width: 200px;
+  height: 34px;
+  font-size: 13px;
+}
+
+.userDataModalDialog {
+  width: 100%;
+  height: 600px;
+}

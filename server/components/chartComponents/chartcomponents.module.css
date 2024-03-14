@@ -1,0 +1,286 @@
+.evolutionLabel {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 2px;
+  color: #666666;
+}
+
+.errorMessageTitle {
+  color: #ff0000;
+  width: fit-content;
+}
+
+.missingdataMessageDiv {
+  margin: auto;
+  width: 80%;
+  align-items: left;
+  padding: 10px;
+}
+
+.errorMessageDataName {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  font-size: 22px;
+  color: red;
+}
+
+.consomSubstanceTable thead tr:nth-child(1) th {
+  position: sticky;
+  border-collapse: separate;
+  top: 0;
+  z-index: 1;
+}
+
+.consomSubstanceTable {
+  border-collapse: separate;
+  width: 94%;
+  overflow: auto;
+  font-size: 14px;
+  padding: 4px;
+  text-align: center;
+  width: 100%;
+  height: fit-content;
+  border-spacing: 1px;
+  max-height: 90%;
+}
+
+.consomSubstanceIcon {
+  color: red;
+  width: 10px;
+  height: 10px;
+}
+
+.gaugeChartDiv {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.horizonalSpace {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.balanceBarSpace {
+  width: 100%;
+  height: 100%;
+}
+
+.bottom {
+  width: 451px;
+  height: 30px;
+  margin-left: 183px;
+  margin-top: -10px;
+  background-color: #d3d3d3;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.bottom1 {
+  width: 40px;
+  height: 20px;
+  margin-left: 389px;
+  margin-top: -10px;
+  background-color: #d3d3d3;
+}
+
+.right {
+  float: right;
+  width: 10%;
+  margin-right: 238px;
+  margin-top: -12px;
+  height: 30px;
+  background-color: #d3d3d3;
+}
+
+.left {
+  float: left;
+  margin-left: 183px;
+  margin-top: -12px;
+  width: 10%;
+  height: 30px;
+  background-color: #d3d3d3;
+}
+
+.leftLine {
+  float: left;
+  margin-left: 150px;
+  margin-top: -30px;
+  font-size: 20px;
+  color: black;
+}
+
+.rightLine {
+  float: right;
+  margin-right: 200px;
+  margin-top: -30px;
+  font-size: 20px;
+  color: black;
+}
+
+.center {
+  margin: auto;
+}
+
+/* Speical graph: bipolarity +++++++++++ */
+.bipolarityChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+}
+.leftPart {
+  float: left;
+}
+.leftPart div {
+  color: black;
+  background: rgb(254, 209, 118);
+  border: 1px solid #d63;
+  /* padding: 5px; */
+  margin-top: 2%;
+  margin-bottom: 10px;
+  /* margin-left: 2%; */
+  text-align: center;
+  width: 200px;
+  margin-left: calc(var(--level) * 20px);
+  margin-right: calc(120px - var(--level) * 20px);
+}
+.rightPart {
+  float: left;
+}
+.rightPart div {
+  color: black;
+  background: #fa2;
+  border: 1px solid #d63;
+  /* padding: 5px; */
+  margin-top: 2%;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 200px;
+  margin-right: calc(var(--level) * 20px);
+  margin-left: calc(120px - var(--level) * 20px);
+}
+
+.rightPartConsom div {
+  color: black;
+  background: rgb(254, 209, 118);
+  border: 1px solid #d63;
+  padding: 5px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 200px;
+  margin-left: 30px;
+}
+
+.leftPartConsom div {
+  color: black;
+  background: rgb(254, 209, 118);
+  border: 1px solid #d63;
+  padding: 5px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 200px;
+  margin-left: 30px;
+}
+
+.rightPartSympto div {
+  color: black;
+  background: rgb(254, 209, 118);
+  border: 1px solid #d63;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 200px;
+  margin-left: 10px;
+}
+
+.leftPartSymptoTop div {
+  color: black;
+  background: #ff9d5c;
+  border: 1px solid #ff9d5c;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 200px;
+  margin-right: 40px;
+}
+
+.leftPartSymptoBottom div {
+  color: black;
+  background: #797ef6;
+  border: 1px solid #797ef6;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 200px;
+  margin-right: 40px;
+}
+
+.topPart div {
+  color: black;
+  background: rgb(254, 209, 118);
+  border: 1px solid #d63;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: 40px;
+  text-align: center;
+  width: 200px;
+}
+
+.bottomPart div {
+  color: black;
+  background: rgb(254, 209, 118);
+  border: 1px solid #d63;
+  padding: 5px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 200px;
+}
+
+.diamondShape {
+  float: left;
+  background: #668;
+  min-width: 120px;
+  min-height: 120px;
+  margin-left: -8px;
+  margin-top: 10px;
+  text-align: center;
+  transform: rotate(45deg);
+}
+
+.polygonShape {
+  fill: #666688;
+  stroke: #666688;
+  stroke-width: 1;
+}
+
+.centerText {
+  color: white;
+  width: 120px;
+  height: 120px;
+  transform: rotate(-45deg);
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.middleDivBalance {
+  width: 50px;
+}
+
+.regulationEmoTitle {
+  /* height: 30px; */
+  color: #666666;
+  text-align: center;
+  font-size: 30px;
+  /* margin-bottom: 100px; */
+}

@@ -1,0 +1,12 @@
+.controlPanel {
+  font-size: 16px;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  width: fit-content;
+  margin: 3px;
+  padding: 3px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}

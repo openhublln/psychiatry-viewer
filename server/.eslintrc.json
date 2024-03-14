@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "react-app",
+    "prettier",
+    // "eslint:recommended",
+    "plugin:react/recommended",
+    "next/core-web-vitals",
+    "next/babel"
+  ],
+  "parser": "@babel/eslint-parser",
+  "env": {
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "cy": true,
+    "before": true,
+    "context": true,
+    "Cypress": true,
+    "assert": true
+  }
+}

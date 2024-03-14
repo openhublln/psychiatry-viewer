@@ -1,0 +1,42 @@
+.loginform {
+  /* max-width: 25rem; */
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: #cbd3de;
+  border-radius: 4px;
+  margin-top: 30px;
+  width: 480px;
+  height: 430px;
+}
+
+.validationform {
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: #cbd3de;
+  border-radius: 4px;
+  margin-top: 30px;
+  width: 500px;
+  height: 550px;
+}
+
+.register {
+  color: orange;
+  margin-left: 5px;
+}
+
+.loginFormForgot {
+  margin-left: 170px;
+  color: blue;
+}
+
+.barcodeDiv {
+  align-self: top;
+  padding: 5px;
+  border: 2px solid grey;
+  width: 225px;
+  height: 225px;
+  margin-left: auto;
+  margin-right: auto;
+}

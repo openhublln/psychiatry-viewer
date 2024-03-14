@@ -1,0 +1,60 @@
+.siderbarControl {
+  display: inline-flex;
+  min-height: 300;
+  background-color: var(--primary-background-color);
+  width: 100%;
+  height: 77vh;
+}
+
+.patientlistBtn {
+  background-color: #5adbb5;
+  width: 200px;
+  margin-bottom: 5px;
+  margin-left: 30px;
+  margin-top: 10px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.exportResultBtn {
+  background-color: #a881af;
+  width: 200px;
+  margin-bottom: 5px;
+  margin-left: 30px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.siderBarItem {
+  background-color: #98fb98;
+}
+
+.sideBarMenu {
+  height: 70vh;
+  overflow: auto;
+  width: 100%;
+  z-index: 999;
+}
+
+.viewerDiv {
+  width: -moz-available;
+  height: inherit;
+  margin-top: 2%;
+  /* overflow: auto; */
+  /* position: absolute; */
+  /* display: block;
+  min-width: 100px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+  /* margin-left: 322px; */
+  /* margin-top: 16px; */
+  /* margin-top: 8%; */
+  /* height: 80%; */
+}
+
+.sideBarMenuGroupTitleLabel {
+  color: #b03608;
+  font-size: 17px;
+}

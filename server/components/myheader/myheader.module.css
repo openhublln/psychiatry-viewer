@@ -1,0 +1,26 @@
+.logoIons {
+  width: 80px;
+  height: 100%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.logoUcl {
+  width: 80px;
+  height: 100%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  padding-top: 20px;
+}
+
+.logo img {
+  margin: auto;
+}
