@@ -1,0 +1,133 @@
+Global :
+------------------------------------------------
+Pour les graph d'évolution avec une ligne : - mettre les tresholds en fonction de ‘Absence, Léger, Modéré …
+                                            - La couleur de la ligne doit avoir la couleur de la range en T2
+
+Pour les bar chart : - pas de sous titre
+
+
+Alcool :
+------------------------------------------------
+Pour les bar chart : - la gradation en gris claire doit être par step de 1
+		     - pas de sous titre
+
+Les symptomes dépressifs (phq9) - Evolution : - mettre ‘A l’admission’ ‘En fin d’hospitalisation’ sous les graphiques (et pas t1_arm1…)
+
+
+Trouble du someil (ISI) - Evolution : - petit doublon dans l’affichage des scores
+                                      - mettre ‘A l’admission’ ‘En fin d’hospitalisation’ sous les graphiques (et pas t1_arm1…)
+
+
+La gestion des émotions (CERQ) - Balance : - Blâme de soi et Blâme d’autrui (inversion entre graphiques et REDCap ?)
+
+Auto efficacité (GSES) - Evolution : - Normaliser le score et le mettre sur 100 ([Score -10] * 100 / 30) pour T2 aussi et faire l’évolution avec une échelle ‘normalisée sur 100’ (déjà fait dans l'admission du la vue réflection)
+
+L'alliance thérapeutique (WAI) : - dans le Menu déroulant ‘Ressentie en fin d’hospitalisation’
+                                 - pour le score : le ‘normaliser’ et le mettre sur 100 : ([Score -12] * 100 / 72)
+
+La cognition (BEARNI) : - mettre le graphique Total en Horizontal (Au dessus du graphique des 5 sous-scores) et mettre en couleur (vert – jaune – orange) la zone du résultat total. 
+
+Prévention de la rechute : - Titre : Prévention de la rechute -> Les forces et fragilités
+                           - remettre les lignes intermédiaires et de mettre de 0 à 10 plutôt que 0 à 100 ? (et afficher 1 – 3 – 5 – 7 – 10)
+                           - pour Atteinte neurocognitive : Faire [100 – score BEARNI en %]
+                           - Pour les scores T2 de l’Alliance thérapeutique (WAI) et de l’Auto-efficacité (GSES), possibilité de  prendre ceux ‘normalisés sur 100’
+
+En résumé : - inverser l'ordre. Les évolutions en 1 et Force et fragilité en 2
+
+Les évolutions : 	- pour l’Auto-efficacité (GSES), utiliser les valeurs ‘normalisées sur 100’
+
+Alcool Rélexion clinique :
+------------------------------------------------
+Auto efficacité (GSES) - A l'admission : - Retirer la barre à 50%
+
+La motivation et préparation au changement (SOCRATES) : pour le retrouver dans REDCap : tout en minuscule
+
+La charge du passé :  - Les données sont dans le t2.
+                      - Si variable ctq_choix 0 : ne pas afficher le graphique, 1 : afficher
+                      - Toutes les barres de la même couleur
+
+Les évolutions : 	- Titre dans le menu : Avant et après le sevrage
+			- pour l’Auto-efficacité (GSES), utiliser les valeurs ‘normalisées sur 100’
+
+
+Alcool Entretien clinique :
+------------------------------------------------
+Les symptomes dépressifs (phq9) à l'admission : - il faut utiliser les score t1 et pas t2
+
+Les troubles du sommeil (ISI) à l'admission : - il faut utiliser les score t1 et pas t2
+
+Auto efficacité (GSES) - A l'admission : - Utiliser le score normalisé sur 100 et mettre une barre sur la jauge à l’endroit du score
+
+La charge du passé : - ne pas afficher ce graphique
+
+===================================================================================================================
+
+Dépression : 
+------------------------------------------------
+L'intensité de la dépression (phq9) - Evolution : - mettre ‘A l’admission’ ‘En fin d’hospitalisation’ sous les graphiques (et pas t1_arm1…)
+
+
+
+Dépression Rélexion clinique :
+------------------------------------------------
+La réactivité émotionnelle (MAThyS) - A l'admission : Graph en étoile comme dans la vue Entretien (voir Trello?)
+La réactivité émotionnelle (MAThyS) - Evolution : Graph en étoile (voir Trello?)
+
+Les consomation (ASSIST) - A l'admission : - Les valeurs ne sont pas manquante, elle sont à 0. Checker quoi faire.
+Les consomation (ASSIST) - Statisitque : - Afficher ASSIST dans le titre
+
+Gestion des émotions - Blame de soi et blame d'autrui peut etre inversé
+
+Interne : L'auto efficacité (GSES) : - virer le sous titre
+		                     - virer les barre grises
+                                     - virer la barre du milieu
+                                     - pas de variation de couleur
+
+L'alliance thérapeutique (WAI) : - dans le Menu déroulant ‘Ressentie en fin d’hospitalisation’
+                                 - pour le score : le ‘normaliser’ et le mettre sur 100 : ([Score -12] * 100 / 72)
+
+Evenements stressants de l'enfance :  - Si variable ctq_choix 0 : ne pas afficher le graphique, 1 : afficher
+                                      - Toutes les barres de la même couleur
+
+Prévnetion de la rechute : - "Evenement difficiles durant l'enfance" est bianire 0 ou 1 donc 0 ou 100%
+			   - - remettre les lignes intermédiaires et de mettre de 0 à 10 plutôt que 0 à 100 ? (et afficher 1 – 3 – 5 – 7 – 10)
+                           - pour Atteinte neurocognitive : Faire [100 – score BEARNI en %]
+                           - Pour les scores T2 de l’Alliance thérapeutique (WAI) et de l’Auto-efficacité (GSES), possibilité de  prendre ceux ‘normalisés sur 100’
+
+Dépression Entretien clinique :
+------------------------------------------------
+L'intensité de la dépression (phq9) - A l'admission : - Utilise le t1 et pas le t2
+                                                      - La partie modérée doit être en jaune/orange pale et pas en rose
+
+La réactivité émotionnelle (MAThyS) - A l'admission : - Titre des catégories 
+La réactivité émotionnelle (MAThyS) - Evolution : - Graph en étoile (voir Trello?)
+
+Indices de bipolarité : - Vérifier les variables entre les deux vues car ca marche dans la vue réflexion
+
+Anxiété - A l'admission : - Utiliser le T1
+
+Insomnie - A l'admission : - il y a deux fois modérée
+
+L'hypersomnolence (HSI) - A l'admission : Abscence + Présence
+
+Les consomation : - Vérifier les variables entre les deux vues car ca marche dans la vue réflexion
+
+Interne auto efficacité : Checker si la variable est rempli ou non
+
+Prévention de la rechute : pareil que l'autre vue
+
+Après le sevrage : pareil que l'autre vue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
