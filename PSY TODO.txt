@@ -27,7 +27,7 @@ L'alliance thérapeutique (WAI) : - dans le Menu déroulant ‘Ressentie en fin 
 
 La cognition (BEARNI) : - mettre le graphique Total en Horizontal (Au dessus du graphique des 5 sous-scores) et mettre en couleur (vert – jaune – orange) la zone du résultat total. 
 
-Prévention de la rechute : - Titre : Prévention de la rechute -> Les forces et fragilités
+Prévention de la rechute : - Titre : Prévention de la rechute -> Les forces et fragilités V
                            - remettre les lignes intermédiaires et de mettre de 0 à 10 plutôt que 0 à 100 ? (et afficher 1 – 3 – 5 – 7 – 10)
                            - pour Atteinte neurocognitive : Faire [100 – score BEARNI en %]
                            - Pour les scores T2 de l’Alliance thérapeutique (WAI) et de l’Auto-efficacité (GSES), possibilité de  prendre ceux ‘normalisés sur 100’
@@ -90,7 +90,7 @@ Evenements stressants de l'enfance :  - Si variable ctq_choix 0 : ne pas affiche
                                       - Toutes les barres de la même couleur
 
 Prévnetion de la rechute : - "Evenement difficiles durant l'enfance" est bianire 0 ou 1 donc 0 ou 100%
-			   - - remettre les lignes intermédiaires et de mettre de 0 à 10 plutôt que 0 à 100 ? (et afficher 1 – 3 – 5 – 7 – 10)
+			   - remettre les lignes intermédiaires et de mettre de 0 à 10 plutôt que 0 à 100 ? (et afficher 1 – 3 – 5 – 7 – 10)
                            - pour Atteinte neurocognitive : Faire [100 – score BEARNI en %]
                            - Pour les scores T2 de l’Alliance thérapeutique (WAI) et de l’Auto-efficacité (GSES), possibilité de  prendre ceux ‘normalisés sur 100’
 

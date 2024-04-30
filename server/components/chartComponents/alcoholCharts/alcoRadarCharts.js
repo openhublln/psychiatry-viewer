@@ -185,18 +185,18 @@ export const showAlcoForceFragilityRadar = ({
   const forceData = [...forceDataT1.dataSet, ...forceDataT2.dataSet]
 
   const modifiedData = [
-    (fragilityData[1] / 27) * 100, // PHQ-9 
-    (fragilityData[2] / 21) * 100, // GAD-7
-    (fragilityData[3] / 28) * 100, // ISI 
-    (fragilityData[4] / 32) * 100, // OCDS 
-    (fragilityData[0] / 80) * 100, // CERQ 1
-    (fragilityData[5] / 30) * 100, // Bearni
-    (forceData[0] / 100) * 100, // CERQ
-    (forceData[4] / 40) * 100, // GSE
-    (forceData[1] / 36) * 100, // SSQ-6
-    (forceData[5] / 84) * 100, // WAI
-    forceData[2], // WHO-5 (déjà en %)
-    forceData[3], // WHO-10 (déjà en %)
+    (fragilityData[1] / 27) * 10, // PHQ-9 
+    (fragilityData[2] / 21) * 10, // GAD-7
+    (fragilityData[3] / 28) * 10, // ISI 
+    (fragilityData[4] / 32) * 10, // OCDS 
+    (fragilityData[0] / 80) * 10, // CERQ 1
+    (100 - ((fragilityData[5] / 30) * 100)) / 10, // Bearni
+    (forceData[0] / 100) * 10, // CERQ
+    (forceData[4] / 40) * 10, // GSE
+    (forceData[1] / 36) * 10, // SSQ-6
+    (forceData[5] / 84) * 10, // WAI
+    forceData[2] / 10, // WHO-5 (déjà en %)
+    forceData[3] / 10, // WHO-10 (déjà en %)
   ]
 
   // Check the missing data
@@ -259,9 +259,9 @@ export const showAlcoForceFragilityRadar = ({
         {RadarLineChart({
           dataSet: timeDataSet,
           scorelabels: labels,
-          dataName: 'Prévention de la rechute',
+          dataName: 'Les forces et fragilités',
           minValue: 0,
-          maxValue: 100,
+          maxValue: 10,
           colors: colors,
           chartWidth: '550px',
           chartHeight: '530px',

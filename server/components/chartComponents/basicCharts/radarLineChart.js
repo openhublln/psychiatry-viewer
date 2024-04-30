@@ -52,15 +52,16 @@ export const RadarLineChart = ({
         angleLines: {
           display: false,
         },
-        suggestedMin: minValue,
-        suggestedMax: maxValue,
+        min: minValue,
+        max: maxValue,
         pointLabels: {
           font: {
             size: 13,
           },
         },
         ticks: {
-          maxTicksLimit: 4
+          count: 5,
+          stepSize: 2,
        }
       },
     },

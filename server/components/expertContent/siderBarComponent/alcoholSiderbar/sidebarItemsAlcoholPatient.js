@@ -280,7 +280,7 @@ export const AlcoholPatientSidebarItems = [
     React.createElement(RiNodeTree),
     [
       getItem(
-        'Prévention de la rechute',
+        'Les forces et fragilités',
         'forcesFrag',
         React.createElement(AiOutlineSubnode),
         [
