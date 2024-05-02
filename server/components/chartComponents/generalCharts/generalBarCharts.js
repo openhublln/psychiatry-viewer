@@ -263,7 +263,7 @@ export const showAnxietyBar = ({ medicalData, time, graphType }) => {
   const missingTotalDataColumn = getMissingDataColumn(data, time)
   const graph = showBarChart({
     medicalData: data,
-    labelName: DataColumns.gad7.name,
+    labelName: [''],//DataColumns.gad7.name,
     dataName: 'Anxiété (GAD7)',
     maxValues: [21],
     chartWidth: '200px',
@@ -336,7 +336,7 @@ export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
 
   const graph = showBarChart({
     medicalData: data,
-    labelName: DataColumns.gse.name,
+    labelName: [''], //DataColumns.gse.name,
     dataName: ['Auto-efficacité', '(GSES)'],
     maxValues: [100],
     chartWidth: '200px',
@@ -592,7 +592,7 @@ export const showExterneAllianceTherapBar = ({
 
   const graph = showBarChart({
     medicalData: data,
-    labelName: DataColumns.wai.name,
+    labelName: [''],//DataColumns.wai.name,
     dataName: ["L'alliance", 'thérapeutique (WAI)'],
     maxValues: [84],
     chartWidth: '200px',

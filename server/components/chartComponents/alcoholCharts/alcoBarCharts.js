@@ -40,7 +40,7 @@ export const showAlcoDepressionBar = ({ medicalData, time }) => {
 
   const barChart = showBarChart({
     medicalData: data,
-    labelName: DataColumns.phq9.name,
+    labelName: [''],//DataColumns.phq9.name,
     dataName: 'Dépression (PHQ9)',
     chartWidth: '200px',
     maxValues: [27],
@@ -187,7 +187,7 @@ export const showAlcoInsomnieBar = ({ medicalData, time, patientName }) => {
   const missingTotalColumn = getMissingDataColumn(data, time)
   const barChart = showBarChart({
     medicalData: data,
-    labelName: DataColumns.isi.name,
+    labelName: [''],//DataColumns.isi.name,
     dataName: 'Insomnie (ISI)',
     maxValues: [28],
     chartWidth: '200px',

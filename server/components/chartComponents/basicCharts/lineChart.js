@@ -30,7 +30,21 @@ export function LineChart({
   ticksCallback,
   y1StepSize,
 }) {
+  let ticks = {}
+  if(ticksCallback) {
+    ticks = {
+      stepSize: y1StepSize,
+      callback: ticksCallback,
+      font: { size: 12 },
+    }
+  } else {
+    ticks = {
+      stepSize: 5,
+      font: { size: 12 },
+  }
+  }
   const options = {
+    
     responsive: true,
     plugins: {
       title: {
@@ -47,25 +61,7 @@ export function LineChart({
         dispaly: true,
         max: maxValue,
         min: 0,
-        ticks: {
-          stepSize: 5,
-          font: { size: 12 },
-        },
-      },
-      y1: {
-        // dispaly: true,
-        position: 'right',
-        max: maxValue,
-        min: 0,
-        ticks: {
-          stepSize: y1StepSize,
-          callback: ticksCallback,
-          font: { size: 12 },
-        },
-        // grid line settings
-        grid: {
-          drawOnChartArea: false, // only want the grid lines for one axis to show up
-        },
+        ticks: ticks,
       },
       x: {
         beginAtZero: true,

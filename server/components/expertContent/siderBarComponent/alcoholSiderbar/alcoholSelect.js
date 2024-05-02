@@ -2,6 +2,7 @@ import {
   DataColumns,
   AlcoholItemKeys,
   ScoreSegmentLabels,
+  ScoreSegmentColors,
   GraphType,
 } from '../../../../models/dataset'
 import { showAlcoCravingEvolution } from '../../../chartComponents/alcoholCharts/alcoEvolution'
@@ -78,10 +79,51 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         patientName: medicalData.name,
       })
     case AlcoholItemKeys.alcoDepressionEvolution:
-      return showInterDepressionEvolutionLine({
+      return showDisplayEvolutionLine({
         medicalData: medicalData,
-        temps: [temps[0], temps[1]],
+        temps: temps,
         dataName: 'Dépression (PHQ9) : Évolution',
+        dataColumns: DataColumns.phq9.columns,
+        maxValue: 30,
+        ticksCallback: function (value) {
+          switch (value) {
+            case 2:
+              return ScoreSegmentLabels.absente
+            case 8:
+              return ScoreSegmentLabels.léger
+            case 12:
+              return ScoreSegmentLabels.modéré
+            case 18:
+              return ScoreSegmentLabels.modsévère
+            case 24:
+              return ScoreSegmentLabels.sévère
+            default:
+              break
+          }
+        },
+        y1StepSize: 2,
+        colorScale : [
+          {
+            threshold: 2,
+            color: ScoreSegmentColors.absenteRGBString,
+          },
+          {
+            threshold: 8,
+            color: ScoreSegmentColors.légerRGBString,
+          },
+          {
+            threshold: 12,
+            color: ScoreSegmentColors.modéréRGBString,
+          },
+          {
+            threshold: 18,
+            color: ScoreSegmentColors.modsévèreRGBString,
+          },
+          {
+            threshold: 24,
+            color: ScoreSegmentColors.sévèreRGBString,
+          },
+      ]
       })
     case AlcoholItemKeys.alcoCravingBar:
       return showAlcoCravingBar({
@@ -136,6 +178,24 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
           }
         },
         y1StepSize: 4,
+        colorScale : [
+          {
+            threshold: 4,
+            color: ScoreSegmentColors.absenteRGBString,
+          },
+          {
+            threshold: 8,
+            color: ScoreSegmentColors.légerRGBString,
+          },
+          {
+            threshold: 12,
+            color: ScoreSegmentColors.modéréRGBString,
+          },
+          {
+            threshold: 16,
+            color: ScoreSegmentColors.sévèreRGBString,
+          },
+      ]
       })
     case AlcoholItemKeys.alcoInsomnieBar:
       return showAlcoInsomnieBar({
@@ -153,10 +213,45 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         showGaugeTitle: true,
       })
     case AlcoholItemKeys.alcoInsomnieEvolution:
-      return showIsomnieLine({
+      return showDisplayEvolutionLine({
         medicalData: medicalData,
         temps: temps,
         dataName: 'Insomnie (ISI): Évolution',
+        dataColumns: DataColumns.isi.columns,
+        maxValue: 30,
+        ticksCallback: function (value) {
+          switch (value) {
+            case 6:
+              return ScoreSegmentLabels.absente
+            case 12:
+              return ScoreSegmentLabels.léger
+            case 18:
+              return ScoreSegmentLabels.modéré
+            case 24:
+              return ScoreSegmentLabels.sévère
+            default:
+              break
+          }
+        },
+        y1StepSize: 6,
+        colorScale : [
+            {
+              threshold: 6,
+              color: ScoreSegmentColors.absenteRGBString,
+            },
+            {
+              threshold: 12,
+              color: ScoreSegmentColors.légerRGBString,
+            },
+            {
+              threshold: 18,
+              color: ScoreSegmentColors.modéréRGBString,
+            },
+            {
+              threshold: 24,
+              color: ScoreSegmentColors.sévèreRGBString,
+            },
+        ]
       })
     case AlcoholItemKeys.impulsivityRadar:
       return showImpulsivityRadar({
@@ -178,14 +273,15 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         dataName: "L'Auto efficatité (GSES)",
         dataColumns: DataColumns.gse.columns,
         maxValue: 40,
-        ticksCallback: function (value) {
-          switch (value) {
-            case 5:
-              return ScoreSegmentLabels.nothing
-            default:
-              break
-          }
-        },
+        ticksCallback: null,
+        // ticksCallback: function (value) {
+        //   switch (value) {
+        //     case 5:
+        //       return ScoreSegmentLabels.nothing
+        //     default:
+        //       break
+        //   }
+        // },
         y1StepSize: 2,
       })
     case AlcoholItemKeys.autoEfficacitybar:

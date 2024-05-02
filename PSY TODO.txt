@@ -1,13 +1,9 @@
-Global :
+Alcool :
 ------------------------------------------------
 Pour les graph d'évolution avec une ligne : - mettre les tresholds en fonction de ‘Absence, Léger, Modéré …
                                             - La couleur de la ligne doit avoir la couleur de la range en T2
-
 Pour les bar chart : - pas de sous titre
 
-
-Alcool :
-------------------------------------------------
 Pour les bar chart : - la gradation en gris claire doit être par step de 1
 		     - pas de sous titre
 
@@ -64,6 +60,10 @@ La charge du passé : - ne pas afficher ce graphique
 
 Dépression : 
 ------------------------------------------------
+Pour les graph d'évolution avec une ligne : - mettre les tresholds en fonction de ‘Absence, Léger, Modéré …
+                                            - La couleur de la ligne doit avoir la couleur de la range en T2
+Pour les bar chart : - pas de sous titre
+
 L'intensité de la dépression (phq9) - Evolution : - mettre ‘A l’admission’ ‘En fin d’hospitalisation’ sous les graphiques (et pas t1_arm1…)
 
 

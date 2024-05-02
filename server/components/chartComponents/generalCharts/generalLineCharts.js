@@ -3,6 +3,7 @@ import { LineChart } from '../basicCharts/lineChart'
 import {
   DataColumns,
   NoScoreSegmentColors,
+  ScoreSegmentColors,
   ScoreSegmentLabels,
 } from '../../../models/dataset'
 import { showGraph, emptyValue } from '../../componentsUtils/visualizationGraph'
@@ -23,7 +24,9 @@ export const showInterDepressionEvolutionLine = ({
   for (let i = 0; i < temps.length; i++) {
     let missingCols = []
     for (let c = 0; c < DataColumns.phq9.columns.length; c++) {
-      labels.push('temp: ' + temps[i])
+      i === 0
+        ? labels.push("à l'admission")
+        : labels.push(['En fin', "d'hospitalisation"])
       currentColName = DataColumns.phq9.columns[c].trim()
       const value = getDataByName(
         medicalData,
@@ -50,7 +53,6 @@ export const showInterDepressionEvolutionLine = ({
     labels: labels,
     datasets: datasets,
   }
-
   const graph = (
     <LineChart
       dataSet={data}
@@ -86,13 +88,17 @@ export const showInterDepressionEvolutionLine = ({
  */
 export const showIsomnieLine = ({ medicalData, temps, dataName }) => {
   let datasets = []
+  let currentColName = ''
   let missingTotalColumn = []
   let labels = []
   let tData = []
   for (let i = 0; i < temps.length; i++) {
     let missingCols = []
     for (let c = 0; c < DataColumns.isi.columns.length; c++) {
-      labels.push(temps[i])
+      i === 0
+        ? labels.push("à l'admission")
+        : labels.push(['En fin', "d'hospitalisation"])
+      currentColName = DataColumns.isi.columns[c].trim()
       const value = getDataByName(
         medicalData,
         DataColumns.isi.columns[c].trim(),
@@ -104,15 +110,16 @@ export const showIsomnieLine = ({ medicalData, temps, dataName }) => {
         missingCols.push(DataColumns.isi.columns[c].trim())
       }
     }
-    missingTotalColumn.push({ time: temps[i], missingCols: missingCols })
-
-    const td = {
-      label: DataColumns.isi.columns[0],
-      data: tData,
-      borderColor: NoScoreSegmentColors.blueRGBString,
-    }
-    datasets.push(td)
+    missingTotalColumn.push({ time: temps[i], missingCols: missingCols })    
   }
+
+  const td = {
+    label: currentColName,
+    data: tData,
+    borderColor: NoScoreSegmentColors.blueRGBString,
+  }
+  datasets.push(td)
+
   const data = {
     labels: labels,
     datasets: datasets,
@@ -157,6 +164,7 @@ export const showDisplayEvolutionLine = ({
   maxValue,
   ticksCallback,
   y1StepSize,
+  colorScale,
 }) => {
   let datasets = []
   let missingGeneralColumn = []
@@ -181,16 +189,29 @@ export const showDisplayEvolutionLine = ({
     }
     missingGeneralColumn.push({ time: temps[i], missingCols: missingCols })
   }
+  
+  let LineColor = NoScoreSegmentColors.blueRGBString
+  if(colorScale != null && colorScale.length > 0)
+  {
+    var i = 0
+    while (tData[1] > colorScale[i].threshold && i < colorScale.length - 1) {
+      i++
+    }
+    LineColor = colorScale[i].color
+  }
+  
+
   const td = {
     label: dataColumns[0],
     data: tData,
-    borderColor: NoScoreSegmentColors.blueRGBString,
+    borderColor: LineColor,
   }
   datasets.push(td)
   const data = {
     labels: labels,
     datasets: datasets,
   }
+
   const graph = (
     <LineChart
       dataSet={data}
