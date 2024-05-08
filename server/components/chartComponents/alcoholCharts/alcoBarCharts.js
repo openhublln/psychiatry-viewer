@@ -417,14 +417,75 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
       missingCols: [DataColumns.bearni.total],
     })
   }
-
+  console.log(bearni_tot)
   const graph = (
-    <Space direction="horizonal">
+    <Space direction="vertical">
       <div>
-        {showBarChart({
+      {showBarChart({
+          medicalData: [
+            { colName: DataColumns.bearni.total, value: 100 - bearni_tot },
+          ],
+          labelName: ['Total'],
+          dataName: ['Troubles neuro-psychologiques (BEARNI)', 'Total'],
+          maxValues: [30],
+          chartHeight: '180px',
+          chartWidth: '470px',
+          //ticks: [0, diploma < 6 ? 16.5 : 17.5, diploma < 6 ? 19.5 : 21.5],
+          scales: [
+            [
+              // {
+              //   threshold: diploma < 6 ? 16.5 : 17.5,
+              //   color: ScoreSegmentColors.absenteRGBString,
+              // },
+              // {
+              //   threshold: diploma < 6 ? 19.5 : 21.5,
+              //   color: ScoreSegmentColors.légerRGBString,
+              // },
+              // {
+              //   threshold: 30,
+              //   color: ScoreSegmentColors.modéréRGBString,
+              // },
+              {
+                threshold: 0,
+                color: ScoreSegmentColors.modéréRGBString,
+              },
+              {
+                threshold: 25,
+                color: ScoreSegmentColors.légerRGBString,
+              },
+              {
+                threshold: 60,
+                color: ScoreSegmentColors.absenteRGBString,
+              },
+            ],
+          ],
+          ticksCallback: function (value, index) {
+            switch (value) {
+              // case 25:
+              //   return ScoreSegmentLabels.noProblem
+              // case 60:
+              //   return ScoreSegmentLabels.léger
+              // case 80:
+              //   return ScoreSegmentLabels.modéré
+              case 100:
+                return ScoreSegmentLabels.noProblem
+              case 60:
+                return ScoreSegmentLabels.léger
+              case 25:
+                return ScoreSegmentLabels.modéré
+              default:
+                break
+            }
+          },
+          graphType: GraphType.alcohol,
+          isHorizontal: true,
+        })}
+      </div>
+      <div>
+      {showBarChart({
           medicalData: data,
           labelName: DataColumns.bearni.name,
-          dataName: 'Troubles neuro-psychologiques (BEARNI)',
+          dataName: 'Scores aux sous catégories',
           maxValues: maxValues,
           chartHeight: '500px',
           chartWidth: '520px',
@@ -460,48 +521,6 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
               },
             ],
           ],
-          graphType: GraphType.alcohol,
-        })}
-      </div>
-      <div>
-        {showBarChart({
-          medicalData: [
-            { colName: DataColumns.bearni.total, value: bearni_tot },
-          ],
-          labelName: ['Total'],
-          dataName: 'Total',
-          maxValues: [30],
-          chartHeight: '470px',
-          chartWidth: '180px',
-          ticks: [0, diploma < 6 ? 16.5 : 17.5, diploma < 6 ? 19.5 : 21.5],
-          scales: [
-            [
-              {
-                threshold: diploma < 6 ? 16.5 : 17.5,
-                color: ScoreSegmentColors.absenteRGBString,
-              },
-              {
-                threshold: diploma < 6 ? 19.5 : 21.5,
-                color: ScoreSegmentColors.légerRGBString,
-              },
-              {
-                threshold: 30,
-                color: ScoreSegmentColors.modéréRGBString,
-              },
-            ],
-          ],
-          ticksCallback: function (value, index) {
-            switch (value) {
-              case 25:
-                return ScoreSegmentLabels.noProblem
-              case 60:
-                return ScoreSegmentLabels.léger
-              case 80:
-                return ScoreSegmentLabels.modéré
-              default:
-                break
-            }
-          },
           graphType: GraphType.alcohol,
         })}
       </div>

@@ -171,9 +171,9 @@ export const DataColumns = {
   socrates: {
     name: ['Reconnaissance', 'Ambivalence', ['Prise de', 'mesures']],
     columns: [
-      'SOCRATES_recognition',
-      'SOCRATES_ambivalence',
-      'SOCRATES_takingsteps',
+      'socrates_recognition',
+      'socrates_ambivalence',
+      'socrates_takingsteps',
     ],
   },
   bearni: {

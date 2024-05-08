@@ -165,6 +165,9 @@ export const showDisplayEvolutionLine = ({
   ticksCallback,
   y1StepSize,
   colorScale,
+  normalized = false,
+  minNormalized = 0,
+  maxNormalized = 0
 }) => {
   let datasets = []
   let missingGeneralColumn = []
@@ -176,12 +179,15 @@ export const showDisplayEvolutionLine = ({
       i === 0
         ? labels.push("à l'admission")
         : labels.push(['En fin', "d'hospitalisation"])
-      const value = getDataByName(
+      let value = getDataByName(
         medicalData,
         dataColumns[c].trim(),
         temps[i],
         medicalData.name,
       )
+      if(normalized) {
+        value = ((value - minNormalized) / (maxNormalized - 10)) * 100
+      }
       tData.push(value)
       if (emptyValue(value)) {
         missingCols.push(dataColumns[c].trim())

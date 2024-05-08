@@ -47,7 +47,7 @@ export const showAlcoResumeEvolutionsRadar = ({
         firstData.dataSet[i] = firstData.dataSet[i] / 3.2
         break
       case 4:
-        firstData.dataSet[i] = firstData.dataSet[i] / 4
+        firstData.dataSet[i] = (((firstData.dataSet[i] - 10) * 100) / 30) / 10
         break
       default:
         break
@@ -68,7 +68,7 @@ export const showAlcoResumeEvolutionsRadar = ({
         secondData.dataSet[i] = secondData.dataSet[i] / 3.2
         break
       case 4:
-        secondData.dataSet[i] = secondData.dataSet[i] / 4
+        secondData.dataSet[i] = (((secondData.dataSet[i] - 10) * 100) / 30) / 10
         break
       default:
         break
@@ -107,7 +107,7 @@ export const showAlcoResumeEvolutionsRadar = ({
         {RadarChart({
           dataSet: timeDataSet,
           scorelabels: labels,
-          dataName: 'Evolution durant l’hospitalisation',
+          dataName: 'Avant et après le sevrage',
           maxValue: 10,
           fill: false,
         })}
@@ -192,9 +192,9 @@ export const showAlcoForceFragilityRadar = ({
     (fragilityData[0] / 80) * 10, // CERQ 1
     (100 - ((fragilityData[5] / 30) * 100)) / 10, // Bearni
     (forceData[0] / 100) * 10, // CERQ
-    (forceData[4] / 40) * 10, // GSE
+    (((forceData[4] - 10) * 100) / 30) / 10, // GSE
     (forceData[1] / 36) * 10, // SSQ-6
-    (forceData[5] / 84) * 10, // WAI
+    (((forceData[5] - 12) * 100) / 72) / 10, // WAI
     forceData[2] / 10, // WHO-5 (déjà en %)
     forceData[3] / 10, // WHO-10 (déjà en %)
   ]

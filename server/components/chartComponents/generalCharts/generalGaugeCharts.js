@@ -1,10 +1,13 @@
 import { getDataByName } from '../../../lib/datalib/parseData'
-import { showGraph, emptyValue } from '../../componentsUtils/visualizationGraph'
+import { showGraph, emptyValue, getMissingDataColumn } from '../../componentsUtils/visualizationGraph'
 import { GaugeChart } from '../basicCharts/gaugeChart'
 import { DataColumns, ScoreSegmentLabels } from '../../../models/dataset'
 import { Space } from 'antd'
 import Styles from '../chartcomponents.module.css'
-
+import {
+  getNormalizedValue,
+  getGraduationValue,
+} from '../../../lib/datalib/calculateData'
 /**
  * The depression data
  * @returns The gauge chart for depression data
@@ -124,19 +127,22 @@ export const autoEfficacityGauge = ({
   dataName,
 }) => {
   let missingTotalColumn = []
-  const data = getDataByName(
-    medicalData,
-    DataColumns.gse.columns[0],
-    time,
-    medicalData.name,
-  )
-
-  if (emptyValue(data)) {
-    missingTotalColumn.push({
-      time: time,
-      missingCols: [DataColumns.gse.columns[0]],
-    })
-  }
+  let data = DataColumns.gse.columns.map((cname) => {
+    const readValue = getGraduationValue(
+      medicalData,
+      cname,
+      time,
+      medicalData.name,
+      10,
+      40,
+    )
+    return {
+      colName: cname,
+      value: readValue ? readValue : null,
+    }
+  })
+  console.log(data[0]['value'])
+  const missingTotalDataColumn = getMissingDataColumn(data, time)
 
   const graph = (
     <div style={{ width: 'fit-content' }}>
@@ -147,18 +153,18 @@ export const autoEfficacityGauge = ({
       </div>
       {
         <GaugeChart
-          medicalData={data}
+          medicalData={data[0]['value']}
           scoreLabels={['', '']}
           dataName={dataName}
-          segmentStops={[0, 10.5, 40]}
-          maxValue={40}
+          segmentStops={[0, 50, 100]}
+          maxValue={100}
           withColor={withColor}
         />
       }
     </div>
   )
   return showGraph({
-    missingTotalColumn: missingTotalColumn,
+    missingTotalColumn: missingTotalDataColumn,
     graph: graph,
   })
 }

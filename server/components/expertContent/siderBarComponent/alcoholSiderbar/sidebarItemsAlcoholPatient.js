@@ -242,22 +242,7 @@ export const AlcoholPatientSidebarItems = [
     'group',
   ),
   getDividerItem('divider'),
-  getItem(
-    <div className={Styles.sideBarMenuGroupTitleLabel}>
-      Histoire infantile et familiale
-    </div>,
-    'historyInfFam',
-    React.createElement(RiNodeTree),
-    [
-      getItem(
-        'La charge du passé',
-        AlcoholItemKeys.infFamilieRadar,
-        React.createElement(AiOutlineRadarChart),
-      ),
-    ],
-    'group',
-  ),
-  getDividerItem('divider'),
+ 
   getItem(
     <div className={Styles.sideBarMenuGroupTitleLabel}>
       Quelle qualité de vie
@@ -280,19 +265,6 @@ export const AlcoholPatientSidebarItems = [
     React.createElement(RiNodeTree),
     [
       getItem(
-        'Les forces et fragilités',
-        'forcesFrag',
-        React.createElement(AiOutlineSubnode),
-        [
-          getItem(
-            'Où agir',
-            AlcoholItemKeys.alcoForceFragilityRadar,
-            React.createElement(AiOutlineRadarChart),
-          ),
-        ],
-        'group',
-      ),
-      getItem(
         'Les évolutions',
         'evolutions',
         React.createElement(AiOutlineSubnode),
@@ -300,6 +272,19 @@ export const AlcoholPatientSidebarItems = [
           getItem(
             'Avant et après le sevrage',
             AlcoholItemKeys.alcoResumeEvolutionsRadar,
+            React.createElement(AiOutlineRadarChart),
+          ),
+        ],
+        'group',
+      ),
+      getItem(
+        'Les forces et fragilités',
+        'forcesFrag',
+        React.createElement(AiOutlineSubnode),
+        [
+          getItem(
+            'Où agir',
+            AlcoholItemKeys.alcoForceFragilityRadar,
             React.createElement(AiOutlineRadarChart),
           ),
         ],

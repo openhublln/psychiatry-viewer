@@ -40,7 +40,7 @@ const createBalanceBar = ({ data, maxValues, dataName, scales, graphType }) => {
   keys.forEach((k, index) => {
     switch (k) {
       case columns[0]:
-        labelName.push(['Blâme', 'de soi'])
+        labelName.push(['Blâme', "d'autrui"])
         normalizedDataSet.push({
           colName: k,
           value: (100 * data[k]) / maxValues[index],
@@ -54,7 +54,7 @@ const createBalanceBar = ({ data, maxValues, dataName, scales, graphType }) => {
         })
         break
       case columns[2]:
-        labelName.push([`Blâme`, `d'autrui`])
+        labelName.push([`Blâme`, 'de soi'])
         normalizedDataSet.push({
           colName: k,
           value: (100 * data[k]) / maxValues[index],
@@ -137,7 +137,6 @@ export const showRegulationEmotionBarBlance = ({
   let sortedNonAdaptaData = []
   let sortedAdaptaData = []
   let missingGeneralColumn = []
-
   const readNonAdaptaData = getDataSetByDataNames(
     medicalData,
     temps[0],
@@ -196,6 +195,8 @@ export const showRegulationEmotionBarBlance = ({
       ([, a], [, b]) => a - b,
     ),
   )
+
+  console.log(sortedNonAdaptaData)
   sortedAdaptaData = Object.fromEntries(
     Object.entries(readAdaptaData.dataSetObject).sort(([, a], [, b]) => a - b),
   )
@@ -318,13 +319,13 @@ export const showAnxietyBar = ({ medicalData, time, graphType }) => {
  * @returns The bar chart
  */
 export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
-  let data = DataColumns.gse.columns.map((cname) => {
+   let data = DataColumns.gse.columns.map((cname) => {
     const readValue = getGraduationValue(
       medicalData,
       cname,
       time,
       medicalData.name,
-      10.5,
+      10,
       40,
     )
     return {
@@ -340,7 +341,7 @@ export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
     dataName: ['Auto-efficacité', '(GSES)'],
     maxValues: [100],
     chartWidth: '200px',
-    ticks: [0, 50],
+    ticks: [0],
     scales: [
       [
         {
@@ -576,11 +577,12 @@ export const showExterneAllianceTherapBar = ({
   graphType,
 }) => {
   let data = DataColumns.wai.columns.map((cname) => {
-    const readValue = getNormalizedValue(
+    const readValue = getGraduationValue(
       medicalData,
       cname,
       time,
       medicalData.name,
+      12,
       84,
     )
     return {
@@ -594,31 +596,21 @@ export const showExterneAllianceTherapBar = ({
     medicalData: data,
     labelName: [''],//DataColumns.wai.name,
     dataName: ["L'alliance", 'thérapeutique (WAI)'],
-    maxValues: [84],
+    maxValues: [100],
     chartWidth: '200px',
-    ticks: [0, 12, 84],
+    ticks: [0, 100],
     scales: [
       [
         {
-          threshold: 12,
+          threshold: 0,
           color: SingleBarColors.purple,
         },
         {
-          threshold: 84,
+          threshold: 100,
           color: SingleBarColors.purple,
         },
       ],
     ],
-    ticksCallback: function (value) {
-      switch (value) {
-        case 15:
-          return 12
-        case 100:
-          return 84
-        default:
-          break
-      }
-    },
     graphType: graphType,
   })
   return showGraph({

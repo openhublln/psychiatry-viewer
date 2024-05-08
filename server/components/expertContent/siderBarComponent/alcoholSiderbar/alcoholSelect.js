@@ -73,7 +73,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
     case AlcoholItemKeys.depressionGauge:
       return showDepressionGauge({
         medicalData: medicalData,
-        time: temps[1],
+        time: temps[0],
         withColor: true,
         dataName: "À l'admission",
         patientName: medicalData.name,
@@ -123,7 +123,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
             threshold: 24,
             color: ScoreSegmentColors.sévèreRGBString,
           },
-      ]
+      ],
       })
     case AlcoholItemKeys.alcoCravingBar:
       return showAlcoCravingBar({
@@ -206,9 +206,9 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
     case AlcoholItemKeys.alcoInsomnieGauge:
       return alcoInsomnieGauge({
         medicalData: medicalData,
-        time: temps[1],
+        time: temps[0],
         withColor: true,
-        dataName: "En fin d'hospitalisation",
+        dataName: "À l'admission",
         patientName: medicalData.name,
         showGaugeTitle: true,
       })
@@ -272,7 +272,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         temps: temps,
         dataName: "L'Auto efficatité (GSES)",
         dataColumns: DataColumns.gse.columns,
-        maxValue: 40,
+        maxValue: 100,
         ticksCallback: null,
         // ticksCallback: function (value) {
         //   switch (value) {
@@ -283,6 +283,9 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         //   }
         // },
         y1StepSize: 2,
+        normalized : true,
+        minNormalized: 10,
+        maxNormalized: 40,
       })
     case AlcoholItemKeys.autoEfficacitybar:
       return showAutoEfficacitéBar({ medicalData: medicalData, time: temps[0] })
@@ -306,7 +309,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
     case AlcoholItemKeys.infFamilieRadar:
       return showInfFamilieRadar({
         medicalData: medicalData,
-        temps: [temps[0]],
+        temps: [temps[1]],
         dataName: 'La charge du passé',
       })
     case AlcoholItemKeys.alcoForceFragilityRadar:
