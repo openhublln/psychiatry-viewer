@@ -86,7 +86,7 @@ export const PatientTable = ({ patients, onClickSelectPatient, isExpert }) => {
       // Si l'utilisateur est un expert, ajoutez deux colonnes au tableau
       columns.push({
         id: 'medicinView',
-        Header: 'Rèflexion Clinique',
+        Header: 'Réflexion Clinique',
         Cell: ({ row }) => <div />, // Assurez-vous que cela renvoie un élément valide
       });
       columns.push({

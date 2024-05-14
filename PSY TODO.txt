@@ -1,9 +1,3 @@
-Alcool :
-------------------------------------------------
-La cognition (BEARNI) : - mettre le graphique Total en Horizontal (Au dessus du graphique des 5 sous-scores) et mettre en couleur (vert – jaune – orange) la zone du résultat total. 
-
-===================================================================================================================
-
 Dépression : 
 ------------------------------------------------
 Pour les graph d'évolution avec une ligne : - mettre les tresholds en fonction de ‘Absence, Léger, Modéré …

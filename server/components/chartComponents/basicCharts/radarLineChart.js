@@ -62,6 +62,7 @@ export const RadarLineChart = ({
         ticks: {
           count: 5,
           stepSize: 2,
+          precision: 0,
        }
       },
     },

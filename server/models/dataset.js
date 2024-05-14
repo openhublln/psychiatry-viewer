@@ -54,6 +54,7 @@ export const RadarDataColors = {
   blueRGBString: 'rgb(0, 0, 255)',
   yellowRGBString: 'rgb(255, 255, 0)',
   royalPurpleRGBString: 'rgb(104, 82, 172)',
+  redRGBString: 'rgb(255,0,0)'
 }
 
 export const LineDataColors = [

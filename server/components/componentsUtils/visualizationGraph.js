@@ -99,6 +99,7 @@ const message = (
       )
     }
   } else {
+    let missingNames = missingGeneralColumn.map((entry) => entry.missingCols.toString().toLowerCase()).join("")
     return (
       <label
         style={{
@@ -112,7 +113,7 @@ const message = (
         }}
       >
         {withTotalValue
-          ? `Attention, le sous-score Recherche de sensations n’est pas valide car 2 questions n’ont pas été complétées. Le sous-score Recherche de sensations n’est pas valide`
+          ? `Attention, ` + missingNames + ' est manquant'
           : `Le sous-score Recherche de sensations n’est pas valide.`}
       </label>
     )

@@ -46,6 +46,8 @@ export function BarChart({
   tooltipsCallback,
   graphType,
   isHorizontal = false,
+  drawGrid = false,
+  stepSize = 10,
 }) {
   const xTicksHorizontal =  {
     font: { size: 12 },
@@ -124,7 +126,7 @@ export function BarChart({
         },
         grid: {
           drawTicks: false,
-          display: false//graphType === GraphType.depression ? false : true,
+          display: (!isHorizontal && drawGrid) ? true : false//graphType === GraphType.depression ? false : true,
         },
         border: { color: '#000' },
         afterFit: function (scaleInstance) {
@@ -135,14 +137,14 @@ export function BarChart({
         max: maxValue,
         border: { display: false },
         ticks: {
-          stepSize: 1,
+          stepSize: stepSize,
           callback: function () {
             return ''
           },
         },
         grid: {
           drawTicks: false,
-          display: false,//graphType === GraphType.depression ? false : true,
+          display: (!isHorizontal && drawGrid) ? true : false,//graphType === GraphType.depression ? false : true,
         },
       },
     },
@@ -236,6 +238,8 @@ export const showBarChart = ({
   ticksCallback = () => {},
   graphType,
   isHorizontal = false,
+  drawGrid = false,
+  stepSize = 10,
 }) => {
   return (
     <BarChart
@@ -282,6 +286,8 @@ export const showBarChart = ({
       }
       graphType={graphType}
       isHorizontal = {isHorizontal}
+      drawGrid = {drawGrid}
+      stepSize={stepSize}
     />
   )
 }

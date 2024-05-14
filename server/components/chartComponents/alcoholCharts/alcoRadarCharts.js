@@ -189,8 +189,9 @@ export const showAlcoForceFragilityRadar = ({
     (fragilityData[2] / 21) * 10, // GAD-7
     (fragilityData[3] / 28) * 10, // ISI 
     (fragilityData[4] / 32) * 10, // OCDS 
-    (fragilityData[0] / 80) * 10, // CERQ 1
     (100 - ((fragilityData[5] / 30) * 100)) / 10, // Bearni
+    (fragilityData[0] / 80) * 10, // CERQ 1
+    
     (forceData[0] / 100) * 10, // CERQ
     (((forceData[4] - 10) * 100) / 30) / 10, // GSE
     (forceData[1] / 36) * 10, // SSQ-6
@@ -219,8 +220,8 @@ export const showAlcoForceFragilityRadar = ({
     'Anxiété',
     'Insomnie',
     'Craving',
-    ['Régulation non-adaptative', 'des émotions'],
     'Atteinte neuro-cognitive',
+    ['Régulation non-adaptative', 'des émotions'],
     //----------------------------------------
     ['Régulation adaptative', 'des émotions'],
     'Auto-efficacité',
@@ -229,9 +230,9 @@ export const showAlcoForceFragilityRadar = ({
     'Santé physique',
     'Environnement',
   ]
-
-  const rightColor = 'rgba(0, 0, 255, 1)'
-  const leftColor = 'rgba(255, 128, 0, 1)'
+  
+  const rightColor = RadarDataColors.greenRGBString
+  const leftColor = RadarDataColors.redRGBString
 
   const colors = [
     leftColor,
@@ -252,7 +253,7 @@ export const showAlcoForceFragilityRadar = ({
 
   const graph = (
     <Space direction="horizonal">
-      <h2 style={{ color: 'rgba(0, 0, 255, 1)', marginTop: '230px' }}>
+      <h2 style={{ color: rightColor, marginTop: '230px' }}>
         Forces
       </h2>
       <div>
@@ -269,7 +270,7 @@ export const showAlcoForceFragilityRadar = ({
           changeStartAngle: true,
         })}
       </div>
-      <h2 style={{ color: 'rgba(255, 128, 0, 1)', marginTop: '230px' }}>
+      <h2 style={{ color: leftColor, marginTop: '230px' }}>
         Fragilités
       </h2>
     </Space>

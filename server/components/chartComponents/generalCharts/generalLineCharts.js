@@ -167,7 +167,7 @@ export const showDisplayEvolutionLine = ({
   colorScale,
   normalized = false,
   minNormalized = 0,
-  maxNormalized = 0
+  maxNormalized = 0,
 }) => {
   let datasets = []
   let missingGeneralColumn = []
@@ -177,7 +177,7 @@ export const showDisplayEvolutionLine = ({
     let missingCols = []
     for (let c = 0; c < dataColumns.length; c++) {
       i === 0
-        ? labels.push("à l'admission")
+        ? labels.push("À l'admission")
         : labels.push(['En fin', "d'hospitalisation"])
       let value = getDataByName(
         medicalData,

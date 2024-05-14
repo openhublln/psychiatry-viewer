@@ -87,16 +87,28 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         maxValue: 30,
         ticksCallback: function (value) {
           switch (value) {
-            case 2:
+            // case 2:
+            //   return ScoreSegmentLabels.absente
+            // case 8:
+            //   return ScoreSegmentLabels.léger
+            // case 12:
+            //   return ScoreSegmentLabels.modéré
+            // case 18:
+            //   return ScoreSegmentLabels.modsévère
+            // case 24:
+            //   return ScoreSegmentLabels.sévère
+            case 0:
               return ScoreSegmentLabels.absente
-            case 8:
+            case 2:
               return ScoreSegmentLabels.léger
-            case 12:
+            case 8:
               return ScoreSegmentLabels.modéré
-            case 18:
+            case 12:
               return ScoreSegmentLabels.modsévère
-            case 24:
+            case 18:
               return ScoreSegmentLabels.sévère
+            case 30 :
+              return ''
             default:
               break
           }
@@ -165,14 +177,16 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         maxValue: 21,
         ticksCallback: function (value) {
           switch (value) {
-            case 4:
+            case 0:
               return ScoreSegmentLabels.absente
-            case 8:
+            case 4:
               return ScoreSegmentLabels.léger
-            case 12:
+            case 8:
               return ScoreSegmentLabels.modéré
-            case 16:
+            case 12:
               return ScoreSegmentLabels.sévère
+            case 21 :
+              return ''
             default:
               break
           }
@@ -221,14 +235,16 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         maxValue: 30,
         ticksCallback: function (value) {
           switch (value) {
-            case 6:
+            case 0:
               return ScoreSegmentLabels.absente
-            case 12:
+            case 6:
               return ScoreSegmentLabels.léger
-            case 18:
+            case 12:
               return ScoreSegmentLabels.modéré
-            case 24:
+            case 18:
               return ScoreSegmentLabels.sévère
+            case 30:
+                return ''
             default:
               break
           }

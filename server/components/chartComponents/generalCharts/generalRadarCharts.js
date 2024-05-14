@@ -98,6 +98,7 @@ export const showInfFamilieRadar = ({ medicalData, temps, dataName }) => {
     ],
     isDivide: false,
     changeStartAngle: false,
+    maxValue: 25
   })
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,

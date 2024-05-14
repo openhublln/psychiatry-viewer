@@ -119,9 +119,9 @@ export const showTroubleUsageAlcoBar = ({ medicalData, time, patientName }) => {
   const barchart = showBarChart({
     medicalData: data,
     labelName: DataColumns.dsm.name,
-    dataName: ['DSM-trouble de', 'l’usage de l’alcool'],
+    dataName: ['Le trouble de', 'l’usage de l’alcool (DSM-5)'],
     maxValues: [11],
-    chartWidth: '200px',
+    chartWidth: '250px',
     backgroundColor: '',
     ticks: [0, 2, 3.5, 5.5],
     scales: [
@@ -279,6 +279,20 @@ export const showQulityVieBar = ({ medicalData, time }) => {
         },
       ],
     ],
+    ticksCallback: function (value, index) {
+      switch (value) {
+        case 100:
+          return 100
+        case 50:
+          return 50
+        case 0:
+          return 0
+        default:
+          break
+      }
+    },
+    drawGrid: true,
+    stepSize: 10,
     graphType: GraphType.alcohol,
   })
   return showGraph({
@@ -343,6 +357,20 @@ export const showAlcoCravingBar = ({
       ],
     ],
     graphType: GraphType.alcohol,
+    drawGrid: true,
+    stepSize: 10,
+    ticksCallback: function (value, index) {
+      switch (value) {
+        case 100:
+          return 100
+        case 50:
+          return 50
+        case 0:
+          return 0
+        default:
+          break
+      }
+    },
   })
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
@@ -433,18 +461,6 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
           //ticks: [0, diploma < 6 ? 16.5 : 17.5, diploma < 6 ? 19.5 : 21.5],
           scales: [
             [
-              // {
-              //   threshold: diploma < 6 ? 16.5 : 17.5,
-              //   color: ScoreSegmentColors.absenteRGBString,
-              // },
-              // {
-              //   threshold: diploma < 6 ? 19.5 : 21.5,
-              //   color: ScoreSegmentColors.légerRGBString,
-              // },
-              // {
-              //   threshold: 30,
-              //   color: ScoreSegmentColors.modéréRGBString,
-              // },
               {
                 threshold: 0,
                 color: ScoreSegmentColors.modéréRGBString,
@@ -461,12 +477,6 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
           ],
           ticksCallback: function (value, index) {
             switch (value) {
-              // case 25:
-              //   return ScoreSegmentLabels.noProblem
-              // case 60:
-              //   return ScoreSegmentLabels.léger
-              // case 80:
-              //   return ScoreSegmentLabels.modéré
               case 100:
                 return ScoreSegmentLabels.noProblem
               case 60:
@@ -485,7 +495,7 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
       {showBarChart({
           medicalData: data,
           labelName: DataColumns.bearni.name,
-          dataName: 'Scores aux sous catégories',
+          dataName: 'Scores aux sous-catégories',
           maxValues: maxValues,
           chartHeight: '500px',
           chartWidth: '520px',
@@ -521,6 +531,20 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
               },
             ],
           ],
+          ticksCallback: function (value, index) {
+            switch (value) {
+              case 100:
+                return 100
+              case 50:
+                return 50
+              case 0:
+                return 0
+              default:
+                break
+            }
+          },
+          drawGrid: true,
+          stepSize: 10,
           graphType: GraphType.alcohol,
         })}
       </div>
@@ -579,6 +603,20 @@ export const showMotivationChangeBar = ({ medicalData, time, patientName }) => {
         },
       ],
     ],
+    ticksCallback: function (value, index) {
+      switch (value) {
+        case 100:
+          return 100
+        case 50:
+          return 50
+        case 0:
+          return 0
+        default:
+          break
+      }
+    },
+    drawGrid: true,
+    stepSize: 10,
     graphType: GraphType.alcohol,
   })
   return showGraph({

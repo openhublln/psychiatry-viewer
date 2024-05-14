@@ -134,7 +134,7 @@ export function GaugeChart({
         value={medicalData}
         maxSegmentLabels={scoreLabels.length}
         segments={scoreLabels.length}
-        currentValueText={`${dataName}: ${medicalData}`}
+        currentValueText={`${dataName}: ${Math.round(medicalData * 100) / 100}`}
         customSegmentLabels={createChartSegments(scoreLabels)}
         segmentColors={
           segmentColors

@@ -30,7 +30,7 @@ import Styles from '../chartcomponents.module.css'
  * @param {String} graphType - The graph type
  * @returns The balance bar charts
  */
-const createBalanceBar = ({ data, maxValues, dataName, scales, graphType }) => {
+const createBalanceBar = ({ data, maxValues, dataName, scales, graphType, ticksCallback, drawGrid, stepSize }) => {
   let normalizedDataSet = []
   let labelName = []
   const keys = Object.keys(data)
@@ -119,6 +119,9 @@ const createBalanceBar = ({ data, maxValues, dataName, scales, graphType }) => {
     maxBarThickness: '35',
     scales: scales,
     graphType: graphType,
+    ticksCallback: ticksCallback,
+    drawGrid: drawGrid,
+    stepSize: stepSize,
   })
 }
 
@@ -206,6 +209,10 @@ export const showRegulationEmotionBarBlance = ({
       <Space direction="vertical" className={Styles.balanceBarSpace}>
         <h2 className={Styles.regulationEmoTitle}>Régulation des émotions</h2>
         <Space direction="horizonal">
+          <div>
+            <Space direction="vertical" className={Styles.balanceBarSpace}>
+            </Space>
+          </div>
           <Space direction="vertical">
             {createBalanceBar({
               data: sortedNonAdaptaData,
@@ -213,6 +220,20 @@ export const showRegulationEmotionBarBlance = ({
               dataName: 'Stratégies non adaptatives',
               scales: leftScales,
               graphType: graphType,
+              ticksCallback: function (value, index) {
+                switch (value) {
+                  case 0:
+                    return 0
+                  case 50:
+                    return 10
+                  case 100:
+                    return 20
+                  default:
+                    break
+                }
+              },
+              drawGrid: true,
+              stepSize: 25,
             })}
             <div className={Styles.leftLine}>______________</div>
             <div className={Styles.left} />
@@ -224,6 +245,20 @@ export const showRegulationEmotionBarBlance = ({
               dataName: 'Stratégies adaptatives',
               scales: rightScales,
               graphType: graphType,
+              ticksCallback: function (value, index) {
+                switch (value) {
+                  case 0:
+                    return 0
+                  case 50:
+                    return 10
+                  case 100:
+                    return 20
+                  default:
+                    break
+                }
+              },
+              drawGrid: true,
+              stepSize: 25,
             })}
             <div className={Styles.rightLine}>______________</div>
             <div className={Styles.right} />
@@ -354,10 +389,16 @@ export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
         },
       ],
     ],
+    drawGrid: true,
+    stepSize: 10,
     ticksCallback: function (value) {
       switch (value) {
+        case 0:
+          return 0
         case 50:
-          return ScoreSegmentLabels.nothing
+          return 50
+        case 100:
+          return 100
         default:
           break
       }
@@ -380,7 +421,6 @@ export const showConsommationsSubstancesBar = ({
   graphType,
   showAlcool,
 }) => {
-  console.log(medicalData)
   const maxValues = [39, 39, 39, 39, 39, 39, 39, 39]
   const colors = [
     {
@@ -419,12 +459,11 @@ export const showConsommationsSubstancesBar = ({
       )
       return {
         colName: cname,
-        value: readValue ? readValue : null,
+        value: readValue || readValue == 0 ? readValue : null,
       }
     },
   )
   const missingGeneralColumn = getMissingDataColumn(consommationData, time)
-
   // get alcool data
   let missingTotalColumn = []
   let missingCols = []
@@ -611,6 +650,20 @@ export const showExterneAllianceTherapBar = ({
         },
       ],
     ],
+    drawGrid: true,
+    stepSize: 10,
+    ticksCallback: function (value) {
+      switch (value) {
+        case 100:
+          return 100
+        case 50:
+          return 50
+        case 0:
+          return 0
+        default:
+          break
+      }
+    },
     graphType: graphType,
   })
   return showGraph({
