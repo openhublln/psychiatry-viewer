@@ -36,6 +36,7 @@ yarn-error.log*
 
 # database
 /server/database
+database/*
 
 # data
 **/web-data/
