@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +12,8 @@ import gradient from 'chartjs-plugin-gradient'
 import { GraphType } from '../../../models/dataset'
 import { getScoreSegment } from '../../../lib/datalib/calculateData'
 import { max } from 'lodash-es'
+
+const barChartRef = useRef(null);
 
 ChartJS.register(
   CategoryScale,
@@ -207,6 +209,7 @@ export function BarChart({
           paddingRight: paddingRight,
           paddingLeft: paddingLeft,
         }}
+        ref={barChartRef}
       />
     </div>
   )

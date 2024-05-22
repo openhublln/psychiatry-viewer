@@ -35,8 +35,8 @@ yarn-error.log*
 .vercel
 
 # database
-/server/database
-database/*
+# /server/database
+# database/*
 
 # data
 **/web-data/

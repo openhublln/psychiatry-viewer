@@ -59,8 +59,10 @@ const SidebarControl = (props) => {
 
     switch (props.disease) {
       case GraphType.alcohol:
+        console.log("alcool:", AlcoholSelect(selectedItem, medicalData, temps, doShowWarning))
         return AlcoholSelect(selectedItem, medicalData, temps, doShowWarning)
       case GraphType.depression:
+        console.log("depression:", DepressionSelect(selectedItem, medicalData, temps, doShowWarning))
         return DepressionSelect(selectedItem, medicalData, temps, doShowWarning)
       default:
         break
