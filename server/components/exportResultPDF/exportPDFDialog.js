@@ -4,6 +4,7 @@ import { GraphType } from '../../models/dataset'
 import { pdf } from '@react-pdf/renderer'
 import { saveAs } from 'file-saver'
 import PDFDocument from './pdfDocument'
+import Select from './Select'
 import html2canvas from 'html2canvas'
 
 /**
@@ -146,7 +147,6 @@ export default class ExportPDFDialog extends React.Component {
           ]}
           style={{
             width: '550px',
-            height: '500px',
           }}
         >
           <Space direction="vertical">
@@ -197,6 +197,11 @@ export default class ExportPDFDialog extends React.Component {
                   style={{ width: '217px' }}
                 />
               </label>
+            </div>
+            <div>
+            <Select>
+
+            </Select>
             </div>
             <div className="commentSpace">
               <label
