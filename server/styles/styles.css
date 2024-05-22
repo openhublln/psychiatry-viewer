@@ -283,5 +283,5 @@ input {
 
 .exportPdfDialog .ant-modal-content {
   width: 550px;
-  height: 590px;
+  /* height: 590px; */
 }

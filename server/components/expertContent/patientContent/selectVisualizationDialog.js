@@ -68,7 +68,7 @@ export default class SelectVisualizationDialog extends React.Component {
             onChange={(e) => this.onChangeValue(e)}
             value={this.props.viewType}
           >
-            <Space direction="horizonal" style={{ marginTop: '25px' }}>
+            <Space direction="horizontal" style={{ marginTop: '25px' }}>
               <Radio value={ViewType.medicin} style={{ marginRight: '40px' }}>
                 {ViewType.medicin}
               </Radio>

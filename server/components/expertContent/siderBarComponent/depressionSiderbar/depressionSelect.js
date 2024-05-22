@@ -47,6 +47,26 @@ import {
 } from '../../../chartComponents/depressionCharts/depressionRadarCharts'
 
 // ************************* Depression ******************************
+// ! RETRIEVE ALL GRAPHS - EVERY RETURNED OBJ LOOKS LIKE:
+  // return showGraph({
+  //   missingTotalColumn: missingTotalColumn,
+  //   graph: graph,
+  // })
+  // ! WHERE "graph" IS A CUSTOM COMPONENT THAT LOOKS LIKE (i.e. a parent div containing a react-chartjs-2 component):
+  // return (
+  //   <div
+  //     className="lineChartDiv"
+  //     style={{
+  //       width: chartWidth,
+  //       height: chartHeight,
+  //     }}
+  //   >
+  //     <Line key={JSON.stringify(dataSet)} data={dataSet} options={options} /> // ! this is the chartJS component (specifically, from react-chartjs-2 library)
+  //   </div>
+  // )
+
+  // TODO - get reference to the react-chartjs-2 component and convert to base64
+  // https://stackoverflow.com/questions/62039681/react-chartjs-2-doughnut-chart-export-to-png
 export const DepressionSelect = (key, medicalData, temps, doShowWarning) => {
   switch (key) {
     case DepressionItemKeys.interDepressionBar:

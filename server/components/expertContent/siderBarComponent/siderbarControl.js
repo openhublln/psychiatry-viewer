@@ -52,6 +52,7 @@ const SidebarControl = (props) => {
     return temps
   }
 
+  // !
   const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
     const medicalData = props.patientData
     const temps = getTemps(medicalData)
@@ -66,17 +67,20 @@ const SidebarControl = (props) => {
     }
   }
 
+  // ! TRIGGERED ON SIDEBAR ITEM CLICK
   const onClick = (key) => {
+    console.log('key: ', key)
     setSelectedItem(key)
   }
 
+  // ! DEFINES SIDEBAR ITEMS WHICH DEFINES CORRESPONDING GRAPHS TO SHOW FOR EACH VIEW BASED ON THEIR KEY (?)
   const getSidebarItems = () => {
     const medicalData = props.patientData
     const temps = getTemps(medicalData)
     if (props.isExpert) {
       if (props.disease === GraphType.alcohol) {
         return props.viewType === ViewType.medicin
-          ? AlcoholExpertSidebarItems(medicalData, temps)
+          ? AlcoholExpertSidebarItems(medicalData, temps) // ? WHY DOES IT TAKES 2 PARAMETERS (while others don't) ?
           : AlcoholPatientSidebarItems
       } else if (props.disease === GraphType.depression) {
         return props.viewType === ViewType.medicin
@@ -96,11 +100,13 @@ const SidebarControl = (props) => {
     }
   }
 
+  // ! TRIGGERED ON EXPORT RESULT BUTTON
   const handleExportResult = () => {
     setExportPDFDialogKey(exportPDFDialogKey + 1)
     setShowExportPDFDialog(true)
   }
 
+  // !
   const prepareExportGraphs = () => {
     let graphs = []
     if (props.disease === GraphType.alcohol) {
@@ -162,6 +168,7 @@ const SidebarControl = (props) => {
             }
             width={320}
           >
+            {/* TODO RETRIEVE SIDEBAR KEYS TO BE USED IN THE EXPORT SELECTION MENU? */}
             <Menu
               className={Styles.sideBarMenu}
               mode="inline"
@@ -169,7 +176,7 @@ const SidebarControl = (props) => {
               defaultOpenKeys={['']}
               items={getSidebarItems()}
               selectedKeys={selectedItem}
-              onClick={(e) => onClick(e.key)}
+              onClick={(e) => onClick(e.key)} // triggers the onClick above
             />
           </Sider>
         </Space>

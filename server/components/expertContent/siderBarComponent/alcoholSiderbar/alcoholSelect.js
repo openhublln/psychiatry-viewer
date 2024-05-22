@@ -48,6 +48,7 @@ import {
 } from '../../../chartComponents/generalCharts/generalLineCharts'
 
 // **** Alcohol **********
+// ! RETRIEVE ALL GRAPHS
 export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
   switch (key) {
     case AlcoholItemKeys.troubelUsageAlcoBar:

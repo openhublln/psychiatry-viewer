@@ -39,6 +39,7 @@ export default class ExportPDFDialog extends React.Component {
 
     const imageDataURLs = []
     for (const graphElement of imageElement.childNodes) {
+      console.log("DEBUG: ", graphElement)
       const canvas = await html2canvas(graphElement, {
         width: graphElement.offsetWidth,
         height: graphElement.offsetHeight,
