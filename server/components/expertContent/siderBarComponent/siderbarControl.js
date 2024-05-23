@@ -16,6 +16,7 @@ import { AlcoholExpertSidebarItems } from './alcoholSiderbar/sidebarItemsAlcohol
 import { AlcoholPatientSidebarItems } from './alcoholSiderbar/sidebarItemsAlcoholPatient'
 import ExportPDFDialog from '../../exportResultPDF/exportPDFDialog'
 import Styles from './siderbarcomponent.module.css'
+import html2canvas from 'html2canvas'
 
 const { Content, Sider } = Layout
 
@@ -72,6 +73,25 @@ const SidebarControl = (props) => {
   // ! TRIGGERED ON SIDEBAR ITEM CLICK
   const onClick = (key) => {
     console.log('key: ', key)
+    
+    // * interesting resource: https://stackoverflow.com/a/45017234
+    // ! something similar already done in exportPDFDialog.js => try to continue from there ?
+    // let basicGraphs = document.getElementsByClassName('react-chartjs-2_chart-instance')
+    // for (let graph of basicGraphs) {
+    //   html2canvas(graph).then(canvas =>  {
+    //     const imgData = canvas.toDataURL('image/png');
+    //   })
+
+
+      // ! unsuccessful attempt using class/ref
+      // img = graph.toBase64Image('image/jpeg', 1)
+      // console.log("chart to img:", graph)
+      // if (barChartRef !== undefined) {
+      //   base64 = barChartRef.current.chartInstance.toBase64Image()
+      // }
+      // console.log("chart to base64:", base64)
+    // }
+
     setSelectedItem(key)
   }
 
@@ -110,8 +130,18 @@ const SidebarControl = (props) => {
 
   // !
   const prepareExportGraphs = () => {
+  //   let basicGraphs = document.getElementsByClassName('react-chartjs-2_chart-instance')
+  //   for (let graph of basicGraphs) {
+  //     img = graph.toBase64Image('image/jpeg', 1)
+  //     console.log("chart to img:", graph)
+  //     base64 = barChartRef.current.chartInstance.toBase64Image()
+  //     console.log("chart to base64:", base64)
+  //   }
+
     let graphs = []
+    console.log("==== INSIDE prepareExportGraphs() ====")
     if (props.disease === GraphType.alcohol) {
+      console.log("==== graph type is alcohol ====")
       graphs.push(
         componentsSwitchByDisease(
           AlcoholItemKeys.alcoForceFragilityRadar,
@@ -125,6 +155,7 @@ const SidebarControl = (props) => {
         ),
       )
     } else {
+      console.log("==== graph type is NOT alcohol ====")
       graphs.push(
         componentsSwitchByDisease(
           DepressionItemKeys.dpForceFragilityRadar,
@@ -138,6 +169,7 @@ const SidebarControl = (props) => {
         ),
       )
     }
+    console.log("graphs:", graphs)
     return graphs
   }
 
@@ -193,7 +225,8 @@ const SidebarControl = (props) => {
         visible={showExportPDFDialog}
         userName={props.user.username}
         graphType={props.disease}
-        graphs={showExportPDFDialog ? prepareExportGraphs() : []}
+        // graphs={showExportPDFDialog ? prepareExportGraphs() : []}
+        graphs={prepareExportGraphs()}
       />
     </>
   ) : null

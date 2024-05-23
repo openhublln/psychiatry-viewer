@@ -119,6 +119,7 @@ export const RadarChart = ({
         data={data}
         label={dataName}
         options={options}
+        className='react-chartjs-2_chart-instance'
       />
     </div>
   )

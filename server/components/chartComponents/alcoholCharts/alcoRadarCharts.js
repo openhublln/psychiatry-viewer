@@ -99,7 +99,7 @@ export const showAlcoResumeEvolutionsRadar = ({
   ]
 
   const graph = (
-    <Space direction="horizonal">
+    <Space direction="horizontal">
       <h2 style={{ color: 'rgba(0, 0, 255, 1)', paddingTop: '230px' }}>
         Avant
       </h2>
@@ -252,7 +252,7 @@ export const showAlcoForceFragilityRadar = ({
   const timeDataSet = [{ time: time, data: modifiedData }]
 
   const graph = (
-    <Space direction="horizonal">
+    <Space direction="horizontal">
       <h2 style={{ color: rightColor, marginTop: '230px' }}>
         Forces
       </h2>

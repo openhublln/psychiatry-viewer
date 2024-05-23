@@ -208,7 +208,7 @@ export const showRegulationEmotionBarBlance = ({
     <div>
       <Space direction="vertical" className={Styles.balanceBarSpace}>
         <h2 className={Styles.regulationEmoTitle}>Régulation des émotions</h2>
-        <Space direction="horizonal">
+        <Space direction="horizontal">
           <div>
             <Space direction="vertical" className={Styles.balanceBarSpace}>
             </Space>
@@ -506,29 +506,29 @@ export const showConsommationsSubstancesBar = ({
         {`Niveau d'intervention (ASSIST)`}
       </h2>
       <Space
-        direction="horizonal"
+        direction="horizontal"
         style={{ marginLeft: '65px', marginTop: '20px' }}
       >
         <div style={{ display: 'inline-flex' }}>
           <div style={{ backgroundColor: 'green', width: '40px' }}></div>
-          <div style={{ marginLeft: '10px', width: 'fit-content' }}>
+          <div style={{ color: '#666666', marginLeft: '10px', width: 'fit-content' }}>
             {`Pas d'intervention`}
           </div>
         </div>
         <div style={{ display: 'inline-flex' }}>
           <div style={{ backgroundColor: 'yellow', width: '30px' }}></div>
-          <div style={{ marginLeft: '10px', width: 'fit-content' }}>
+          <div style={{ color: '#666666', marginLeft: '10px', width: 'fit-content' }}>
             Intervention brève
           </div>
         </div>
         <div style={{ display: 'inline-flex' }}>
           <div style={{ backgroundColor: 'red', width: '40px' }}></div>
-          <div style={{ marginLeft: '10px', width: 'fit-content' }}>
+          <div style={{ color: '#666666', marginLeft: '10px', width: 'fit-content' }}>
             Traitement plus intensif
           </div>
         </div>
       </Space>
-      <Space direction="horizonal">
+      <Space direction="horizontal">
         {
           showAlcool ? (
             <div style={{ marginTop: '-20px' }}>

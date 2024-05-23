@@ -34,19 +34,24 @@ export default class ExportPDFDialog extends React.Component {
     }
   }
 
+  // !
   generatePdfDocument = async ({ fileName = '' }) => {
+    console.log("==== INSIDE generatePdfDocument ====")
     const imageElement = document.getElementById('pdf-image-element')
+    console.log("imageElement:", imageElement)
 
     const imageDataURLs = []
+    console.log("loop on each graph that should have been retrieved: ")
     for (const graphElement of imageElement.childNodes) {
-      console.log("DEBUG: ", graphElement)
+      console.log("graphElement: ", graphElement)
       const canvas = await html2canvas(graphElement, {
-        width: graphElement.offsetWidth,
-        height: graphElement.offsetHeight,
+          width: graphElement.offsetWidth,
+          height: graphElement.offsetHeight,
       })
       imageDataURLs.push(canvas.toDataURL())
     }
 
+    console.log("imageDataURLs (supposedly) fulfilled: ", imageDataURLs)
     const blob = await pdf(
       <PDFDocument
         graphType={this.state.graphType}
@@ -126,7 +131,7 @@ export default class ExportPDFDialog extends React.Component {
           closable={false}
           destroyOnClose={true}
           onOk={() =>
-            this.generatePdfDocument({
+            this.generatePdfDocument({ // !
               fileName: `${this.state.graphType}_export_result.pdf`,
             })
           }
@@ -137,7 +142,7 @@ export default class ExportPDFDialog extends React.Component {
             </Button>,
             <Button
               key="ok"
-              onClick={() =>
+              onClick={() => // !
                 this.generatePdfDocument({
                   fileName: `${this.state.graphType}_export_result.pdf`,
                 })
@@ -243,11 +248,17 @@ export default class ExportPDFDialog extends React.Component {
             marginTop: '-150px',
           }}
         >
-          {this.props.graphs.forEach((graph) => {
+          {/* ! graphs prop == result returned by prepareExportGraphs() in SidebarControl.js */}
+          {/* {this.props.graphs.forEach((graph) => {
             if (graph) {
+              console.log("graph: ", graph)
               return graph
             }
-          })}
+          })} */}
+          {/* Use map to render the graphs */}
+          {this.props.graphs.map((graph, index) => (
+            <div key={index}>{graph}</div>
+          ))}
         </div>
       </div>
     )

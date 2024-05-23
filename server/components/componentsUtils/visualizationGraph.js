@@ -120,6 +120,7 @@ const message = (
   }
 }
 
+// ! function that ultimately returns the visualization content to be displayed in the frontend
 export const showGraph = ({
   missingGeneralColumn = null,
   missingTotalColumn = null,

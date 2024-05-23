@@ -136,6 +136,7 @@ export const RadarLineChart = ({
         label={dataName}
         options={options}
         plugins={plugins}
+        className='react-chartjs-2_chart-instance'
       />
     </div>
   )

@@ -130,7 +130,7 @@ export const showDepressionForceFragilityRadar = ({
 
   const timeDataSet = [{ time: temps[1], data: modifiedData }]
   const graph = (
-    <Space direction="horizonal">
+    <Space direction="horizontal">
       <h2 style={{ color: 'rgba(0, 0, 255, 1)', marginTop: '230px' }}>
         Forces
       </h2>

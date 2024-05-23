@@ -13,7 +13,7 @@ export const showAlcoCravingEvolution = ({ medicalData, temps }) => {
   return (
     <Space direction="vertical">
       <h2 className={Styles.evolutionLabel}>Le Craving (OCDS): Évolution</h2>
-      <Space direction="horizonal">
+      <Space direction="horizontal">
         <div style={{ alignSelf: 'center' }}>
           {showAlcoCravingBar({
             medicalData: medicalData,

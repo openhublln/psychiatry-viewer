@@ -13,8 +13,6 @@ import { GraphType } from '../../../models/dataset'
 import { getScoreSegment } from '../../../lib/datalib/calculateData'
 import { max } from 'lodash-es'
 
-const barChartRef = useRef(null);
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -51,6 +49,7 @@ export function BarChart({
   drawGrid = false,
   stepSize = 10,
 }) {
+  const barChartRef = useRef(null);
   const xTicksHorizontal =  {
     font: { size: 12 },
     stepSize: 5,
@@ -209,6 +208,7 @@ export function BarChart({
           paddingRight: paddingRight,
           paddingLeft: paddingLeft,
         }}
+        className='react-chartjs-2_chart-instance'
         ref={barChartRef}
       />
     </div>

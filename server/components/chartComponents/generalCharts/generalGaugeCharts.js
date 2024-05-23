@@ -205,7 +205,7 @@ export const showReseauSocialGauge = ({ medicalData, temps }) => {
           </h2>
         }
       </div>
-      <Space direction="horizonal">
+      <Space direction="horizontal">
         <GaugeChart
           medicalData={quantity}
           scoreLabels={[
