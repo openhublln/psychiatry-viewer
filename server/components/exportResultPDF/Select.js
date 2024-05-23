@@ -137,10 +137,23 @@ const treeData = [
 
 const Select = () => {
   const [value, setValue] = useState([]);
-  const onChange = (newValue) => {
-    console.log('onChange', newValue);
-    setValue(newValue);
+  const [selectedNodes, setSelectedNodes] = useState([]);
+  // const onChange = (newValue, label, extra) => {
+  //   console.log('newValue', newValue);
+  //   console.log('label', label);
+  //   console.log('extra', extra);
+  //   console.log('extra.allCheckedNodes', extra.allCheckedNodes);
+  //   setValue(newValue);
+  //   setSelectedNodes(extra.allCheckedNodes);
+  // };
+
+  const handleSubmit = () => {
+    console.log('Submitted Value:', value);
+    console.log('Submitted Selected Nodes:', selectedNodes);
+    
+
   };
+
   const tProps = {
     treeData,
     value,

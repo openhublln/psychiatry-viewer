@@ -23,6 +23,8 @@ export default class ExportPDFDialog extends React.Component {
       patientName: '',
       patientDateNaissance: '',
       comment: '',
+      value: undefined, // TreeSelect value
+      selectedNodes: [], // Selected nodes in TreeSelect
     }
   }
 
@@ -73,6 +75,17 @@ export default class ExportPDFDialog extends React.Component {
     } else {
       return 'Exporter les données de visualisation de DÉPRESSION'
     }
+  }
+
+  handleTreeSelectChange = (value, label, extra) => {
+    console.log('value', value);
+    console.log('label', label);
+    console.log('extra', extra);
+    console.log('extra.allCheckedNodes', extra.allCheckedNodes);
+    this.setState({
+      value: value,
+      selectedNodes: extra.allCheckedNodes,
+    });
   }
 
   handleUserNameTextChange = (e) => {
@@ -205,9 +218,22 @@ export default class ExportPDFDialog extends React.Component {
               </label>
             </div>
             <div>
-            <Select>
 
-            </Select>
+            {/* <Select>
+            </Select> */}
+            <TreeSelect
+                showSearch
+                style={{ width: '100%' }}
+                value={this.state.value}
+                dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                placeholder="Please select"
+                allowClear
+                treeCheckable
+                showCheckedStrategy={SHOW_PARENT}
+                onChange={this.handleTreeSelectChange}
+                treeData={treeData}
+              />
+
             </div>
             <div className="commentSpace">
               <label
@@ -264,3 +290,4 @@ export default class ExportPDFDialog extends React.Component {
     )
   }
 }
+
