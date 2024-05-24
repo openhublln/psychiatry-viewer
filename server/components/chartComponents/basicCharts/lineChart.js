@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,8 +10,6 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-
-// const lineChartRef = useRef(null);
 
 ChartJS.register(
   CategoryScale,
@@ -84,7 +82,6 @@ export function LineChart({
         data={dataSet}
         options={options}
         className='react-chartjs-2_chart-instance'
-        // ref={lineChartRef}
       />
     </div>
   )

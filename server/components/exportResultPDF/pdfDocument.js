@@ -14,7 +14,9 @@ import PDFTable from './pdfTable'
  */
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
+    paddingTop: 35,
+    paddingHorizontal: 25,
+    paddingBottom: 65,
     backgroundColor: 'white',
   },
   section: {
@@ -38,7 +40,6 @@ const styles = StyleSheet.create({
   },
   pdfTitle: {
     marginTop: '20px',
-    marginLeft: '22%',
     textAlign: 'center',
     fontSize: '25px',
     fontWeight: 'bold',
@@ -58,6 +59,17 @@ const styles = StyleSheet.create({
     fontSize: '13px',
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  fixedHeader: {
+    width: '100%',
+    marginVertical: 10,
+  },
+  fixedFooter: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
   },
 })
 
@@ -100,7 +112,7 @@ const MyFixedHeader = ({
   }
 
   return (
-    <View style={styles.tableContainer}>
+    <View fixed style={styles.fixedHeader}>
       <PDFTable data={headerData} />
     </View>
   )
@@ -109,29 +121,28 @@ const MyFixedHeader = ({
 const showVisualizationImage = (imageDataURL) => {
   if (imageDataURL) {
     return (
-      <View style={styles.graphView}>
-        <Image alt="" src={imageDataURL} style={{ margin: '1px' }} />
-      </View>
+      <Image src={imageDataURL} style={{ margin: '1px' }} />
     )
   } else {
     return (
-      <View style={styles.graphView}>
-        <Text style={styles.graphWarning}>Warning: No graph to show!</Text>
-      </View>
+      <Text style={styles.graphWarning}>Warning: No graph to show!</Text>
     )
   }
 }
 
 const MyFoot = ({ userName = '' }) => {
   return (
-    <View>
-      <View style={{ marginTop: '10px' }}>
+    <View fixed style={styles.fixedFooter}>
+      <View>
         <Text style={{ fontSize: '8px', textAlign: 'left', marginLeft: '5%' }}>
           {`Imprimé le ${getCurrentData()} par [${userName}]`}
         </Text>
         <Text
           style={{ fontSize: '8px', marginLeft: '85%' }}
-        >{`Page 1 sur 1`}</Text>
+          render={({ pageNumber, totalPages }) => (
+            `${pageNumber} / ${totalPages}`
+          )}
+        />
       </View>
       <View>
         <Text
@@ -149,6 +160,8 @@ const MyFoot = ({ userName = '' }) => {
   )
 }
 
+
+// ! SEE https://react-pdf.org/components FOR PDF-RELATED COMPONENTS AND THEIR PROPERTIES
 const PDFDocument = ({
   hospitalizationUnity,
   dateHospitalisation,
@@ -160,53 +173,59 @@ const PDFDocument = ({
 }) => {
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View>
-          <MyFixedHeader
-            hospitalizationUnity={hospitalizationUnity}
-            dateHospitalisation={dateHospitalisation}
-            patientName={patientName}
-            patientDateNaissance={patientDateNaissance}
-          />
-          <View style={styles.pdfTitle}>
-            <Text>Quelques points de réflexion</Text>
-          </View>
-          <Text
-            style={{
-              marginTop: '20px',
-              marginLeft: '5%',
-              fontSize: '12px',
-              marginBottom: '3px',
-              color: 'blue',
-            }}
-          >
-            Commentaires:
-          </Text>
-          <View style={styles.commentViewBox}>
-            <Text
-              style={{
-                color: 'black',
-                fontSize: '9px',
-                padding: '2px',
-              }}
-            >
-              {comment}
-            </Text>
-          </View>
-          <Text
-            style={{
-              marginLeft: '5%',
-              fontSize: '12px',
-              marginBottom: '3px',
-              color: 'blue',
-            }}
-          >
-            Résumés
-          </Text>
-          <View>{showVisualizationImage(imageDataURLs[0])}</View>
-          <View>{showVisualizationImage(imageDataURLs[1])}</View>
-          <MyFoot userName={userName} />
+      <Page size="A4">
+        <MyFixedHeader
+          hospitalizationUnity={hospitalizationUnity}
+          dateHospitalisation={dateHospitalisation}
+          patientName={patientName}
+          patientDateNaissance={patientDateNaissance}
+        />
+        <View style={styles.pdfTitle}>
+          <Text>Quelques points de réflexion</Text>
         </View>
+        <Text
+          style={{
+            marginTop: '20px',
+            marginLeft: '5%',
+            fontSize: '12px',
+            marginBottom: '3px',
+            color: 'blue',
+          }}
+        >
+          Commentaires:
+        </Text>
+        <View style={styles.commentViewBox}>
+          <Text
+            style={{
+              color: 'black',
+              fontSize: '9px',
+              padding: '2px',
+            }}
+          >
+            {comment}
+          </Text>
+        </View>
+        <Text
+          style={{
+            marginLeft: '5%',
+            fontSize: '12px',
+            marginBottom: '3px',
+            color: 'blue',
+          }}
+        >
+          Résumés
+        </Text>
+        <View>
+        {imageDataURLs.map((imageDataURL, index) => {
+          return (
+            // <Page key={index} debug orientation="portrait" size="A4" style={styles.page}>
+            <View style={styles.graphView}>
+              {showVisualizationImage(imageDataURL)}
+            </View>
+          )
+        })}
+        </View>
+        <MyFoot userName={userName} />
       </Page>
     </Document>
   )

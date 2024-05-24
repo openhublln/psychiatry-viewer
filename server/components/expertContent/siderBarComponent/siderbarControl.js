@@ -25,6 +25,63 @@ const SidebarControl = (props) => {
   const [showExportPDFDialog, setShowExportPDFDialog] = useState(false)
   const [exportPDFDialogKey, setExportPDFDialogKey] = useState(0)
 
+  const [treeSelectValue, setTreeSelectValue] = useState([]);
+  const [graphs, setGraphs] = useState([]);
+
+  const handleTreeSelectChange = (value) => {
+    setTreeSelectValue(value);
+    // Dynamically generate or filter graphs based on selected values
+    const newGraphs = prepareExportGraphs(value);
+    setGraphs(newGraphs);
+  };
+
+  // Function to prepare export graphs based on selected values
+  // ! currently called every time the selection changes, need to be optimized (trigger selection only on "save" button? How?)
+  const prepareExportGraphs = (selectedValues) => {
+
+    // const currentViewKeys = collectKeys(getSidebarItems())
+    // let currentViewKeys = collectKeys(getSidebarItems())
+  
+    let keys = null
+    let graphs = []
+    if (props.disease === GraphType.alcohol) {
+      keys = AlcoholItemKeys
+
+      for (let key of selectedValues) {
+        graphs.push(
+          componentsSwitchByDisease(
+            key,
+            false,
+          )
+        )
+      }
+    } else {
+      keys = DepressionItemKeys
+      graphs.push(
+        componentsSwitchByDisease(
+          DepressionItemKeys.dpForceFragilityRadar,
+          false,
+        ),
+      )
+      graphs.push(
+        componentsSwitchByDisease(
+          DepressionItemKeys.dpSymptomesResiduelGraph,
+          false,
+        ),
+      )
+    }
+    console.log("graphs:", graphs)
+    return graphs
+  }
+    
+  //   {
+  //   // Example logic to generate or filter graphs
+  //   return selectedValues.map(value => {
+  //     // Generate or filter your graph based on the value
+  //     return <div key={value}>Graph for {value}</div>;
+  //   });
+  // };
+
   useEffect(() => {
     setSelectedItem(null)
     setShowExportPDFDialog(false)
@@ -70,7 +127,6 @@ const SidebarControl = (props) => {
     }
   }
 
-  // ! TRIGGERED ON SIDEBAR ITEM CLICK
   const onClick = (key) => {
     console.log('key: ', key)
     
@@ -81,16 +137,6 @@ const SidebarControl = (props) => {
     //   html2canvas(graph).then(canvas =>  {
     //     const imgData = canvas.toDataURL('image/png');
     //   })
-
-
-      // ! unsuccessful attempt using class/ref
-      // img = graph.toBase64Image('image/jpeg', 1)
-      // console.log("chart to img:", graph)
-      // if (barChartRef !== undefined) {
-      //   base64 = barChartRef.current.chartInstance.toBase64Image()
-      // }
-      // console.log("chart to base64:", base64)
-    // }
 
     setSelectedItem(key)
   }
@@ -128,50 +174,80 @@ const SidebarControl = (props) => {
     setShowExportPDFDialog(true)
   }
 
-  // !
-  const prepareExportGraphs = () => {
-  //   let basicGraphs = document.getElementsByClassName('react-chartjs-2_chart-instance')
-  //   for (let graph of basicGraphs) {
-  //     img = graph.toBase64Image('image/jpeg', 1)
-  //     console.log("chart to img:", graph)
-  //     base64 = barChartRef.current.chartInstance.toBase64Image()
-  //     console.log("chart to base64:", base64)
-  //   }
-
-    let graphs = []
-    console.log("==== INSIDE prepareExportGraphs() ====")
-    if (props.disease === GraphType.alcohol) {
-      console.log("==== graph type is alcohol ====")
-      graphs.push(
-        componentsSwitchByDisease(
-          AlcoholItemKeys.alcoForceFragilityRadar,
-          false,
-        ),
-      )
-      graphs.push(
-        componentsSwitchByDisease(
-          AlcoholItemKeys.alcoResumeEvolutionsRadar,
-          false,
-        ),
-      )
-    } else {
-      console.log("==== graph type is NOT alcohol ====")
-      graphs.push(
-        componentsSwitchByDisease(
-          DepressionItemKeys.dpForceFragilityRadar,
-          false,
-        ),
-      )
-      graphs.push(
-        componentsSwitchByDisease(
-          DepressionItemKeys.dpSymptomesResiduelGraph,
-          false,
-        ),
-      )
-    }
-    console.log("graphs:", graphs)
-    return graphs
+  function collectKeys(items) {
+    let keys = [];
+    items.forEach(item => {
+      if (item.key) {
+        keys.push(item.key);
+      }
+      if (item.children) {
+        keys = keys.concat(collectKeys(item.children));
+      }
+    });
+    console.log("RETRIEVED KEYS FOR THE CURRENT VIEW: ", keys);
+    return keys;
   }
+
+  // !
+  // const prepareExportGraphs = () => {
+  // //   let basicGraphs = document.getElementsByClassName('react-chartjs-2_chart-instance')
+  // //   for (let graph of basicGraphs) {
+  // //     img = graph.toBase64Image('image/jpeg', 1)
+  // //     console.log("chart to img:", graph)
+  // //     base64 = barChartRef.current.chartInstance.toBase64Image()
+  // //     console.log("chart to base64:", base64)
+  // //   }
+  //   let currentViewKeys = collectKeys(getSidebarItems())
+
+  //   let keys = null
+  //   let graphs = []
+  //   // console.log("==== INSIDE prepareExportGraphs() ====")
+  //   if (props.disease === GraphType.alcohol) {
+  //     keys = AlcoholItemKeys
+  //     // console.log("==== graph type is alcohol ====")
+
+  //     for (let key of currentViewKeys) {
+  //       if (key in treeSelectValue) {
+  //         graphs.push(
+  //           componentsSwitchByDisease(
+  //             key,
+  //             false,
+  //           )
+  //         )
+  //       }
+  //     }
+
+  //     // graphs.push(
+  //     //   componentsSwitchByDisease(
+  //     //     AlcoholItemKeys.alcoForceFragilityRadar,
+  //     //     false,
+  //     //   ),
+  //     // )
+  //     // graphs.push(
+  //     //   componentsSwitchByDisease(
+  //     //     AlcoholItemKeys.alcoResumeEvolutionsRadar,
+  //     //     false,
+  //     //   ),
+  //     // )
+  //   } else {
+  //     keys = DepressionItemKeys
+  //     // console.log("==== graph type is NOT alcohol ====")
+  //     graphs.push(
+  //       componentsSwitchByDisease(
+  //         DepressionItemKeys.dpForceFragilityRadar,
+  //         false,
+  //       ),
+  //     )
+  //     graphs.push(
+  //       componentsSwitchByDisease(
+  //         DepressionItemKeys.dpSymptomesResiduelGraph,
+  //         false,
+  //       ),
+  //     )
+  //   }
+  //   console.log("graphs:", graphs)
+  //   return graphs
+  // }
 
   return props.visible ? (
     <>
@@ -202,7 +278,6 @@ const SidebarControl = (props) => {
             }
             width={320}
           >
-            {/* TODO RETRIEVE SIDEBAR KEYS TO BE USED IN THE EXPORT SELECTION MENU? */}
             <Menu
               className={Styles.sideBarMenu}
               mode="inline"
@@ -226,7 +301,9 @@ const SidebarControl = (props) => {
         userName={props.user.username}
         graphType={props.disease}
         // graphs={showExportPDFDialog ? prepareExportGraphs() : []}
-        graphs={prepareExportGraphs()}
+        graphs={graphs}
+        treeSelectValue={treeSelectValue}
+        onTreeSelectChange={handleTreeSelectChange}
       />
     </>
   ) : null

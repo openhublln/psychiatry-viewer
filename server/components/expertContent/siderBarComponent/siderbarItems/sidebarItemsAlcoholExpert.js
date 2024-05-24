@@ -38,7 +38,7 @@ export const AlcoholExpertSidebarItems = [
     React.createElement(RiNodeTree),
     [
       getItem(
-        'La sévérité du trouble d’usage de l’alcool',
+        "La sévérité du trouble d'usage de l'alcool",
         'troubleAlcohol',
         React.createElement(AiOutlineSubnode),
         [
@@ -285,7 +285,7 @@ export const AlcoholExpertSidebarItems = [
   getDividerItem('divider'),
   getItem(
     <div className={Styles.sideBarMenuGroupTitleLabel}>La qualité de vie</div>,
-    AlcoholItemKeys.alcoQualityVieBar,
+    'qualityVie',
     React.createElement(BsBarChartFill),
     [
       getItem(

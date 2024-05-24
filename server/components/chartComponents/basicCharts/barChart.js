@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -49,7 +49,6 @@ export function BarChart({
   drawGrid = false,
   stepSize = 10,
 }) {
-  const barChartRef = useRef(null);
   const xTicksHorizontal =  {
     font: { size: 12 },
     stepSize: 5,
@@ -189,29 +188,30 @@ export function BarChart({
   }
 
   return (
-    <div
-      className="barChartDiv"
-      style={{
-        width: chartWidth,
-        height: chartHeight,
-        marginLeft: marginLeft,
-        marginRight: marginRight,
-        marginTop: marginTop,
-      }}
-    >
+    // <div
+    //   className="barChartDiv"
+    //   style={{
+    //     width: chartWidth,
+    //     height: chartHeight,
+    //     marginLeft: marginLeft,
+    //     marginRight: marginRight,
+    //     marginTop: marginTop,
+    //   }}
+    // >
       <Bar
         options={options}
         key={JSON.stringify(data)}
         data={data}
         style={{
+          width: chartWidth,
+          height: chartHeight,
           backgroundColor: chartBcColor,
           paddingRight: paddingRight,
           paddingLeft: paddingLeft,
         }}
         className='react-chartjs-2_chart-instance'
-        ref={barChartRef}
       />
-    </div>
+    // </div>
   )
 }
 

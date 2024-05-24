@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Space } from 'antd'
+import { Button, Modal, Space, TreeSelect, SHOW_PARENT } from 'antd'
 import { GraphType } from '../../models/dataset'
 import { pdf } from '@react-pdf/renderer'
 import { saveAs } from 'file-saver'
@@ -23,8 +23,10 @@ export default class ExportPDFDialog extends React.Component {
       patientName: '',
       patientDateNaissance: '',
       comment: '',
-      value: undefined, // TreeSelect value
-      selectedNodes: [], // Selected nodes in TreeSelect
+      // value: undefined, // ! TreeSelect value (this is what we are looking for, keys that can be passed to componentsSwitchByDisease() to get the corresponding graph)
+      // selectedNodes: [], // Selected nodes in TreeSelect
+      value: this.props.value,
+      selectedNodes: this.props.selectedNodes,
     }
   }
 
@@ -40,12 +42,16 @@ export default class ExportPDFDialog extends React.Component {
   generatePdfDocument = async ({ fileName = '' }) => {
     console.log("==== INSIDE generatePdfDocument ====")
     const imageElement = document.getElementById('pdf-image-element')
+    // let visibleElement = imageElement.cloneNode(true)
+    // visibleElement.style.visibility = 'visible'
     console.log("imageElement:", imageElement)
-
+    // console.log("visibleElement:", visibleElement)
     const imageDataURLs = []
     console.log("loop on each graph that should have been retrieved: ")
     for (const graphElement of imageElement.childNodes) {
+      // TODO create an "id: chart component" key-value obj to easily retrieve the selected chart(s)
       console.log("graphElement: ", graphElement)
+      // ! HTML2CANVAS REQUIRES A NODE FROM THE DOM OF THE PAGE ITS LOADED ON (cf. https://stackoverflow.com/a/65632648)
       const canvas = await html2canvas(graphElement, {
           width: graphElement.offsetWidth,
           height: graphElement.offsetHeight,
@@ -77,16 +83,16 @@ export default class ExportPDFDialog extends React.Component {
     }
   }
 
-  handleTreeSelectChange = (value, label, extra) => {
-    console.log('value', value);
-    console.log('label', label);
-    console.log('extra', extra);
-    console.log('extra.allCheckedNodes', extra.allCheckedNodes);
-    this.setState({
-      value: value,
-      selectedNodes: extra.allCheckedNodes,
-    });
-  }
+  // handleTreeSelectChange = (value, label, extra) => {
+  //   console.log('value', value);
+  //   console.log('label', label);
+  //   console.log('extra', extra);
+  //   console.log('extra.allCheckedNodes', extra.allCheckedNodes);
+  //   this.setState({
+  //     value: value,
+  //     selectedNodes: extra.allCheckedNodes,
+  //   });
+  // }
 
   handleUserNameTextChange = (e) => {
     this.setState({
@@ -125,6 +131,283 @@ export default class ExportPDFDialog extends React.Component {
   }
 
   render() {
+    const { treeSelectValue, onTreeSelectChange, graphs } = this.props;
+    // TODO generate treeData dynamically based on the current view (alcohol/depression, patient/expert ?)
+    // TODO populate key and/or value to match each corresponding chart identifiers
+    const treeData = [
+      {
+        title: 'Select/Unselect all',
+        value: '0',
+        key: '0',
+        // ! children here should be dynamically generated
+        children: [
+          {
+            title: 'Echelles liées aux consommations',
+            value: "sub1",
+            key: "sub1",
+            children: [
+              {
+                title: "La sévérité du trouble d'usage de l'alcool",
+                value: "troubleAlcohol",
+                key: "troubleAlcohol",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "troubelUsageAlcoBar",
+                    key: "troubelUsageAlcoBar",
+                  }
+                ],
+              },
+              {
+                title: 'Le craving',
+                value: 'craving',
+                key: 'craving',
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "cravingBar",
+                    key: "cravingBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "alcoCravingEvolution",
+                    key: "alcoCravingEvolution",
+                  }
+                ],
+              },
+              {
+                title: 'Les autres consommations',
+                value: "autreConsom",
+                key: "autreConsom",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "alcoAutresConsommationBar",
+                    key: "alcoAutresConsommationBar",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Comorbidités',
+            value: "sub2",
+            key: "sub2",
+            children: [
+              {
+                title: 'Les symptômes dépressifs',
+                value: "symDepression",
+                key: "symDepression",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "alcoDepressionBar",
+                    key: "alcoDepressionBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "alcoDepressionEvolution",
+                    key: "alcoDepressionEvolution",
+                  }
+                ],
+              },
+              {
+                title: 'Les symptômes anxieux',
+                value: "anxieux",
+                key: "anxieux",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "anxietyBar",
+                    key: "anxietyBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "alcoAnxietyEvolution",
+                    key: "alcoAnxietyEvolution",
+                  }
+                ],
+              },
+              {
+                title: 'Les troubles du sommeil',
+                value: "insomnie",
+                key: "insomnie",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "alcoInsomnieBar",
+                    key: "alcoInsomnieBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "alcoInsomnieEvolution",
+                    key: "alcoInsomnieEvolution",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Modes de réaction face à un évènement',
+            value: "sub3",
+            key: "sub3",
+            children: [
+              {
+                title: "L'impulsivité",
+                value: "impulsivity",
+                key: "impulsivity",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "impulsivityRadar",
+                    key: "impulsivityRadar",
+                  }
+                ],
+              },
+              {
+                title: 'La gestion des émotions',
+                value: "regEmotion",
+                key: "regEmotion",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "regulationEmotionBarBlance",
+                    key: "regulationEmotionBarBlance",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Soutiens possibles',
+            value: "sub4",
+            key: "sub4",
+            children: [
+              {
+                title: "Interne: L'auto-efficacité",
+                value: "autoEfficacité",
+                key: "autoEfficacité",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "autoEfficacitybar",
+                    key: "autoEfficacitybar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "autoEfficacityEvolutionLine",
+                    key: "autoEfficacityEvolutionLine",
+                  }
+                ],
+              },
+              {
+                title: "Interne: La motivation et préparation au changement",
+                value: "prepareChange",
+                key: "prepareChange",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "MotivationChangementBar",
+                    key: "MotivationChangementBar",
+                  }
+                ],
+              },
+              {
+                title: "Externe: Réseau social",
+                value: "exReseauSocial",
+                key: "exReseauSocial",
+                children: [
+                  {
+                    title: "Quantitatif et qualitatif",
+                    value: "reseauSocialGauge",
+                    key: "reseauSocialGauge",
+                  }
+                ],
+              },
+              {
+                title: "Externe: Alliance thérapeutique",
+                value: "AllianceThéra",
+                key: "AllianceThéra",
+                children: [
+                  {
+                    title: "Ressentie en fin d'hospitalisation",
+                    value: "externeAllianceTherapBar",
+                    key: "externeAllianceTherapBar",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'La cognition',
+            value: "cognition",
+            key: "cognition",
+            children: [
+              {
+                title: "En fin d'hospitalisation",
+                value: "alcoCongnitionBar",
+                key: "alcoCongnitionBar",
+              }
+            ],
+          },
+          {
+            title: 'Histoire infantile et familiale',
+            value: "historyInfFam",
+            key: "historyInfFam",
+            children: [
+              {
+                title: "La charge du passé",
+                value: "infFamilieRadar",
+                key: "infFamilieRadar",
+              }
+            ],
+          },
+          {
+            title: 'Qualité de vie',
+            value: 'qualityVie',
+            key: 'qualityVie', // ! modified, had the same key as its child graph ("alcoQualityVieBar") but should be different (e.g. "alcoQualityVie") ?
+            children: [
+              {
+                title: 'La qualité de vie',
+                value: "alcoQualityVieBar",
+                key: "alcoQualityVieBar",
+              }
+            ],
+          },
+          {
+            title: 'Résumé',
+            value: "sub8",
+            key: "sub8",
+            children: [
+              {
+                title: 'Les évolutions',
+                value: "evolutions",
+                key: "evolutions",
+                children: [
+                  {
+                    title: "Avant et après le sevrage",
+                    value: "alcoResumeEvolutionsRadar",
+                    key: "alcoResumeEvolutionsRadar",
+                  }
+                ],
+              },
+              {
+                title: 'Les forces et fragilités',
+                value: "forcesFrag",
+                key: "forcesFrag",
+                children: [
+                  {
+                    title: "Où agir",
+                    value: "alcoResumeForceFragileBar",
+                    key: "alcoResumeForceFragileBar",
+                  }
+                ],
+              }
+            ],
+          }
+        ]
+      },
+    ];
     return (
       <div className="exportPdfDialogDiv">
         <Modal
@@ -188,18 +471,18 @@ export default class ExportPDFDialog extends React.Component {
                 className="dateHospitalisationLabel"
                 style={{ color: 'blue' }}
               >
-                {`Mes dates d'hospitalisation`}
+                {`Mes dates d'hospitalisation:`}
                 <input
                   type="date"
                   value={this.state.dateHospitalisation}
                   onChange={this.handleDateHospitalisationChange}
-                  style={{ width: '300px', marginLeft: '12px' }}
+                  style={{ width: '300px', marginLeft: '10px' }}
                 />
               </label>
             </div>
             <div className="patienData" style={{ display: 'flex' }}>
               <label style={{ color: 'blue' }}>
-                Nom/Prenom:
+                Nom/Prénom:
                 <input
                   type="text"
                   value={this.state.patientName}
@@ -224,13 +507,16 @@ export default class ExportPDFDialog extends React.Component {
             <TreeSelect
                 showSearch
                 style={{ width: '100%' }}
-                value={this.state.value}
+                value={treeSelectValue}
                 dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                placeholder="Please select"
+                placeholder="Veuillez sélectionner les données à exporter"
                 allowClear
                 treeCheckable
+                treeDefaultExpandedKeys={['0']}
+                maxTagCount={3}
                 showCheckedStrategy={SHOW_PARENT}
-                onChange={this.handleTreeSelectChange}
+                // onChange={this.handleTreeSelectChange}
+                onChange={(value) => onTreeSelectChange(value)}
                 treeData={treeData}
               />
 
@@ -264,28 +550,33 @@ export default class ExportPDFDialog extends React.Component {
                 }}
               />
             </div>
+            {/* probably included in the rendered view for a PDF preview ? get rid of it if not required, as its displayed above charts which make hover unusable */}
+            <div
+              id="pdf-image-element"
+              style={{
+                // set position/visibility to preserve export dialog => instead of this solution, display it outside viewport to be invisible for actual user
+                position: 'absolute',
+                // visibility: 'hidden',
+                zIndex: -1000,
+                marginLeft: '-10000px', // as-if it's not visible
+                // position: 'relative',
+                marginTop: '-150px',
+              }}
+            >
+              {/* ! graphs prop == result returned by prepareExportGraphs() in SidebarControl.js */}
+              {/* {this.props.graphs.forEach((graph) => {
+                if (graph) {
+                  console.log("graph: ", graph)
+                  return graph
+                }
+              })} */}
+              {/* Use map to render the graphs */}
+              {graphs.map((graph, index) => (
+                <div key={index}>{graph}</div>
+              ))}
+            </div>
           </Space>
         </Modal>
-        <div
-          id="pdf-image-element"
-          style={{
-            zIndex: -1000,
-            position: 'relative',
-            marginTop: '-150px',
-          }}
-        >
-          {/* ! graphs prop == result returned by prepareExportGraphs() in SidebarControl.js */}
-          {/* {this.props.graphs.forEach((graph) => {
-            if (graph) {
-              console.log("graph: ", graph)
-              return graph
-            }
-          })} */}
-          {/* Use map to render the graphs */}
-          {this.props.graphs.map((graph, index) => (
-            <div key={index}>{graph}</div>
-          ))}
-        </div>
       </div>
     )
   }
