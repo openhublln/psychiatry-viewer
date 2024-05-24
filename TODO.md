@@ -1,5 +1,6 @@
 PDF export:
 
+- ensure chart order is preserved
 - find a better way to handle chart conversion
   => currently relying on a DOM node (the div with id="pdf-image-element"; this is required by the html2cavas, read https://stackoverflow.com/a/65632648) acting as a placeholder that gets populated dynamically with the charts corresponding to the user selection)
 - selection design: user should be able to select each chart one by one ? or based on (sub-)category only ? or else?

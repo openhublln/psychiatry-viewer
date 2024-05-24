@@ -89,7 +89,7 @@ export const showIndicesBipolarityGraph = ({ title, medicalData, time }) => {
 
   const graph = (
     <div style={{ display: 'inline-block', textAlign: 'center' }}>
-      <h2>Indices de bipolarité</h2>
+      <h2  style={{ color: '#666666' }}>Indices de bipolarité</h2>
       <div className={Styles.bipolarityChart}>
         <div className={Styles.leftPart}>
           {getDivs(filteredDatasetLeft, 'L')}
@@ -200,7 +200,7 @@ export const showSymptomesResiduelGraph = ({
 
   const graph = (
     <div style={{ display: 'inline-block', textAlign: 'center' }}>
-      <h2>Symptômes Résiduels</h2>
+      <h2 style={{ color: '#666666' }}>Symptômes Résiduels</h2>
       <div className={Styles.bipolarityChart}>
         <div style={{ display: 'inline-block' }}>
           <div className={Styles.leftPartSymptoTop}>

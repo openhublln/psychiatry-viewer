@@ -35,53 +35,6 @@ const SidebarControl = (props) => {
     setGraphs(newGraphs);
   };
 
-  // Function to prepare export graphs based on selected values
-  // ! currently called every time the selection changes, need to be optimized (trigger selection only on "save" button? How?)
-  const prepareExportGraphs = (selectedValues) => {
-
-    // const currentViewKeys = collectKeys(getSidebarItems())
-    // let currentViewKeys = collectKeys(getSidebarItems())
-  
-    let keys = null
-    let graphs = []
-    if (props.disease === GraphType.alcohol) {
-      keys = AlcoholItemKeys
-
-      for (let key of selectedValues) {
-        graphs.push(
-          componentsSwitchByDisease(
-            key,
-            false,
-          )
-        )
-      }
-    } else {
-      keys = DepressionItemKeys
-      graphs.push(
-        componentsSwitchByDisease(
-          DepressionItemKeys.dpForceFragilityRadar,
-          false,
-        ),
-      )
-      graphs.push(
-        componentsSwitchByDisease(
-          DepressionItemKeys.dpSymptomesResiduelGraph,
-          false,
-        ),
-      )
-    }
-    console.log("graphs:", graphs)
-    return graphs
-  }
-    
-  //   {
-  //   // Example logic to generate or filter graphs
-  //   return selectedValues.map(value => {
-  //     // Generate or filter your graph based on the value
-  //     return <div key={value}>Graph for {value}</div>;
-  //   });
-  // };
-
   useEffect(() => {
     setSelectedItem(null)
     setShowExportPDFDialog(false)
@@ -109,6 +62,16 @@ const SidebarControl = (props) => {
 
     return temps
   }
+
+    
+  //   {
+  //   // Example logic to generate or filter graphs
+  //   return selectedValues.map(value => {
+  //     // Generate or filter your graph based on the value
+  //     return <div key={value}>Graph for {value}</div>;
+  //   });
+  // };
+
 
   // !
   const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
@@ -174,20 +137,72 @@ const SidebarControl = (props) => {
     setShowExportPDFDialog(true)
   }
 
-  function collectKeys(items) {
-    let keys = [];
+  function collectChartsData(items) {
+    let data = [];
     items.forEach(item => {
       if (item.key) {
-        keys.push(item.key);
+        // data[item.label] = item.key
+        data.push([item.label, item.key])
       }
       if (item.children) {
-        keys = keys.concat(collectKeys(item.children));
+        // data[item.label] = collectChartsData(item.children);
+        data = data.concat(collectChartsData(item.children));
       }
     });
-    console.log("RETRIEVED KEYS FOR THE CURRENT VIEW: ", keys);
-    return keys;
+    console.log("RETRIEVED KEY/LABEL PAIRS FOR THE CURRENT VIEW: ", data);
+    return data;
   }
 
+
+  // Function to prepare export graphs based on selected values
+  // ! currently called every time the selection changes, need to be optimized (trigger selection only on "save" button? How?)
+  const prepareExportGraphs = (selectedValues) => {
+
+    // const currentViewKeys = collectChartsData(getSidebarItems())
+    // let currentViewKeys = collectChartsData(getSidebarItems())
+    const currentViewData = collectChartsData(getSidebarItems())
+    // console.log(currentViewData)
+    let keys = null
+    let graphs = []
+
+    for (let key of selectedValues) {
+      graphs.push(
+        componentsSwitchByDisease(
+          key,
+          false,
+        )
+      )
+    }
+    
+    // if (props.disease === GraphType.alcohol) {
+    //   keys = AlcoholItemKeys
+
+    //   for (let key of selectedValues) {
+    //     graphs.push(
+    //       componentsSwitchByDisease(
+    //         key,
+    //         false,
+    //       )
+    //     )
+    //   }
+    // } else {
+    //   keys = DepressionItemKeys
+    //   graphs.push(
+    //     componentsSwitchByDisease(
+    //       DepressionItemKeys.dpForceFragilityRadar,
+    //       false,
+    //     ),
+    //   )
+    //   graphs.push(
+    //     componentsSwitchByDisease(
+    //       DepressionItemKeys.dpSymptomesResiduelGraph,
+    //       false,
+    //     ),
+    //   )
+    // }
+    console.log("graphs:", graphs)
+    return graphs
+  }
   // !
   // const prepareExportGraphs = () => {
   // //   let basicGraphs = document.getElementsByClassName('react-chartjs-2_chart-instance')

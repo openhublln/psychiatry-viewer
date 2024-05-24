@@ -134,7 +134,7 @@ export default class ExportPDFDialog extends React.Component {
     const { treeSelectValue, onTreeSelectChange, graphs } = this.props;
     // TODO generate treeData dynamically based on the current view (alcohol/depression, patient/expert ?)
     // TODO populate key and/or value to match each corresponding chart identifiers
-    const treeData = [
+    const treeData = this.state.graphType == GraphType.alcohol ? [
       {
         title: 'Select/Unselect all',
         value: '0',
@@ -398,8 +398,262 @@ export default class ExportPDFDialog extends React.Component {
                 children: [
                   {
                     title: "Où agir",
-                    value: "alcoResumeForceFragileBar",
-                    key: "alcoResumeForceFragileBar",
+                    value: "alcoForceFragilityRadar",
+                    key: "alcoForceFragilityRadar",
+                  }
+                ],
+              }
+            ],
+          }
+        ]
+      },
+    ] : [
+      {
+        title: 'Select/Unselect all',
+        value: '0',
+        key: '0',
+        // ! children here should be dynamically generated (ideally ? maybe not ?)
+        children: [
+          {
+            title: "Les caracteristiques de l'épisode", 
+            value: "sub1",
+            key: "sub1",
+            children: [
+              {
+                title: "L'intensité de la dépression",
+                value: "inteDepressionExpert",
+                key: "inteDepressionExpert",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "interDepressionBar",
+                    key: "interDepressionBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "interDepressionEvolution",
+                    key: "interDepressionEvolution",
+                  }
+                ],
+              },
+              {
+                title: 'La réactivité émotionnelle',
+                value: 'reactiviteEmo',
+                key: 'reactiviteEmo',
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "reactiviteEmoBar",
+                    key: "reactiviteEmoBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "reactiviteEmoEvolutionLine",
+                    key: "reactiviteEmoEvolutionLine",
+                  }
+                ],
+              },
+              {
+                title: 'Les indices de bipolarité',
+                value: "IndBipolar",
+                key: "IndBipolar",
+                children: [
+                  {
+                    title: "Évolution",
+                    value: "indicesBipolarityGraphExpert",
+                    key: "indicesBipolarityGraphExpert",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Comorbidités',
+            value: "sub2",
+            key: "sub2",
+            children: [
+              {
+                title: "L'anxiété",
+                value: "anxiety",
+                key: "anxiety",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "anxietyBar",
+                    key: "anxietyBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "dpAnxietyEvolution",
+                    key: "dpAnxietyEvolution",
+                  }
+                ],
+              },
+              {
+                title: "L'insomnie",
+                value: "insomnie",
+                key: "insomnie",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "insomnieBar",
+                    key: "insomnieBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "insomnieEvolution",
+                    key: "insomnieEvolution",
+                  }
+                ],
+              },
+              {
+                title: "L'hypersomnolence",
+                value: "hypersom",
+                key: "hypersom",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "hypersomnolenceBar",
+                    key: "hypersomnolenceBar",
+                  },
+                  {
+                    title: "Évolution",
+                    value: "hypersomnolenceEvolution",
+                    key: "hypersomnolenceEvolution",
+                  }
+                ],
+              },
+              {
+                title: "Les consommations",
+                value: "consommations",
+                key: "consommations",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "consommationsSubstancesBar",
+                    key: "consommationsSubstancesBar",
+                  },
+                  {
+                    title: "Statistique",
+                    value: "consommationsSubstancesTable",
+                    key: "consommationsSubstancesTable",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Modes de fonctionnement',
+            value: "sub3",
+            key: "sub3",
+            children: [
+              {
+                title: "L'impulsivité",
+                value: "impulsivity",
+                key: "impulsivity",
+                children: [
+                  {
+                    title: "Évolution",
+                    value: "impulsivityRadar",
+                    key: "impulsivityRadar",
+                  }
+                ],
+              },
+              {
+                title: 'La gestion des émotions',
+                value: "gestionEmotion",
+                key: "gestionEmotion",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "regulationEmotionBarBlance",
+                    key: "regulationEmotionBarBlance",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Soutiens',
+            value: "sub4",
+            key: "sub4",
+            children: [
+              {
+                title: "Interne: L'auto-efficacité",
+                value: "autoEfficacity",
+                key: "autoEfficacity",
+                children: [
+                  {
+                    title: "À l'admission",
+                    value: "autoEfficacityBar",
+                    key: "autoEfficacityBar",
+                  }
+                ],
+              },
+              {
+                title: "Externe: Réseau social",
+                value: "reseauSocial",
+                key: "reseauSocial",
+                children: [
+                  {
+                    title: "Quantitatif et qualitatif",
+                    value: "dpReseauSocialBar",
+                    key: "dpReseauSocialBar",
+                  }
+                ],
+              },
+              {
+                title: "Externe: Alliance thérapeutique",
+                value: "AllianceTherap",
+                key: "AllianceTherap",
+                children: [
+                  {
+                    title: "Ressenti en fin d'hospitalisation",
+                    value: "externeAllianceTherapBar",
+                    key: "externeAllianceTherapBar",
+                  }
+                ],
+              }
+            ],
+          },
+          {
+            title: 'Histoire personnelle',
+            value: "sub5",
+            key: "sub5",
+            children: [
+              {
+                title: "Évènements stressants de l'enfance",
+                value: "infFamilieRadar",
+                key: "infFamilieRadar",
+              }
+            ],
+          },
+          {
+            title: 'Résumé',
+            value: "sub6",
+            key: "sub6",
+            children: [
+              {
+                title: 'Prévention de la rechute',
+                value: "forceFragility",
+                key: "forceFragility",
+                children: [
+                  {
+                    title: "Évolution",
+                    value: "dpForceFragilityRadar",
+                    key: "dpForceFragilityRadar",
+                  }
+                ],
+              },
+              {
+                title: 'Les symptômes résiduels',
+                value: "symptomesResiduels",
+                key: "symptomesResiduels",
+                children: [
+                  {
+                    title: "Évolution",
+                    value: "dpSymptomesResiduelGraph",
+                    key: "dpSymptomesResiduelGraph",
                   }
                 ],
               }
