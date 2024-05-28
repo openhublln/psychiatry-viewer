@@ -188,30 +188,30 @@ export function BarChart({
   }
 
   return (
-    // <div
-    //   className="barChartDiv"
-    //   style={{
-    //     width: chartWidth,
-    //     height: chartHeight,
-    //     marginLeft: marginLeft,
-    //     marginRight: marginRight,
-    //     marginTop: marginTop,
-    //   }}
-    // >
+    <div
+      className="barChartDiv"
+      style={{
+        width: chartWidth,
+        height: chartHeight,
+        marginLeft: marginLeft,
+        marginRight: marginRight,
+        marginTop: marginTop,
+      }}
+    >
       <Bar
         options={options}
         key={JSON.stringify(data)}
         data={data}
         style={{
-          width: chartWidth,
-          height: chartHeight,
+          // width: chartWidth,
+          // height: chartHeight,
           backgroundColor: chartBcColor,
           paddingRight: paddingRight,
           paddingLeft: paddingLeft,
         }}
         className='react-chartjs-2_chart-instance'
       />
-    // </div>
+    </div>
   )
 }
 
@@ -284,7 +284,6 @@ export const showBarChart = ({
           ' of ' +
           maxValues[item.dataIndex]
         }
-         
         // Math.round(item.parsed.y * maxValues[item.dataIndex]) / 100
       }
       graphType={graphType}

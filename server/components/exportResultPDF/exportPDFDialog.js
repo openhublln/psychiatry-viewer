@@ -812,9 +812,11 @@ export default class ExportPDFDialog extends React.Component {
                 position: 'absolute',
                 // visibility: 'hidden',
                 zIndex: -1000,
-                marginLeft: '-10000px', // as-if it's not visible
+                // marginLeft: '-10000px', // as-if it's not visible
                 // position: 'relative',
                 marginTop: '-150px',
+                width: 'fit-content',
+                marginInline: 'auto',
               }}
             >
               {/* ! graphs prop == result returned by prepareExportGraphs() in SidebarControl.js */}
@@ -826,7 +828,7 @@ export default class ExportPDFDialog extends React.Component {
               })} */}
               {/* Use map to render the graphs */}
               {graphs.map((graph, index) => (
-                <div key={index}>{graph}</div>
+                <div key={index} style={{ width: 'fit-content' }}>{graph}</div>
               ))}
             </div>
           </Space>

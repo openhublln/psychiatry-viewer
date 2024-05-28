@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   page: {
     paddingTop: 35,
     paddingHorizontal: 25,
-    paddingBottom: 65,
+    paddingBottom: 70,
     backgroundColor: 'white',
   },
   section: {
@@ -46,13 +46,20 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   graphView: {
-    marginLeft: '15%',
-    alignContent: 'center',
-    marginBottom: '10px',
     width: '65%',
     height: '240px',
     border: '1pt solid #D3D3D3',
-    textAlign: 'center',
+    marginBottom: '10px',
+    // marginLeft: '15%',
+    // marginHorizontal: '20',
+    alignItems:'center',
+    // textAlign: 'center',
+  },
+  graphsView: {
+    width: '100vw',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   graphWarning: {
     color: 'red',
@@ -121,7 +128,7 @@ const MyFixedHeader = ({
 const showVisualizationImage = (imageDataURL) => {
   if (imageDataURL) {
     return (
-      <Image src={imageDataURL} style={{ margin: '1px' }} />
+      <Image src={imageDataURL} style={{ marginHorizontal: 'auto', textAlign: 'center' }} debug />
     )
   } else {
     return (
@@ -215,7 +222,7 @@ const PDFDocument = ({
         >
           Résumés
         </Text>
-        <View>
+        <View style={styles.graphsView}>
         {imageDataURLs.map((imageDataURL, index) => {
           return (
             // <Page key={index} debug orientation="portrait" size="A4" style={styles.page}>

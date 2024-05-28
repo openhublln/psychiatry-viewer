@@ -140,11 +140,11 @@ const SidebarControl = (props) => {
   function collectChartsData(items) {
     let data = [];
     items.forEach(item => {
-      if (item.key) {
+      if (item?.key && item?.key != null) {
         // data[item.label] = item.key
         data.push([item.label, item.key])
       }
-      if (item.children) {
+      if (item?.children && item?.children != null) {
         // data[item.label] = collectChartsData(item.children);
         data = data.concat(collectChartsData(item.children));
       }
@@ -173,7 +173,7 @@ const SidebarControl = (props) => {
         )
       )
     }
-    
+
     // if (props.disease === GraphType.alcohol) {
     //   keys = AlcoholItemKeys
 

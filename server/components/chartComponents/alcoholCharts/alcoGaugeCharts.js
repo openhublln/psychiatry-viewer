@@ -104,7 +104,7 @@ export const showTroubleUsageAlcoGauge = ({
           {`Trouble de L'usage de l'alcool(DSM-5)`}
         </h2>
       ) : null}
-      <div>
+      {/* <div> */}
         <GaugeChart
           medicalData={data}
           scoreLabels={[
@@ -118,7 +118,7 @@ export const showTroubleUsageAlcoGauge = ({
           maxValue={11}
           withColor={withColor}
         />
-      </div>
+      {/* </div> */}
     </div>
   )
   return showGraph({

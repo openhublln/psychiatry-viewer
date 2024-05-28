@@ -1,5 +1,6 @@
 import MissingDataColumnMessageDialog from './missingDataColumnMessageDialog'
 import colorLib from '@kurkle/color'
+// import React from 'react';
 
 export const emptyValue = (data) => {
   return data === undefined || data === null || isNaN(data) || data === ''
@@ -121,6 +122,7 @@ const message = (
 }
 
 // ! function that ultimately returns the visualization content to be displayed in the frontend
+//showPopup=true, // add a new param to hide popup dialog in case noVisible has a different purpose?
 export const showGraph = ({
   missingGeneralColumn = null,
   missingTotalColumn = null,
@@ -129,28 +131,32 @@ export const showGraph = ({
   noVisible = false,
 }) => {
   return (
-    <div style={{ alignContent: 'left' }}>
-      <MissingDataColumnMessageDialog
-        key={missingDialogKey++}
-        visible={
-          (!missingGeneralColumn ||
-            !missingGeneralColumn[0]?.missingCols ||
-            missingGeneralColumn[0].missingCols.length === 0) &&
-          (!missingTotalColumn ||
-            !missingTotalColumn[0]?.missingCols ||
-            missingTotalColumn[0].missingCols.length === 0) &&
-          (!missingSpecialColumn ||
-            !missingSpecialColumn[0]?.missingCols ||
-            missingSpecialColumn[0].missingCols.length === 0)
-            ? false
-            : noVisible
-              ? false
-              : true
-        }
-        missingGeneralColumn={missingGeneralColumn}
-        missingTotalColumn={missingTotalColumn}
-        missingSpecialColumn={missingSpecialColumn}
-      />
+    // <div style={{ alignContent: 'left' }}>
+    // <React.Fragment>
+    <>
+      {!noVisible
+        ? <MissingDataColumnMessageDialog
+            key={missingDialogKey++}
+            visible={
+              (!missingGeneralColumn ||
+                !missingGeneralColumn[0]?.missingCols ||
+                missingGeneralColumn[0].missingCols.length === 0) &&
+              (!missingTotalColumn ||
+                !missingTotalColumn[0]?.missingCols ||
+                missingTotalColumn[0].missingCols.length === 0) &&
+              (!missingSpecialColumn ||
+                !missingSpecialColumn[0]?.missingCols ||
+                missingSpecialColumn[0].missingCols.length === 0)
+                ? false
+                : noVisible
+                  ? false
+                  : true
+            }
+            missingGeneralColumn={missingGeneralColumn}
+            missingTotalColumn={missingTotalColumn}
+            missingSpecialColumn={missingSpecialColumn}
+          />
+        : null}
       {graph}
       {noVisible
         ? null
@@ -159,6 +165,7 @@ export const showGraph = ({
             missingTotalColumn,
             missingSpecialColumn,
           )}
-    </div>
+    </>
+    // </React.Fragment>
   )
 }
