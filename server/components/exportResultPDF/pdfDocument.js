@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     width: '100vw',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'start',
   },
   graphWarning: {
     color: 'red',
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   fixedFooter: {
+    width: '100%',
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    width: '100%',
   },
 })
 
@@ -128,7 +128,7 @@ const MyFixedHeader = ({
 const showVisualizationImage = (imageDataURL) => {
   if (imageDataURL) {
     return (
-      <Image src={imageDataURL} style={{ marginHorizontal: 'auto', textAlign: 'center' }} debug />
+      <Image src={imageDataURL} style={{ objectFit: 'scale-down', width: 'auto', height: 'auto' }} debug />
     )
   } else {
     return (

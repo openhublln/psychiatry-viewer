@@ -828,7 +828,7 @@ export default class ExportPDFDialog extends React.Component {
               })} */}
               {/* Use map to render the graphs */}
               {graphs.map((graph, index) => (
-                <div key={index} style={{ width: 'fit-content' }}>{graph}</div>
+                <div key={index} style={{ width: 'min-content' }}>{graph}</div>
               ))}
             </div>
           </Space>

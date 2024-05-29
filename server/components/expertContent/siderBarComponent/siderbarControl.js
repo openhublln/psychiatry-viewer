@@ -160,7 +160,7 @@ const SidebarControl = (props) => {
 
     // const currentViewKeys = collectChartsData(getSidebarItems())
     // let currentViewKeys = collectChartsData(getSidebarItems())
-    const currentViewData = collectChartsData(getSidebarItems())
+    // const currentViewData = collectChartsData(getSidebarItems())
     // console.log(currentViewData)
     let keys = null
     let graphs = []
