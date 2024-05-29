@@ -25,8 +25,8 @@ export const showInterDepressionEvolutionLine = ({
     let missingCols = []
     for (let c = 0; c < DataColumns.phq9.columns.length; c++) {
       i === 0
-        ? labels.push("à l'admission")
-        : labels.push(['En fin', "d'hospitalisation"])
+        ? labels.push("À l'admission")
+        : labels.push(["En fin d'hospitalisation"])
       currentColName = DataColumns.phq9.columns[c].trim()
       const value = getDataByName(
         medicalData,
@@ -97,7 +97,7 @@ export const showIsomnieLine = ({ medicalData, temps, dataName }) => {
     for (let c = 0; c < DataColumns.isi.columns.length; c++) {
       i === 0
         ? labels.push("à l'admission")
-        : labels.push(['En fin', "d'hospitalisation"])
+        : labels.push(["En fin d'hospitalisation"])
       currentColName = DataColumns.isi.columns[c].trim()
       const value = getDataByName(
         medicalData,
@@ -178,7 +178,7 @@ export const showDisplayEvolutionLine = ({
     for (let c = 0; c < dataColumns.length; c++) {
       i === 0
         ? labels.push("À l'admission")
-        : labels.push(['En fin', "d'hospitalisation"])
+        : labels.push(["En fin d'hospitalisation"])
       let value = getDataByName(
         medicalData,
         dataColumns[c].trim(),

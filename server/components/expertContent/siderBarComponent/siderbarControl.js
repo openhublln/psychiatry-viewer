@@ -14,9 +14,10 @@ import { DepressionSidebarItemsExpert } from './depressionSiderbar/sidebarItemsD
 import { DepressionSidebarItemsPatient } from './depressionSiderbar/sidebarItemsDepressionPatient'
 import { AlcoholExpertSidebarItems } from './alcoholSiderbar/sidebarItemsAlcoholExpert'
 import { AlcoholPatientSidebarItems } from './alcoholSiderbar/sidebarItemsAlcoholPatient'
+// import { getTemps } from '../../componentsUtils/visualizationGraph/getTemps'
+// import { componentsSwitchByDisease } from '../../componentsUtils/visualizationGraph/componentsSwitchByDisease'
 import ExportPDFDialog from '../../exportResultPDF/exportPDFDialog'
 import Styles from './siderbarcomponent.module.css'
-import html2canvas from 'html2canvas'
 
 const { Content, Sider } = Layout
 
@@ -63,17 +64,6 @@ const SidebarControl = (props) => {
     return temps
   }
 
-    
-  //   {
-  //   // Example logic to generate or filter graphs
-  //   return selectedValues.map(value => {
-  //     // Generate or filter your graph based on the value
-  //     return <div key={value}>Graph for {value}</div>;
-  //   });
-  // };
-
-
-  // !
   const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
     const medicalData = props.patientData
     const temps = getTemps(medicalData)
@@ -157,15 +147,13 @@ const SidebarControl = (props) => {
   // Function to prepare export graphs based on selected values
   // ! currently called every time the selection changes, need to be optimized (trigger selection only on "save" button? How?)
   const prepareExportGraphs = (selectedValues) => {
-
-    // const currentViewKeys = collectChartsData(getSidebarItems())
-    // let currentViewKeys = collectChartsData(getSidebarItems())
-    // const currentViewData = collectChartsData(getSidebarItems())
-    // console.log(currentViewData)
+    console.log("treeselectvalue: ", treeSelectValue);
+    console.log("selected values: ", selectedValues);
     let keys = null
     let graphs = []
 
     for (let key of selectedValues) {
+      // graphs.push(key)
       graphs.push(
         componentsSwitchByDisease(
           key,
@@ -317,8 +305,9 @@ const SidebarControl = (props) => {
         graphType={props.disease}
         // graphs={showExportPDFDialog ? prepareExportGraphs() : []}
         graphs={graphs}
-        treeSelectValue={treeSelectValue}
         onTreeSelectChange={handleTreeSelectChange}
+        treeSelectValue={treeSelectValue}
+        // selectedValues={selectedValues}
       />
     </>
   ) : null

@@ -166,3 +166,54 @@ export const showGraph = ({
     </div>
   )
 }
+
+
+export const getTemps = (data) => {
+  let temps = []
+
+  // does data come from Excel/CSV file?
+  if (Array.isArray(data.medicalData[0])) {
+    const index = data.medicalData[0].findIndex((col) => {
+      const c = col.trim().toLowerCase()
+      return c === 'temps' || c === 'redcap_event_name'
+    })
+
+    if (index >= 0) {
+      for (let i = 1; i < data.medicalData.length; i++) {
+        temps.push(data.medicalData[i][index])
+      }
+    }
+  } else {
+    // data comes from redcap API
+    temps = data.medicalData.map((md) => md.redcap_event_name)
+  }
+
+  return temps
+}
+
+  
+//   {
+//   // Example logic to generate or filter graphs
+//   return selectedValues.map(value => {
+//     // Generate or filter your graph based on the value
+//     return <div key={value}>Graph for {value}</div>;
+//   });
+// };
+
+
+// !
+export const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
+  const medicalData = props.patientData
+  const temps = getTemps(medicalData)
+
+  switch (props.disease) {
+    case GraphType.alcohol:
+      console.log("alcool:", AlcoholSelect(selectedItem, medicalData, temps, doShowWarning))
+      return AlcoholSelect(selectedItem, medicalData, temps, doShowWarning)
+    case GraphType.depression:
+      console.log("depression:", DepressionSelect(selectedItem, medicalData, temps, doShowWarning))
+      return DepressionSelect(selectedItem, medicalData, temps, doShowWarning)
+    default:
+      break
+  }
+}

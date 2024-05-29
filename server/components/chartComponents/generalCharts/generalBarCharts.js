@@ -31,6 +31,10 @@ import Styles from '../chartcomponents.module.css'
  * @returns The balance bar charts
  */
 const createBalanceBar = ({ data, maxValues, dataName, scales, graphType, ticksCallback, drawGrid, stepSize }) => {
+  // ! DOES NOT WORK
+  if (graphType == "depression") {
+    dataName = ""
+  }
   let normalizedDataSet = []
   let labelName = []
   const keys = Object.keys(data)
@@ -516,7 +520,7 @@ export const showConsommationsSubstancesBar = ({
           </div>
         </div>
         <div style={{ display: 'inline-flex' }}>
-          <div style={{ backgroundColor: 'yellow', width: '30px' }}></div>
+          <div style={{ backgroundColor: 'yellow', width: '40px' }}></div>
           <div style={{ color: '#666666', marginLeft: '10px', width: 'fit-content' }}>
             Intervention brève
           </div>

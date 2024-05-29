@@ -22,6 +22,8 @@ const createChartSegments = (scoreLabels) => {
   scoreLabels.forEach((scl) => {
     if (scl === ScoreSegmentLabels.absente) {
       seg = getSegment(scl, 'OUTSIDE')
+    } else if (scl === ScoreSegmentLabels.presente) {
+      seg = getSegment(scl, 'OUTSIDE')
     } else if (scl === ScoreSegmentLabels.léger) {
       seg = getSegment(scl, 'OUTSIDE')
     } else if (scl === ScoreSegmentLabels.modéré) {

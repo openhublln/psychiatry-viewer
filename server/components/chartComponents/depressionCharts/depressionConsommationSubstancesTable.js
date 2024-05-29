@@ -325,8 +325,8 @@ export const depressionConsommationSubstanceTable = ({ medicalData, time }) => {
 
   return (
     <div className="consomSubstanceTableDiv" style={{ width: 'max-content' }}>
-      <h2 style={{ textAlign: 'center', color: '#666666', fontSize: '30px' }}>
-        Fréquence de consommation des substances durant ces 3 derniers mois
+      <h2 style={{ textAlign: 'center', color: '#666666', fontSize: '24px' }}>
+        Fréquence de consommation des substances durant ces 3 derniers mois (ASSIST)
       </h2>
       <ConsommationSubstanceTable dataSet={dataSet} />
     </div>

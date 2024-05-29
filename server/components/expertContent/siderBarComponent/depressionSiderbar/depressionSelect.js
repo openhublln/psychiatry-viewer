@@ -77,7 +77,7 @@ export const DepressionSelect = (key, medicalData, temps, doShowWarning) => {
     case DepressionItemKeys.depressionGauge:
       return showDepressionGauge({
         medicalData: medicalData,
-        time: temps[1],
+        time: temps[0],
         withColor: true,
         dataName: "À l'admission",
         patientName: medicalData.name,
@@ -167,7 +167,7 @@ export const DepressionSelect = (key, medicalData, temps, doShowWarning) => {
     case DepressionItemKeys.dpAnxietyGauge:
       return showAnxietyGauge({
         medicalData: medicalData,
-        time: temps[1],
+        time: temps[0],
         withColor: true,
         dataName: "En fin d'hospitalisation",
       })

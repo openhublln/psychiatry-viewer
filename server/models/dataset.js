@@ -8,9 +8,11 @@ export const ScoreSegmentColors = {
   modéréRGBString: 'rgb(255, 165, 0)', // orange
   modéréRGBArray: [255, 165, 0],
   modéréHex: '#ffa500',
-  modsévèreRGBString: 'rgb(255, 114, 118)', // light red
-  modsévèreRGBArray: [255, 114, 118],
-  modsévèreHex: '#FF7276',
+  // modsévèreRGBString: 'rgb(255, 114, 118)', // light red
+  modsévèreRGBString: 'rgb(248, 165, 78)', // light red
+  modsévèreRGBArray: [248, 165, 78],
+  // modsévèreHex: '#FF7276',
+  modsévèreHex: '#f8a54e',
   sévèreRGBString: 'rgb(255,0,0)', //red
   sévèreRGBArray: [255, 0, 0],
   sévèreHex: '#FF0000',
@@ -91,7 +93,7 @@ export const ScoreSegmentLabels = {
   léger: 'Légère',
   modéré: 'Modérée',
   modsévère: 'Modérément sévère',
-  modsévèreSeperated: ['Modé.', 'sévère'],
+  modsévèreSeperated: ['Modé.', 'sévère'], // TODO change ?
   sévère: 'Sévère',
   total: 'Total',
   unknow: 'Unknown',
@@ -124,7 +126,7 @@ export const DataColumns = {
   },
   phq9: { name: ['Dépression'], columns: ['phq9_tot'], maxTotal: 27 },
   gad7: { name: ['Anxiété'], columns: ['gad7_tot'], maxTotal: 21 },
-  hsi: { name: ['hypersomnolence'], columns: ['hsi_tot'], maxTotal: 36 },
+  hsi: { name: ['Hypersomnolence'], columns: ['hsi_tot'], maxTotal: 36 },
   isi: { name: ['Insomnie'], columns: ['isi_tot'], maxTotal: 28 },
   uppsp20: {
     name: [

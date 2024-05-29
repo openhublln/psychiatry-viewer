@@ -1,10 +1,13 @@
 import React from 'react'
 import { Button, Modal, Space, TreeSelect, SHOW_PARENT } from 'antd'
 import { GraphType } from '../../models/dataset'
+// import { getTemps } from '../../componentsUtils/visualizationGraph/getTemps'
+// import { componentsSwitchByDisease } from '../../componentsUtils/visualizationGraph/componentsSwitchByDisease'
 import { pdf } from '@react-pdf/renderer'
 import { saveAs } from 'file-saver'
 import PDFDocument from './pdfDocument'
 import Select from './Select'
+
 import html2canvas from 'html2canvas'
 
 /**
@@ -49,7 +52,7 @@ export default class ExportPDFDialog extends React.Component {
     const imageDataURLs = []
     console.log("loop on each graph that should have been retrieved: ")
     for (const graphElement of imageElement.childNodes) {
-      // TODO create an "id: chart component" key-value obj to easily retrieve the selected chart(s)
+      
       console.log("graphElement: ", graphElement)
       // ! HTML2CANVAS REQUIRES A NODE FROM THE DOM OF THE PAGE ITS LOADED ON (cf. https://stackoverflow.com/a/65632648)
       const canvas = await html2canvas(graphElement, {
@@ -827,8 +830,10 @@ export default class ExportPDFDialog extends React.Component {
                 }
               })} */}
               {/* Use map to render the graphs */}
+
               {graphs.map((graph, index) => (
                 <div key={index} style={{ width: 'min-content' }}>{graph}</div>
+                // <div key={index} style={{ width: 'min-content' }}>{componentsSwitchByDisease(graph, false)}</div>
               ))}
             </div>
           </Space>

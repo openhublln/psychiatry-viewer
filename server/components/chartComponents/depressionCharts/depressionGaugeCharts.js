@@ -36,7 +36,7 @@ export const showIsomnieGauge = ({
   const graph = (
     <div style={{ width: 'fit-content' }}>
       {showGaugeTitle ? (
-        <h2 className={Styles.evolutionLabel}>Isomnie (ISI)</h2>
+        <h2 className={Styles.evolutionLabel}>Insomnie (ISI)</h2>
       ) : null}
       <div>
         {
@@ -46,7 +46,8 @@ export const showIsomnieGauge = ({
               ScoreSegmentLabels.absente,
               ScoreSegmentLabels.léger,
               ScoreSegmentLabels.modéré,
-              ScoreSegmentLabels.modsévèreSeperated,
+              // ScoreSegmentLabels.modsévèreSeperated,
+              ScoreSegmentLabels.modsévère,
               ScoreSegmentLabels.sévère,
             ]}
             dataName={dataName}
@@ -92,7 +93,7 @@ export const showhypersomnolenceGauge = ({
   const graph = (
     <div style={{ width: 'fit-content' }}>
       {showGaugeTitle ? (
-        <h2 className={Styles.evolutionLabel}>hypersomnolence (HSI)</h2>
+        <h2 className={Styles.evolutionLabel}>Hypersomnolence (HSI)</h2>
       ) : null}
       <div>
         {
