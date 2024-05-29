@@ -205,7 +205,7 @@ export const showRegulationEmotionBarBlance = ({
   )
 
   const graph = (
-    <>
+    <div>
       <Space direction="vertical" className={Styles.balanceBarSpace}>
         <h2 className={Styles.regulationEmoTitle}>Régulation des émotions</h2>
         <Space direction="horizontal">
@@ -267,7 +267,7 @@ export const showRegulationEmotionBarBlance = ({
         <div className={Styles.bottom}> Comment je gère mes émotions?</div>
         <div className={Styles.bottom1} />
       </Space>
-    </>
+    </div>
   )
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,

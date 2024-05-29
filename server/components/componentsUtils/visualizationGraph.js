@@ -131,9 +131,7 @@ export const showGraph = ({
   noVisible = false,
 }) => {
   return (
-    // <div style={{ alignContent: 'left' }}>
-    // <React.Fragment>
-    <>
+    <div style={{ alignContent: 'left' }}>
       {!noVisible
         ? <MissingDataColumnMessageDialog
             key={missingDialogKey++}
@@ -165,7 +163,6 @@ export const showGraph = ({
             missingTotalColumn,
             missingSpecialColumn,
           )}
-    </>
-    // </React.Fragment>
+    </div>
   )
 }

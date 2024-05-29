@@ -203,8 +203,8 @@ export function BarChart({
         key={JSON.stringify(data)}
         data={data}
         style={{
-          // width: chartWidth,
-          // height: chartHeight,
+          width: chartWidth,
+          height: chartHeight,
           backgroundColor: chartBcColor,
           paddingRight: paddingRight,
           paddingLeft: paddingLeft,
@@ -284,6 +284,7 @@ export const showBarChart = ({
           ' of ' +
           maxValues[item.dataIndex]
         }
+
         // Math.round(item.parsed.y * maxValues[item.dataIndex]) / 100
       }
       graphType={graphType}
