@@ -20,7 +20,10 @@ export const showHypersomnolenceLine = ({ medicalData, temps, dataName }) => {
   for (let i = 0; i < temps.length; i++) {
     let missingCols = []
     for (let c = 0; c < DataColumns.hsi.columns.length; c++) {
-      labels.push(temps[i])
+      // labels.push(temps[i])
+      i === 0
+        ? labels.push("À l'admission")
+        : labels.push(["En fin d'hospitalisation"])
       const value = getDataByName(
         medicalData,
         DataColumns.hsi.columns[c].trim(),
@@ -85,7 +88,10 @@ export const showAnxietyLine = ({ medicalData, temps, dataName }) => {
   for (let i = 0; i < temps.length; i++) {
     let missingCols = []
     for (let c = 0; c < DataColumns.gad7.columns.length; c++) {
-      labels.push(temps[i])
+      // labels.push(temps[i])
+      i === 0
+      ? labels.push("À l'admission")
+      : labels.push(["En fin d'hospitalisation"])
       const value = getDataByName(
         medicalData,
         DataColumns.gad7.columns[c].trim(),
@@ -99,13 +105,19 @@ export const showAnxietyLine = ({ medicalData, temps, dataName }) => {
     }
     missingTotalColumn.push({ time: temps[i], missingCols: missingCols })
 
-    const td = {
-      label: DataColumns.gad7.columns[0],
-      data: tData,
-      borderColor: NoScoreSegmentColors.blueRGBString,
-    }
-    datasets.push(td)
+    // const td = {
+    //   label: DataColumns.gad7.columns[0],
+    //   data: tData,
+    //   borderColor: NoScoreSegmentColors.blueRGBString,
+    // }
+    // datasets.push(td)
   }
+  const td = {
+    label: DataColumns.gad7.columns[0],
+    data: tData,
+    borderColor: NoScoreSegmentColors.blueRGBString,
+  }
+  datasets.push(td)
   const data = {
     labels: labels,
     datasets: datasets,

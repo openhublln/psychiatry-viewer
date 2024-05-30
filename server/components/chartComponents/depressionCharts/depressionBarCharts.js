@@ -38,7 +38,7 @@ export const showInterDepressionBar = ({ medicalData, time }) => {
   const missingTotalColmn = getMissingDataColumn(data, time)
   const graph = showBarChart({
     medicalData: data,
-    labelName: DataColumns.phq9.name,
+    labelName: [""],
     dataName: 'Dépression (PHQ9)',
     chartWidth: '200px',
     maxValues: [27],
@@ -111,7 +111,7 @@ export const showIsomnieBar = ({ medicalData, time }) => {
   const missingTotalColmn = getMissingDataColumn(data, time)
   const graph = showBarChart({
     medicalData: data,
-    labelName: DataColumns.isi.name,
+    labelName: [""],
     dataName: 'Insomnie (ISI)',
     chartWidth: '200px',
     maxValues: [28],
@@ -179,7 +179,7 @@ export const showHypersomnolenceBar = ({ medicalData, time }) => {
   const missingTotalColmn = getMissingDataColumn(data, time)
   const graph = showBarChart({
     medicalData: data,
-    labelName: DataColumns.isi.name,
+    labelName: [""],
     dataName: ['Hypersomnolence', '(HSI)'],
     chartWidth: '200px',
     maxValues: [28],

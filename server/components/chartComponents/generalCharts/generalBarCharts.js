@@ -13,6 +13,7 @@ import {
   DataColumns,
   ScoreSegmentLabels,
   SingleBarColors,
+  GraphType,
 } from '../../../models/dataset'
 import {
   getNormalizedValue,
@@ -373,40 +374,51 @@ export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
     }
   })
   const missingTotalDataColumn = getMissingDataColumn(data, time)
-
+  
+  const name = graphType == GraphType.alcohol ? ['Auto-efficacité', '(GSES)'] : ['Auto-efficacité', '(GSES)']
+  const scale = graphType == GraphType.alcohol ? [
+    [
+      {
+        threshold: 50,
+        color: ScoreSegmentColors.nothingRGBString,
+      },
+      {
+        threshold: 100,
+        color: ScoreSegmentColors.sévèreRGBString,
+      },
+    ],
+  ] : [
+        [
+          {
+            threshold: 100,
+            color: ScoreSegmentColors.sévèreRGBString,
+          }
+        ]
+      ]
+  const grid = graphType == GraphType.alcohol ? true : false
+  const ticksCb = graphType == GraphType.alcohol ? function (value) {
+                                                    switch (value) {
+                                                      case 0:
+                                                        return 0
+                                                      case 50:
+                                                        return 50
+                                                      case 100:
+                                                        return 100
+                                                      default:
+                                                        break
+                                                    }
+                                                  } : null
   const graph = showBarChart({
     medicalData: data,
     labelName: [''], //DataColumns.gse.name,
-    dataName: ['Auto-efficacité', '(GSES)'],
+    dataName: name,
     maxValues: [100],
     chartWidth: '200px',
     ticks: [0],
-    scales: [
-      [
-        {
-          threshold: 50,
-          color: ScoreSegmentColors.nothingRGBString,
-        },
-        {
-          threshold: 100,
-          color: ScoreSegmentColors.sévèreRGBString,
-        },
-      ],
-    ],
-    drawGrid: true,
+    scales: scale,
+    drawGrid: grid,
     stepSize: 10,
-    ticksCallback: function (value) {
-      switch (value) {
-        case 0:
-          return 0
-        case 50:
-          return 50
-        case 100:
-          return 100
-        default:
-          break
-      }
-    },
+    ticksCallback: ticksCb,
     graphType: graphType,
   })
   return showGraph({
@@ -635,6 +647,39 @@ export const showExterneAllianceTherapBar = ({
   })
   const missingGeneralColumn = getMissingDataColumn(data, time)
 
+  // const name = graphType == GraphType.alcohol ? ["L'alliance", 'thérapeutique (WAI)'] : [" "]
+  const scale = graphType == GraphType.alcohol ? [
+    [
+      {
+        threshold: 0,
+        color: SingleBarColors.purple,
+      },
+      {
+        threshold: 100,
+        color: SingleBarColors.purple,
+      },
+    ],
+  ] : [
+        [
+          {
+            threshold: 100,
+            color: SingleBarColors.purple,
+          },
+        ]
+      ]
+  const grid = graphType == GraphType.alcohol ? true : false
+  const ticksCb = graphType == GraphType.alcohol ? function (value) {
+                                                    switch (value) {
+                                                      case 0:
+                                                        return 0
+                                                      case 50:
+                                                        return 50
+                                                      case 100:
+                                                        return 100
+                                                      default:
+                                                        break
+                                                    }
+                                                  } : null
   const graph = showBarChart({
     medicalData: data,
     labelName: [''],//DataColumns.wai.name,
@@ -654,20 +699,9 @@ export const showExterneAllianceTherapBar = ({
         },
       ],
     ],
-    drawGrid: true,
+    drawGrid: grid,
     stepSize: 10,
-    ticksCallback: function (value) {
-      switch (value) {
-        case 100:
-          return 100
-        case 50:
-          return 50
-        case 0:
-          return 0
-        default:
-          break
-      }
-    },
+    ticksCallback: ticksCb,
     graphType: graphType,
   })
   return showGraph({

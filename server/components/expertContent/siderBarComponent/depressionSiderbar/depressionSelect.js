@@ -1,4 +1,4 @@
-import { DepressionItemKeys } from '../../../../models/dataset'
+import { DepressionItemKeys, GraphType } from '../../../../models/dataset'
 import { showIsomnieLine } from '../../../chartComponents/generalCharts/generalLineCharts'
 import {
   showAnxietyBar,
@@ -150,7 +150,7 @@ export const DepressionSelect = (key, medicalData, temps, doShowWarning) => {
         graphType: 'depression',
       })
     case DepressionItemKeys.autoEfficacityBar:
-      return showAutoEfficacitéBar({ medicalData: medicalData, time: temps[1] })
+      return showAutoEfficacitéBar({ medicalData: medicalData, time: temps[1], graphType: GraphType.depression })
     case DepressionItemKeys.autoEfficacityGauge:
       return autoEfficacityGauge({
         medicalData: medicalData,
@@ -188,6 +188,7 @@ export const DepressionSelect = (key, medicalData, temps, doShowWarning) => {
       return showExterneAllianceTherapBar({
         medicalData: medicalData,
         time: temps[1],
+        graphType: GraphType.depression
       })
     case DepressionItemKeys.indicesBipolarityGraphExpert:
       return showIndicesBipolarityGraph({

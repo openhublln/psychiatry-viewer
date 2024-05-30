@@ -305,13 +305,14 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         maxNormalized: 40,
       })
     case AlcoholItemKeys.autoEfficacitybar:
-      return showAutoEfficacitéBar({ medicalData: medicalData, time: temps[0] })
+      return showAutoEfficacitéBar({ medicalData: medicalData, time: temps[0], graphType:GraphType.alcohol })
     case AlcoholItemKeys.alcoQualityVieBar:
       return showQulityVieBar({ medicalData: medicalData, time: temps[0] })
     case AlcoholItemKeys.externeAllianceTherapBar:
       return showExterneAllianceTherapBar({
         medicalData: medicalData,
         time: temps[1],
+        graphType: GraphType.alcohol
       })
     case AlcoholItemKeys.reseauSocialGauge:
       return showReseauSocialGauge({ medicalData: medicalData, temps: temps })

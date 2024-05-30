@@ -67,7 +67,7 @@ const SidebarControl = (props) => {
   const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
     const medicalData = props.patientData
     const temps = getTemps(medicalData)
-
+    console.log("MEDICAL DATA:", medicalData)
     switch (props.disease) {
       case GraphType.alcohol:
         console.log("alcool:", AlcoholSelect(selectedItem, medicalData, temps, doShowWarning))

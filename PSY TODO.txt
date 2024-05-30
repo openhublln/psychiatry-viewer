@@ -3,8 +3,10 @@ Dépression :
 Pour les graph d'évolution avec une ligne : - mettre les tresholds en fonction de ‘Absence, Léger, Modéré …
                                             - La couleur de la ligne doit avoir la couleur de la range en T2
 Pour les bar chart : - pas de sous titre
+=> DONE
 
 L'intensité de la dépression (phq9) - Evolution : - mettre ‘A l’admission’ ‘En fin d’hospitalisation’ sous les graphiques (et pas t1_arm1…)
+=> ALREADY DONE
 
 
 
@@ -15,16 +17,25 @@ La réactivité émotionnelle (MAThyS) - Evolution : Graph en étoile (voir Trel
 
 Les consomation (ASSIST) - A l'admission : - Les valeurs ne sont pas manquante, elle sont à 0. Checker quoi faire.
 Les consomation (ASSIST) - Statisitque : - Afficher ASSIST dans le titre
+					   => DONE (reduced title font size to make it fit)
 
 Gestion des émotions - Blame de soi et blame d'autrui peut etre inversé
+=> ALREADY DONE (?) / CORRECT
+
 
 Interne : L'auto efficacité (GSES) : - virer le sous titre
-		                     - virer les barre grises
+                                     => DONE
+		                             - virer les barre grises
+                                     => DONE
                                      - virer la barre du milieu
+                                     => DONE
                                      - pas de variation de couleur
+                                     => DONE
 
 L'alliance thérapeutique (WAI) : - dans le Menu déroulant ‘Ressentie en fin d’hospitalisation’
+                                    => si faute d'orthographe (ressentie -> ressenti) ALREADY DONE ?
                                  - pour le score : le ‘normaliser’ et le mettre sur 100 : ([Score -12] * 100 / 72)
+                                    => ALREADY DONE
 
 Evenements stressants de l'enfance :  - Si variable ctq_choix 0 : ne pas afficher le graphique, 1 : afficher
                                       - Toutes les barres de la même couleur
@@ -37,7 +48,9 @@ Prévnetion de la rechute : - "Evenement difficiles durant l'enfance" est bianir
 Dépression Entretien clinique :
 ------------------------------------------------
 L'intensité de la dépression (phq9) - A l'admission : - Utilise le t1 et pas le t2
-                                                      - La partie modérée doit être en jaune/orange pale et pas en rose
+							=> DONE
+                                                      - La partie modérée doit être en jaune/orange pale et pas en rose 
+							=> DONE (vérifier choix couleur)
 
 La réactivité émotionnelle (MAThyS) - A l'admission : - Titre des catégories 
 La réactivité émotionnelle (MAThyS) - Evolution : - Graph en étoile (voir Trello?)
@@ -45,10 +58,13 @@ La réactivité émotionnelle (MAThyS) - Evolution : - Graph en étoile (voir Tr
 Indices de bipolarité : - Vérifier les variables entre les deux vues car ca marche dans la vue réflexion
 
 Anxiété - A l'admission : - Utiliser le T1
+=> DONE (l.170 depressionSelect) TODO: changer label "En fin d'hospitalisation" -> "À l'admission" ?
 
 Insomnie - A l'admission : - il y a deux fois modérée
+=> DONE
 
 L'hypersomnolence (HSI) - A l'admission : Abscence + Présence
+=> DONE (added "else if (scl === ScoreSegmentLabels.presente)" condition l.25 gaugeChart.js)
 
 Les consomation : - Vérifier les variables entre les deux vues car ca marche dans la vue réflexion
 
