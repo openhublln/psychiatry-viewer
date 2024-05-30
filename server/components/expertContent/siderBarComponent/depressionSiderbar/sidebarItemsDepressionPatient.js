@@ -33,7 +33,9 @@ function getDividerItem(type) {
  */
 export const DepressionSidebarItemsPatient = [
   getItem(
-    "Les caractéristiques de l'épisode",
+    <div className={Styles.sideBarMenuGroupTitleLabel}>
+      Les caractéristiques de l'épisode
+    </div>,
     'sub1',
     React.createElement(RiNodeTree),
     [

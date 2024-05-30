@@ -105,7 +105,7 @@ const SidebarControl = (props) => {
           : AlcoholPatientSidebarItems
       } else if (props.disease === GraphType.depression) {
         return props.viewType === ViewType.medicin
-          ? DepressionSidebarItemsExpert
+          ? DepressionSidebarItemsExpert(medicalData, temps)
           : DepressionSidebarItemsPatient
       } else {
         return null

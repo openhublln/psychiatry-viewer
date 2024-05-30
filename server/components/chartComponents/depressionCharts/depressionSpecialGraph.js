@@ -325,7 +325,7 @@ export const showConsommationsSubstancesGraph = ({ medicalData, time }) => {
 
   const graph = (
     <div style={{ display: 'inline-block', textAlign: 'center' }}>
-      <h2>Consommation de Substance (ASSIST V3)</h2>
+      <h2 style={{color: "#666666"}}>Consommation de Substance (ASSIST V3)</h2>
       <div className={Styles.bipolarityChart}>
         <div className={Styles.leftPartConsom}>
           {getDivs(filteredDatasetLeft, 'L')}

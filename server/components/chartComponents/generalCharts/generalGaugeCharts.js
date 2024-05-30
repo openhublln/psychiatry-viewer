@@ -141,7 +141,8 @@ export const autoEfficacityGauge = ({
       value: readValue ? readValue : null,
     }
   })
-  console.log(data[0]['value'])
+  console.log("DATA", data)
+  console.log("DATA 0 VALUE", data[0]['value'])
   const missingTotalDataColumn = getMissingDataColumn(data, time)
 
   const graph = (

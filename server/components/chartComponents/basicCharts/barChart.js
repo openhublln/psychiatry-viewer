@@ -27,7 +27,7 @@ ChartJS.register(
  */
 export function BarChart({
   series,
-  labelName = '',
+  labelName,
   dataName = '',
   minValue = 0,
   maxValue,
