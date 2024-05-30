@@ -205,10 +205,9 @@ export const showDisplayEvolutionLine = ({
     }
     LineColor = colorScale[i].color
   }
-  
 
   const td = {
-    label: dataColumns[0],
+    label: "Évolution",
     data: tData,
     borderColor: LineColor,
   }

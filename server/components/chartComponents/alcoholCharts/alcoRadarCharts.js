@@ -27,12 +27,13 @@ export const showAlcoResumeEvolutionsRadar = ({
     DataColumns.ocds.columns[2],
     DataColumns.gse.columns[0],
   ]
-
+  console.log("MEDICAL DATA", medicalData)
+  console.log("DATA NAMES", dataNames)
   let firstData = getDataSetByDataNames(medicalData, temps[0], dataNames)
   let secondData = getDataSetByDataNames(medicalData, temps[1], dataNames)
-  console.log(firstData)
-  console.log(secondData)
-  for (let i = 0; i < firstData.dataSet.length; i++) {   
+  console.log("FIRST DATA DATASET", firstData)
+  console.log("SECOND DATA DATASET", secondData)
+  for (let i = 0; i < firstData.dataSet.length; i++) {
     switch (i) {
       case 0:
         firstData.dataSet[i] = firstData.dataSet[i] / 2.7
@@ -53,7 +54,7 @@ export const showAlcoResumeEvolutionsRadar = ({
         break
     }
   }
-  for (let i = 0; i < secondData.dataSet.length; i++) {    
+  for (let i = 0; i < secondData.dataSet.length; i++) {
     switch (i) {
       case 0:
         secondData.dataSet[i] = secondData.dataSet[i] / 2.7
@@ -85,13 +86,13 @@ export const showAlcoResumeEvolutionsRadar = ({
 
   const timeDataSet = [
     {
-      time: 'Avant', //temps[0],
+      time: temps[0],
       data: firstData.dataSet,
       borderColor: RadarDataColors.blueRGBString,
       backgroundColor: transparentize(RadarDataColors.blueRGBString, 0.8),
     },
     {
-      time: 'Après', //temps[1],
+      time: temps[1],
       data: secondData.dataSet,
       borderColor: RadarDataColors.orangeRGBString,
       backgroundColor: transparentize(RadarDataColors.orangeRGBString, 0.8),

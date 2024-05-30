@@ -90,6 +90,7 @@ export const RadarChart = ({
 
   let radarDataSet = dataSet.map((d, index) => {
     return {
+      // !
       label: d.time == 't1_arm_1' ? "À l'admission" : "En fin d'hospitalisation",
       data: d.data,
       backgroundColor: dataSet[index].backgroundColor,

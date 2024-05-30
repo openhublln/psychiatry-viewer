@@ -33,8 +33,8 @@ function getDividerItem(type) {
 
 /** Define the side bar items: depression for experts */
 export function DepressionSidebarItemsExpert(medicalData, temps) {
-  console.log("CTQ CHOIX:", ctqChoix)
   let ctqChoix = getDataByName(medicalData, 'ctq_choix', temps[1], medicalData.name)
+  console.log("CTQ CHOIX:", ctqChoix)
   return [
     getItem(
       <div className={Styles.sideBarMenuGroupTitleLabel}>
