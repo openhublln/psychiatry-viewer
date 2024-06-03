@@ -429,15 +429,12 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     cutOffSegments[ScoreSegmentLabels.modéré] = 17.5
   }
 
-  const bearni_tot =
-    (100 *
-      getDataByName(
-        medicalData,
-        DataColumns.bearni.total,
-        temps[1],
-        medicalData.name,
-      )) /
-    30
+  let bearni_tot = 0
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    bearni_tot += (maxValues[index] / 100) * element['value']
+  }
+  bearni_tot = (100*bearni_tot) / 30
 
   if (emptyValue(bearni_tot)) {
     missingBearniTotal.push({
@@ -445,13 +442,12 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
       missingCols: [DataColumns.bearni.total],
     })
   }
-  console.log(bearni_tot)
   const graph = (
     <Space direction="vertical">
       <div>
       {showBarChart({
           medicalData: [
-            { colName: DataColumns.bearni.total, value: 100 - bearni_tot },
+            { colName: DataColumns.bearni.total, value: bearni_tot },
           ],
           labelName: ['Total'],
           dataName: ['Troubles neuro-psychologiques (BEARNI)', 'Total'],
@@ -477,11 +473,11 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
           ],
           ticksCallback: function (value, index) {
             switch (value) {
-              case 100:
+              case 0:
                 return ScoreSegmentLabels.noProblem
               case 60:
                 return ScoreSegmentLabels.léger
-              case 25:
+              case 80:
                 return ScoreSegmentLabels.modéré
               default:
                 break

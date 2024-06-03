@@ -11,7 +11,7 @@ import { Bar } from 'react-chartjs-2'
 import gradient from 'chartjs-plugin-gradient'
 import { GraphType } from '../../../models/dataset'
 import { getScoreSegment } from '../../../lib/datalib/calculateData'
-import { max } from 'lodash-es'
+import { max, min } from 'lodash-es'
 
 ChartJS.register(
   CategoryScale,
@@ -85,7 +85,6 @@ export function BarChart({
     scales: {
       x: {
         max: maxValue,
-        reverse: isHorizontal ? true : false,
         grid: {
           drawTicks: isHorizontal,
           drawOnChartArea: isHorizontal,

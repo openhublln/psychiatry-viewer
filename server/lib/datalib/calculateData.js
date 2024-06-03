@@ -44,9 +44,7 @@ import { getDataByName } from './parseData'
 // returns the entry { threshold, color}
 export const getScoreSegment = (value, scale) => {
   var i = 0
-  console.log("SCALE", scale)
-  console.log("SCALE LENGTH", scale.length)
-  if (scale.length == 0) {
+  if (scale == null || scale.length == 0) {
     return []
   }
   while (value > scale[i].threshold && i < scale.length - 1) {

@@ -85,55 +85,45 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         temps: temps,
         dataName: 'Dépression (PHQ9) : Évolution',
         dataColumns: DataColumns.phq9.columns,
-        maxValue: 30,
+        maxValue: 27,
         ticksCallback: function (value) {
           switch (value) {
-            // case 2:
-            //   return ScoreSegmentLabels.absente
-            // case 8:
-            //   return ScoreSegmentLabels.léger
-            // case 12:
-            //   return ScoreSegmentLabels.modéré
-            // case 18:
-            //   return ScoreSegmentLabels.modsévère
-            // case 24:
-            //   return ScoreSegmentLabels.sévère
             case 0:
               return ScoreSegmentLabels.absente
-            case 2:
+            case 4.9:
               return ScoreSegmentLabels.léger
-            case 8:
+            case 9.5:
               return ScoreSegmentLabels.modéré
-            case 12:
+            case 14.5:
               return ScoreSegmentLabels.modsévère
-            case 18:
+            case 19.5:
               return ScoreSegmentLabels.sévère
-            case 30 :
+            case 27 :
               return ''
             default:
               break
           }
         },
-        y1StepSize: 2,
+        y1StepSize: 0.05,
         colorScale : [
           {
-            threshold: 2,
+            threshold: 4.9,
             color: ScoreSegmentColors.absenteRGBString,
           },
           {
-            threshold: 8,
+            threshold: 9.5,
             color: ScoreSegmentColors.légerRGBString,
           },
           {
-            threshold: 12,
+            threshold: 14.5,
             color: ScoreSegmentColors.modéréRGBString,
           },
           {
-            threshold: 18,
+            threshold: 19.5,
             color: ScoreSegmentColors.modsévèreRGBString,
           },
           {
-            threshold: 24,
+            threshold: 27,
             color: ScoreSegmentColors.sévèreRGBString,
           },
       ],
@@ -180,11 +170,11 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
           switch (value) {
             case 0:
               return ScoreSegmentLabels.absente
-            case 4:
+            case 4.5:
               return ScoreSegmentLabels.léger
-            case 8:
+            case 9.5:
               return ScoreSegmentLabels.modéré
-            case 12:
+            case 14.5:
               return ScoreSegmentLabels.sévère
             case 21 :
               return ''
@@ -192,22 +182,22 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
               break
           }
         },
-        y1StepSize: 4,
+        y1StepSize: 0.05,
         colorScale : [
           {
-            threshold: 4,
+            threshold: 4.5,
             color: ScoreSegmentColors.absenteRGBString,
           },
           {
-            threshold: 8,
+            threshold: 9.5,
             color: ScoreSegmentColors.légerRGBString,
           },
           {
-            threshold: 12,
+            threshold: 14.5,
             color: ScoreSegmentColors.modéréRGBString,
           },
           {
-            threshold: 16,
+            threshold: 21,
             color: ScoreSegmentColors.sévèreRGBString,
           },
       ]
@@ -233,39 +223,39 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         temps: temps,
         dataName: 'Insomnie (ISI): Évolution',
         dataColumns: DataColumns.isi.columns,
-        maxValue: 30,
+        maxValue: 28,
         ticksCallback: function (value) {
           switch (value) {
             case 0:
               return ScoreSegmentLabels.absente
-            case 6:
+            case 7.5:
               return ScoreSegmentLabels.léger
-            case 12:
+            case 14.5:
               return ScoreSegmentLabels.modéré
-            case 18:
+            case 21.5:
               return ScoreSegmentLabels.sévère
-            case 30:
+            case 28:
                 return ''
             default:
               break
           }
         },
-        y1StepSize: 6,
+        y1StepSize: 0.05,
         colorScale : [
             {
-              threshold: 6,
+              threshold: 7.5,
               color: ScoreSegmentColors.absenteRGBString,
             },
             {
-              threshold: 12,
+              threshold: 14.5,
               color: ScoreSegmentColors.légerRGBString,
             },
             {
-              threshold: 18,
+              threshold: 21.5,
               color: ScoreSegmentColors.modéréRGBString,
             },
             {
-              threshold: 24,
+              threshold: 28,
               color: ScoreSegmentColors.sévèreRGBString,
             },
         ]
