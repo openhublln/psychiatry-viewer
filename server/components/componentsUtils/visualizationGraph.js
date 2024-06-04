@@ -74,7 +74,7 @@ const message = (
           <label
             style={{
               color: 'red',
-              textAlign: 'buttom',
+              textAlign: 'bottom',
               wordWrap: 'normal',
               fontSize: '18px',
             }}
@@ -90,7 +90,7 @@ const message = (
         <label
           style={{
             color: 'red',
-            textAlign: 'buttom',
+            textAlign: 'bottom',
             wordWrap: 'normal',
             fontSize: '18px',
           }}
@@ -105,7 +105,7 @@ const message = (
       <label
         style={{
           color: 'red',
-          textAlign: 'buttom',
+          textAlign: 'bottom',
           wordWrap: 'normal',
           width: 'inherit',
           minWidth: '450px',
@@ -129,6 +129,7 @@ export const showGraph = ({
   missingSpecialColumn = null,
   graph,
   noVisible = false,
+  subText = null,
 }) => {
   return (
     <div style={{ alignContent: 'left' }}>
@@ -163,6 +164,19 @@ export const showGraph = ({
             missingTotalColumn,
             missingSpecialColumn,
           )}
+      {subText
+        ? <label
+        style={{
+          color: 'black',
+          textAlign: 'bottom',
+          wordWrap: 'normal',
+          fontSize: '18px',
+          fontStyle: 'italic',
+        }}
+      >
+        {subText}
+      </label>
+        : null}
     </div>
   )
 }

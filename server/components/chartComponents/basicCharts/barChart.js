@@ -48,6 +48,7 @@ export function BarChart({
   isHorizontal = false,
   drawGrid = false,
   stepSize = 10,
+  isFloating = false,
 }) {
   const xTicksHorizontal =  {
     font: { size: 12 },
@@ -157,31 +158,16 @@ export function BarChart({
     return vArray
   }
 
+  console.log(getValues(series))
+
   const data = {
     labels: labelName,
     datasets: [
       {
         label: dataName,
-        data: getValues(series),
+        data: isFloating ? series : getValues(series),
         maxBarThickness: maxBarThickness,
         backgroundColor: barColor,
-        // Dont remove here for now
-        // gradient: {
-        //   backgroundColor: {
-        //     axis: 'y',
-        //     colors: {
-        //       0: '#FFDDDD',
-        //       [maxValue]: '#DDA500',
-        //     },
-        //   },
-        //   borderColor: {
-        //     axis: 'y',
-        //     colors: {
-        //       0: '#808080',
-        //       [maxValue]: '#808080',
-        //     },
-        //   },
-        // },
       },
     ],
   }
@@ -242,6 +228,8 @@ export const showBarChart = ({
   isHorizontal = false,
   drawGrid = false,
   stepSize = 10,
+  isFloating = false,
+  tooltipForcedValue = null,
 }) => {
   return (
     <BarChart
@@ -277,7 +265,9 @@ export const showBarChart = ({
       ticksCallback={ticksCallback}
       tooltipsCallback={
         (item) => {
+          if(tooltipForcedValue != null) return tooltipForcedValue
           let value = isHorizontal ? item.parsed.x : item.parsed.y
+          
          return Math.floor(value * 10) / 10 +
           '%' +
           ' of ' +
@@ -290,6 +280,7 @@ export const showBarChart = ({
       isHorizontal = {isHorizontal}
       drawGrid = {drawGrid}
       stepSize={stepSize}
+      isFloating={isFloating}
     />
   )
 }

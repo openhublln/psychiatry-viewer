@@ -38,6 +38,13 @@ export const showAlcoDepressionBar = ({ medicalData, time }) => {
 
   const missingTotalColumn = getMissingDataColumn(data, time)
 
+  const q9 = getDataByName(
+    medicalData,
+    'phq9_q9',
+    time,
+    medicalData.name,
+  )
+
   const barChart = showBarChart({
     medicalData: data,
     labelName: [''],//DataColumns.phq9.name,
@@ -90,6 +97,7 @@ export const showAlcoDepressionBar = ({ medicalData, time }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: barChart,
+    subText: (q9 && q9 >= 0) ? "N.B.:!" : null
   })
 }
 
@@ -420,13 +428,11 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
 
   const cutOffSegments = {}
   if (diploma && diploma < 6) {
-    // cutOffSegments[ScoreSegmentLabels.noProblem] = 20
-    cutOffSegments[ScoreSegmentLabels.léger] = 19.5
-    cutOffSegments[ScoreSegmentLabels.modéré] = 16.5
+    cutOffSegments[ScoreSegmentLabels.noProblem] = 20
+    cutOffSegments[ScoreSegmentLabels.léger] = 17
   } else {
-    // cutOffSegments[ScoreSegmentLabels.noProblem] = 22
-    cutOffSegments[ScoreSegmentLabels.léger] = 21.5
-    cutOffSegments[ScoreSegmentLabels.modéré] = 17.5
+    cutOffSegments[ScoreSegmentLabels.noProblem] = 22
+    cutOffSegments[ScoreSegmentLabels.léger] = 18
   }
 
   let bearni_tot = 0
@@ -434,8 +440,33 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     const element = data[index];
     bearni_tot += (maxValues[index] / 100) * element['value']
   }
-  bearni_tot = (100*bearni_tot) / 30
+  bearni_tot = 18
+  let sectionMin, sectionMax, tickMin, tickMax = 0;
+  // Define in which zone the score should be placed
+  if (bearni_tot >= cutOffSegments[ScoreSegmentLabels.noProblem]) {
+    // Pas de trouble
+    sectionMax = 30
+    sectionMin = cutOffSegments[ScoreSegmentLabels.noProblem]
+    tickMin = 0
+    tickMax = 35
+  } else if (bearni_tot >= cutOffSegments[ScoreSegmentLabels.léger]) {
+    // léger
+    sectionMax = cutOffSegments[ScoreSegmentLabels.noProblem] - 1
+    sectionMin = cutOffSegments[ScoreSegmentLabels.léger]
+    tickMin = 35
+    tickMax = 65
+  } else {
+    // modére
+    sectionMax = cutOffSegments[ScoreSegmentLabels.léger] - 1
+    sectionMin = 0
+    tickMin = 65
+    tickMax = 100
+  }
 
+  let bearni_tot_modif = (sectionMin == bearni_tot) ? bearni_tot + 0.25 : bearni_tot
+  let Valeur_cible = tickMin + ((bearni_tot_modif - sectionMin) * (tickMax - tickMin)) / (sectionMax - sectionMin)
+  let bearni_prc = (bearni_tot * 100) / 30
+  console.log(Valeur_cible)
   if (emptyValue(bearni_tot)) {
     missingBearniTotal.push({
       time: temps[1],
@@ -446,28 +477,27 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     <Space direction="vertical">
       <div>
       {showBarChart({
-          medicalData: [
-            { colName: DataColumns.bearni.total, value: bearni_tot },
-          ],
+          medicalData: [[tickMin,Valeur_cible]],
           labelName: ['Total'],
           dataName: ['Troubles neuro-psychologiques (BEARNI)', 'Total'],
           maxValues: [30],
           chartHeight: '180px',
-          chartWidth: '470px',
-          //ticks: [0, diploma < 6 ? 16.5 : 17.5, diploma < 6 ? 19.5 : 21.5],
+          chartWidth: '515px',
+          isFloating: true,
+          tooltipForcedValue: bearni_prc + '% of 30',
           scales: [
             [
               {
                 threshold: 0,
-                color: ScoreSegmentColors.modéréRGBString,
+                color: ScoreSegmentColors.absenteRGBString,
               },
               {
-                threshold: 25,
+                threshold: 35,
                 color: ScoreSegmentColors.légerRGBString,
               },
               {
-                threshold: 60,
-                color: ScoreSegmentColors.absenteRGBString,
+                threshold: 65,
+                color: ScoreSegmentColors.modéréRGBString,
               },
             ],
           ],
@@ -475,9 +505,9 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
             switch (value) {
               case 0:
                 return ScoreSegmentLabels.noProblem
-              case 60:
+              case 35:
                 return ScoreSegmentLabels.léger
-              case 80:
+              case 65:
                 return ScoreSegmentLabels.modéré
               default:
                 break
