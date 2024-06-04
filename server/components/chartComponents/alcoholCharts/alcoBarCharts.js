@@ -450,13 +450,13 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     tickMax = 35
   } else if (bearni_tot >= cutOffSegments[ScoreSegmentLabels.léger]) {
     // léger
-    sectionMax = cutOffSegments[ScoreSegmentLabels.noProblem] - 1
+    sectionMax = cutOffSegments[ScoreSegmentLabels.noProblem]
     sectionMin = cutOffSegments[ScoreSegmentLabels.léger]
     tickMin = 35
     tickMax = 65
   } else {
     // modére
-    sectionMax = cutOffSegments[ScoreSegmentLabels.léger] - 1
+    sectionMax = cutOffSegments[ScoreSegmentLabels.léger]
     sectionMin = 0
     tickMin = 65
     tickMax = 100
