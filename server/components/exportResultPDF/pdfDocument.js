@@ -128,7 +128,7 @@ const MyFixedHeader = ({
 const showVisualizationImage = (imageDataURL) => {
   if (imageDataURL) {
     return (
-      <Image src={imageDataURL} style={{ objectFit: 'scale-down', width: 'auto', height: 'auto' }} debug />
+      <Image src={imageDataURL} style={{ objectFit: 'scale-down', width: 'auto', height: 'auto' }} />
     )
   } else {
     return (

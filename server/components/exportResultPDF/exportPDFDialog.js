@@ -815,8 +815,8 @@ export default class ExportPDFDialog extends React.Component {
                 position: 'absolute',
                 // visibility: 'hidden',
                 zIndex: -1000,
-                // marginLeft: '-10000px', // as-if it's not visible
                 // position: 'relative',
+                left: '-10000px', // as-if it's not visible
                 marginTop: '-150px',
                 width: 'fit-content',
                 marginInline: 'auto',
