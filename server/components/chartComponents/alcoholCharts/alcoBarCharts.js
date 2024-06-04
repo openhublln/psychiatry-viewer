@@ -440,7 +440,6 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     const element = data[index];
     bearni_tot += (maxValues[index] / 100) * element['value']
   }
-  bearni_tot = 18
   let sectionMin, sectionMax, tickMin, tickMax = 0;
   // Define in which zone the score should be placed
   if (bearni_tot >= cutOffSegments[ScoreSegmentLabels.noProblem]) {
