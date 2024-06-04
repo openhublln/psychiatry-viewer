@@ -461,11 +461,10 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     tickMin = 65
     tickMax = 100
   }
-
+  
   let bearni_tot_modif = (sectionMin == bearni_tot) ? bearni_tot + 0.25 : bearni_tot
   let Valeur_cible = tickMin + ((bearni_tot_modif - sectionMin) * (tickMax - tickMin)) / (sectionMax - sectionMin)
   let bearni_prc = (bearni_tot * 100) / 30
-  console.log(Valeur_cible)
   if (emptyValue(bearni_tot)) {
     missingBearniTotal.push({
       time: temps[1],
@@ -487,15 +486,15 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
           scales: [
             [
               {
-                threshold: 0,
+                threshold: 35,
                 color: ScoreSegmentColors.absenteRGBString,
               },
               {
-                threshold: 35,
+                threshold: 65,
                 color: ScoreSegmentColors.légerRGBString,
               },
               {
-                threshold: 65,
+                threshold: 100,
                 color: ScoreSegmentColors.modéréRGBString,
               },
             ],

@@ -250,12 +250,12 @@ export const showBarChart = ({
       maxBarThickness={maxBarThickness}
       barColor={(context) => {
         const index = context.dataIndex
-        const value = context.dataset.data[index]
+        const value = isFloating ? context.dataset.data[index][1] : context.dataset.data[index]
         if (value === null || value === undefined) {
           return scales[0].color
         } else {
           const rgb = getScoreSegment(
-            (value / 100) * maxValues[index],
+            isFloating ? value :(value / 100) * maxValues[index],
             scales[index],
           ).color
           return rgb
