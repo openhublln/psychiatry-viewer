@@ -187,7 +187,7 @@ export const AlcoholPatientSidebarItems = [
         [
           getItem(
             "À l'admission",
-            AlcoholItemKeys.autoEfficacityGauge,
+            AlcoholItemKeys.autoEfficacitybar,
             React.createElement(TbGauge),
           ),
           getItem(
@@ -245,7 +245,7 @@ export const AlcoholPatientSidebarItems = [
  
   getItem(
     <div className={Styles.sideBarMenuGroupTitleLabel}>
-      Quelle qualité de vie
+      La qualité de vie
     </div>,
     'qualityVie',
     React.createElement(RiNodeTree),
