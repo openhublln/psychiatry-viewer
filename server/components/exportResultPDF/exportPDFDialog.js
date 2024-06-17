@@ -49,7 +49,8 @@ export default class ExportPDFDialog extends React.Component {
     // visibleElement.style.visibility = 'visible'
     console.log("imageElement:", imageElement)
     // console.log("visibleElement:", visibleElement)
-    const imageDataURLs = []
+    let imageDataURLs = []
+    // let isSelectedCategory = {}
     console.log("loop on each graph that should have been retrieved: ")
     for (const graphElement of imageElement.childNodes) {
       
@@ -342,7 +343,7 @@ export default class ExportPDFDialog extends React.Component {
             ],
           },
           {
-            title: 'La cognition',
+            title: 'Cognition',
             value: "cognition",
             key: "cognition",
             children: [
