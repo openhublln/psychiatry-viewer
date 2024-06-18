@@ -21,7 +21,7 @@ export const normalize = (data, maxValue) => {
  * Display intesite derpression data
  * @returns Bar chart
  */
-export const showInterDepressionBar = ({ medicalData, time }) => {
+export const showInterDepressionBar = ({ medicalData, time, doShowWarning }) => {
   let data = DataColumns.phq9.columns.map((cname) => {
     const readValue = getNormalizedValue(
       medicalData,
@@ -88,13 +88,14 @@ export const showInterDepressionBar = ({ medicalData, time }) => {
   return showGraph({
     missingTotalColumn: missingTotalColmn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
 /**
  * Display Isomnie bar chart
  */
-export const showIsomnieBar = ({ medicalData, time }) => {
+export const showIsomnieBar = ({ medicalData, time, doShowWarning }) => {
   let data = DataColumns.isi.columns.map((cname) => {
     const readValue = getNormalizedValue(
       medicalData,
@@ -155,6 +156,7 @@ export const showIsomnieBar = ({ medicalData, time }) => {
   return showGraph({
     missingTotalColumn: missingTotalColmn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -162,7 +164,7 @@ export const showIsomnieBar = ({ medicalData, time }) => {
  *
  * @returns The Hypersomnolence (HSI) bar chart
  */
-export const showHypersomnolenceBar = ({ medicalData, time }) => {
+export const showHypersomnolenceBar = ({ medicalData, time, doShowWarning }) => {
   let data = DataColumns.hsi.columns.map((cname) => {
     const readValue = getNormalizedValue(
       medicalData,
@@ -211,13 +213,14 @@ export const showHypersomnolenceBar = ({ medicalData, time }) => {
   return showGraph({
     missingTotalColumn: missingTotalColmn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
 /**
  * @returns Display bar chart for the reseau social of depression
  */
-export const showDepressionReseauSocialBar = ({ medicalData, time }) => {
+export const showDepressionReseauSocialBar = ({ medicalData, time, doShowWarning }) => {
   const maxValues = [54, 36]
   let data = DataColumns.ssq6.columns.map((cname, index) => {
     const readValue = getNormalizedValue(
@@ -258,13 +261,14 @@ export const showDepressionReseauSocialBar = ({ medicalData, time }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
 /**
  * @returns Display bar chart of Réactivité émotionnelle (MAThyS)
  */
-export const showReactivityEmotionelleBar = ({ medicalData, time }) => {
+export const showReactivityEmotionelleBar = ({ medicalData, time, doShowWarning }) => {
   const colors = [
     {
       threshold: 91.5,
@@ -320,5 +324,6 @@ export const showReactivityEmotionelleBar = ({ medicalData, time }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

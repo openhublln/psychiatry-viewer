@@ -12,7 +12,7 @@ import { emptyValue, showGraph } from '../../componentsUtils/visualizationGraph'
  * Display the hypersomnolence data
  * @returns The line chart
  */
-export const showHypersomnolenceLine = ({ medicalData, temps, dataName }) => {
+export const showHypersomnolenceLine = ({ medicalData, temps, dataName, doShowWarning }) => {
   let datasets = []
   let labels = []
   let tData = []
@@ -70,6 +70,7 @@ export const showHypersomnolenceLine = ({ medicalData, temps, dataName }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -80,7 +81,7 @@ export const showHypersomnolenceLine = ({ medicalData, temps, dataName }) => {
  * @param {String} dataName - The displayed data name
  * @returns The line chart
  */
-export const showAnxietyLine = ({ medicalData, temps, dataName }) => {
+export const showAnxietyLine = ({ medicalData, temps, dataName, doShowWarning }) => {
   let datasets = []
   let missingTotalColumn = []
   let labels = []
@@ -148,6 +149,7 @@ export const showAnxietyLine = ({ medicalData, temps, dataName }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -157,7 +159,7 @@ export const showAnxietyLine = ({ medicalData, temps, dataName }) => {
  * @param {Object} temps - The time steps in array
  * @returns The line chart
  */
-export const showReactiviteEmoEvolutionLine = ({ medicalData, temps }) => {
+export const showReactiviteEmoEvolutionLine = ({ medicalData, temps, doShowWarning }) => {
   let dataSets = []
   let missingGeneralColumn = []
   let missingColsT1 = []
@@ -232,5 +234,6 @@ export const showReactiviteEmoEvolutionLine = ({ medicalData, temps }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

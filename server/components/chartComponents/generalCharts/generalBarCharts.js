@@ -358,8 +358,8 @@ export const showAnxietyBar = ({ medicalData, time, graphType }) => {
  * @param {String} graphType - The graph type
  * @returns The bar chart
  */
-export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
-   let data = DataColumns.gse.columns.map((cname) => {
+export const showAutoEfficacitéBar = ({ medicalData, time, graphType, doShowWarning }) => {
+  let data = DataColumns.gse.columns.map((cname) => {
     const readValue = getGraduationValue(
       medicalData,
       cname,
@@ -374,7 +374,7 @@ export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
     }
   })
   const missingTotalDataColumn = getMissingDataColumn(data, time)
-  
+
   const name = graphType == GraphType.alcohol ? ['Auto-efficacité', '(GSES)'] : ['Auto-efficacité', '(GSES)']
   const scale = graphType == GraphType.alcohol ? [
     [
@@ -424,6 +424,7 @@ export const showAutoEfficacitéBar = ({ medicalData, time, graphType }) => {
   return showGraph({
     missingTotalColumn: missingTotalDataColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -436,6 +437,7 @@ export const showConsommationsSubstancesBar = ({
   time,
   graphType,
   showAlcool,
+  doShowWarning,
 }) => {
   const maxValues = [39, 39, 39, 39, 39, 39, 39, 39]
   const colors = [
@@ -619,6 +621,7 @@ export const showConsommationsSubstancesBar = ({
     missingGeneralColumn: missingGeneralColumn,
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -630,6 +633,7 @@ export const showExterneAllianceTherapBar = ({
   medicalData,
   time,
   graphType,
+  doShowWarning,
 }) => {
   let data = DataColumns.wai.columns.map((cname) => {
     const readValue = getGraduationValue(
@@ -707,5 +711,6 @@ export const showExterneAllianceTherapBar = ({
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

@@ -8,7 +8,7 @@ import { transparentize } from '../../componentsUtils/visualizationGraph'
 /**
  * @returns Display the impulsivity data in Radar chart
  */
-export const showImpulsivityRadar = ({ medicalData, temps, graphType }) => {
+export const showImpulsivityRadar = ({ medicalData, temps, graphType, doShowWarning }) => {
   let timeDataSet = []
   let missingGeneralColumn = []
   let missingCols = []
@@ -48,13 +48,14 @@ export const showImpulsivityRadar = ({ medicalData, temps, graphType }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
 /**
  * @returns Display the infinie familie data in Radar chart
  */
-export const showInfFamilieRadar = ({ medicalData, temps, dataName }) => {
+export const showInfFamilieRadar = ({ medicalData, temps, dataName, doShowWarning }) => {
   let missingGeneralColumn = []
   let timeDataSet = []
   for (let i = 0; i < temps.length; i++) {
@@ -103,5 +104,6 @@ export const showInfFamilieRadar = ({ medicalData, temps, dataName }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

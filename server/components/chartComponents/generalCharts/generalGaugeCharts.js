@@ -18,6 +18,7 @@ export const showDepressionGauge = ({
   withColor,
   dataName,
   patientName,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   const data = getDataByName(
@@ -60,6 +61,7 @@ export const showDepressionGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -72,6 +74,7 @@ export const showAnxietyGauge = ({
   time,
   withColor,
   dataName,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   const data = getDataByName(
@@ -113,6 +116,7 @@ export const showAnxietyGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -125,6 +129,7 @@ export const autoEfficacityGauge = ({
   time,
   withColor,
   dataName,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   let data = DataColumns.gse.columns.map((cname) => {
@@ -167,6 +172,7 @@ export const autoEfficacityGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalDataColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 

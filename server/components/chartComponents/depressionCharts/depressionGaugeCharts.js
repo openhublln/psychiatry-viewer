@@ -17,6 +17,7 @@ export const showIsomnieGauge = ({
   withColor,
   dataName,
   showGaugeTitle,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   const data = getDataByName(
@@ -62,6 +63,7 @@ export const showIsomnieGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -75,6 +77,7 @@ export const showhypersomnolenceGauge = ({
   dataName,
   patientName,
   showGaugeTitle,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   const data = getDataByName(
@@ -115,5 +118,6 @@ export const showhypersomnolenceGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

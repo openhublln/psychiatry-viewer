@@ -24,6 +24,7 @@ export const alcoInsomnieGauge = ({
   dataName,
   patientName,
   showGaugeTitle,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   const data = getDataByName(
@@ -66,6 +67,7 @@ export const alcoInsomnieGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -81,6 +83,7 @@ export const showTroubleUsageAlcoGauge = ({
   dataName,
   patientName,
   showGaugeTitle,
+  doShowWarning,
 }) => {
   let missingTotalColumn = []
   const data = getDataByName(
@@ -124,5 +127,6 @@ export const showTroubleUsageAlcoGauge = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

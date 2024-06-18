@@ -15,6 +15,7 @@ export const showInterDepressionEvolutionLine = ({
   medicalData,
   temps,
   dataName,
+  doShowWarning,
 }) => {
   let datasets = []
   let currentColName = ''
@@ -80,13 +81,14 @@ export const showInterDepressionEvolutionLine = ({
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
 /**
  * @returns Display the isomnie data line chart
  */
-export const showIsomnieLine = ({ medicalData, temps, dataName }) => {
+export const showIsomnieLine = ({ medicalData, temps, dataName, doShowWarning }) => {
   let datasets = []
   let currentColName = ''
   let missingTotalColumn = []
@@ -150,6 +152,7 @@ export const showIsomnieLine = ({ medicalData, temps, dataName }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -168,6 +171,7 @@ export const showDisplayEvolutionLine = ({
   normalized = false,
   minNormalized = 0,
   maxNormalized = 0,
+  doShowWarning,
 }) => {
   let datasets = []
   let missingGeneralColumn = []
@@ -229,5 +233,6 @@ export const showDisplayEvolutionLine = ({
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

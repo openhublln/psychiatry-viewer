@@ -27,7 +27,7 @@ export const getDataDisplayName = (dataName, dataColumns, labelSet) => {
  * @param {String} time - The time step
  * @returns The special graph
  */
-export const showIndicesBipolarityGraph = ({ title, medicalData, time }) => {
+export const showIndicesBipolarityGraph = ({ title, medicalData, time, doShowWarning }) => {
   let missingGeneralColumn = []
   const dataSetLeft = getDataSetByDataNames(
     medicalData,
@@ -106,6 +106,7 @@ export const showIndicesBipolarityGraph = ({ title, medicalData, time }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -240,7 +241,7 @@ export const showSymptomesResiduelGraph = ({
  * The consommation substance for depression
  * @returns The special graph
  */
-export const showConsommationsSubstancesGraph = ({ medicalData, time }) => {
+export const showConsommationsSubstancesGraph = ({ medicalData, time, doShowWarning }) => {
   let missingGeneralColumn = []
   const dataSetLeft = getDataSetByDataNames(
     medicalData,
@@ -363,5 +364,6 @@ export const showConsommationsSubstancesGraph = ({ medicalData, time }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }

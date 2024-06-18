@@ -21,7 +21,7 @@ import { Space } from 'antd'
  * @param {String} time: the time step
  * @returns the bar chart of the data
  */
-export const showAlcoDepressionBar = ({ medicalData, time }) => {
+export const showAlcoDepressionBar = ({ medicalData, time, doShowWarning }) => {
   let data = DataColumns.phq9.columns.map((cname) => {
     const readValue = getNormalizedValue(
       medicalData,
@@ -97,7 +97,8 @@ export const showAlcoDepressionBar = ({ medicalData, time }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: barChart,
-    subText: (q9 && q9 >= 0) ? "N.B.:!" : null
+    subText: (q9 && q9 >= 0) ? "N.B.:!" : null,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -107,7 +108,7 @@ export const showAlcoDepressionBar = ({ medicalData, time }) => {
  * @param {String} time - time step
  * @returns the bar chart of the data
  */
-export const showTroubleUsageAlcoBar = ({ medicalData, time, patientName }) => {
+export const showTroubleUsageAlcoBar = ({ medicalData, time, patientName, doShowWarning }) => {
   let data = DataColumns.dsm.columns.map((cname) => {
     const readValue = getNormalizedValue(
       medicalData,
@@ -171,6 +172,7 @@ export const showTroubleUsageAlcoBar = ({ medicalData, time, patientName }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: barchart,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -178,7 +180,7 @@ export const showTroubleUsageAlcoBar = ({ medicalData, time, patientName }) => {
  * The Insomier data for alcool
  * @returns the visualization in bar chart
  */
-export const showAlcoInsomnieBar = ({ medicalData, time, patientName }) => {
+export const showAlcoInsomnieBar = ({ medicalData, time, patientName, doShowWarning }) => {
   let data = DataColumns.isi.columns.map((cname) => {
     const readValue = getNormalizedValue(
       medicalData,
@@ -239,6 +241,7 @@ export const showAlcoInsomnieBar = ({ medicalData, time, patientName }) => {
   return showGraph({
     missingTotalColumn: missingTotalColumn,
     graph: barChart,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -246,7 +249,7 @@ export const showAlcoInsomnieBar = ({ medicalData, time, patientName }) => {
  * The visulization for live quality
  * @returns the bar chart
  */
-export const showQulityVieBar = ({ medicalData, time }) => {
+export const showQulityVieBar = ({ medicalData, time, doShowWarning }) => {
   const maxValues = [100, 100, 100, 100]
   let data = DataColumns.whoQolBref.resultColumns.map((cname) => {
     return {
@@ -306,6 +309,7 @@ export const showQulityVieBar = ({ medicalData, time }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: barChart,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -393,7 +397,7 @@ export const showAlcoCravingBar = ({
  * @param {String}temps: two time steps
  * @returns the congnition bar chart
  */
-export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
+export const showAlcoCongnitionBar = ({ medicalData, temps, doShowWarning }) => {
   const maxValues = [5, 6, 5, 6, 8]
   let data = DataColumns.bearni.columns.map((cname, index) => {
     const readValue = getNormalizedValue(
@@ -579,6 +583,7 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
     missingTotalColumn: missingBearniTotal,
     missingSpecialColumn: missingSpecialColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
 
@@ -586,7 +591,7 @@ export const showAlcoCongnitionBar = ({ medicalData, temps }) => {
  * Visualization for motiviation change
  * @returns bar chart
  */
-export const showMotivationChangeBar = ({ medicalData, time, patientName }) => {
+export const showMotivationChangeBar = ({ medicalData, time, patientName, doShowWarning }) => {
   const maxValues = [35, 20, 40]
   let data = DataColumns.socrates.columns.map((cname, index) => {
     const readValue = getNormalizedValue(
@@ -646,5 +651,6 @@ export const showMotivationChangeBar = ({ medicalData, time, patientName }) => {
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
     graph: graph,
+    noVisible: !doShowWarning,
   })
 }
