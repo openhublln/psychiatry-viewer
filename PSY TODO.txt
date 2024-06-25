@@ -77,7 +77,7 @@ Après le sevrage : pareil que l'autre vue
 
 
 
-
+Filtrer les donnée en fonction de l'hoptial : ne pas afficher les données du Beau Vallon si le user est St Luc etc...
 
 
 
