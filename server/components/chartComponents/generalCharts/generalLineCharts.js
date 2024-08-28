@@ -20,10 +20,12 @@ export const showInterDepressionEvolutionLine = ({
   let datasets = []
   let currentColName = ''
   let missingTotalColumn = []
+  let missingGeneralColumn = []
   let labels = []
   let tData = []
   for (let i = 0; i < temps.length; i++) {
     let missingCols = []
+    let missingGeneralCols = []
     for (let c = 0; c < DataColumns.phq9.columns.length; c++) {
       i === 0
         ? labels.push("À l'admission")
@@ -40,6 +42,19 @@ export const showInterDepressionEvolutionLine = ({
         missingCols.push(currentColName)
       }
     }
+    for (let c = 0; c < DataColumns.phq9.generalColumns.length; c++) {
+      currentColName = DataColumns.phq9.generalColumns[c].trim()
+      const value = getDataByName(
+        medicalData,
+        DataColumns.phq9.generalColumns[c].trim(),
+        temps[i],
+        medicalData.name,
+      )
+      if (emptyValue(value)) {
+        missingGeneralCols.push(currentColName)
+      }
+    }
+    missingGeneralColumn.push({ time: temps[i], missingCols: missingGeneralCols })
     missingTotalColumn.push({ time: temps[i], missingCols: missingCols })
   }
 
@@ -80,6 +95,7 @@ export const showInterDepressionEvolutionLine = ({
   )
   return showGraph({
     missingTotalColumn: missingTotalColumn,
+    missingGeneralColumn: missingGeneralColumn,
     graph: graph,
     noVisible: !doShowWarning,
   })
@@ -92,13 +108,15 @@ export const showIsomnieLine = ({ medicalData, temps, dataName, doShowWarning })
   let datasets = []
   let currentColName = ''
   let missingTotalColumn = []
+  let missingGeneralColumn = []
   let labels = []
   let tData = []
   for (let i = 0; i < temps.length; i++) {
     let missingCols = []
+    let missingGeneralCols = []
     for (let c = 0; c < DataColumns.isi.columns.length; c++) {
       i === 0
-        ? labels.push("à l'admission")
+        ? labels.push("À l'admission")
         : labels.push(["En fin d'hospitalisation"])
       currentColName = DataColumns.isi.columns[c].trim()
       const value = getDataByName(
@@ -112,7 +130,20 @@ export const showIsomnieLine = ({ medicalData, temps, dataName, doShowWarning })
         missingCols.push(DataColumns.isi.columns[c].trim())
       }
     }
-    missingTotalColumn.push({ time: temps[i], missingCols: missingCols })    
+    for (let c = 0; c < DataColumns.isi.generalColumns.length; c++) {
+      currentColName = DataColumns.isi.generalColumns[c].trim()
+      const value = getDataByName(
+        medicalData,
+        DataColumns.isi.generalColumns[c].trim(),
+        temps[i],
+        medicalData.name,
+      )
+      if (emptyValue(value)) {
+        missingGeneralCols.push(currentColName)
+      }
+    }
+    missingGeneralColumn.push({ time: temps[i], missingCols: missingGeneralCols })
+    missingTotalColumn.push({ time: temps[i], missingCols: missingCols })
   }
 
   const td = {
@@ -151,6 +182,7 @@ export const showIsomnieLine = ({ medicalData, temps, dataName, doShowWarning })
   )
   return showGraph({
     missingTotalColumn: missingTotalColumn,
+    missingGeneralColumn: missingGeneralColumn,
     graph: graph,
     noVisible: !doShowWarning,
   })
@@ -164,6 +196,7 @@ export const showDisplayEvolutionLine = ({
   temps,
   dataName,
   dataColumns,
+  missingDataColumns = [],
   maxValue,
   ticksCallback,
   y1StepSize,
@@ -171,14 +204,18 @@ export const showDisplayEvolutionLine = ({
   normalized = false,
   minNormalized = 0,
   maxNormalized = 0,
-  doShowWarning,
+  doShowWarning
 }) => {
   let datasets = []
+  let currentColName = ''
   let missingGeneralColumn = []
+  let missingTotalColumn = []
+  // let missingSpecialColumn = []
   let labels = []
   let tData = []
   for (let i = 0; i <= 1; i++) {
-    let missingCols = []
+    let missingTotalCols = []
+    let missingGeneralCols = []
     for (let c = 0; c < dataColumns.length; c++) {
       i === 0
         ? labels.push("À l'admission")
@@ -194,12 +231,26 @@ export const showDisplayEvolutionLine = ({
       }
       tData.push(value)
       if (emptyValue(value)) {
-        missingCols.push(dataColumns[c].trim())
+        missingTotalCols.push(dataColumns[c].trim())
       }
     }
-    missingGeneralColumn.push({ time: temps[i], missingCols: missingCols })
+
+    for (let c = 0; c < missingDataColumns.length; c++) {
+      currentColName = missingDataColumns[c].trim()
+      const value = getDataByName(
+        medicalData,
+        missingDataColumns[c].trim(),
+        temps[i],
+        medicalData.name,
+      )
+      if (emptyValue(value)) {
+        missingGeneralCols.push(currentColName)
+      }
+    }
+    missingGeneralColumn.push({ time: temps[i], missingCols: missingGeneralCols })
+    missingTotalColumn.push({ time: temps[i], missingCols: missingTotalCols })
   }
-  
+
   let LineColor = NoScoreSegmentColors.blueRGBString
   if(colorScale != null && colorScale.length > 0)
   {
@@ -215,6 +266,7 @@ export const showDisplayEvolutionLine = ({
     data: tData,
     borderColor: LineColor,
   }
+
   datasets.push(td)
   const data = {
     labels: labels,
@@ -232,6 +284,8 @@ export const showDisplayEvolutionLine = ({
   )
   return showGraph({
     missingGeneralColumn: missingGeneralColumn,
+    // missingTotalColumn: missingTotalColumn,
+    // missingSpecialColumn: missingSpecialColumn,
     graph: graph,
     noVisible: !doShowWarning,
   })

@@ -56,17 +56,23 @@ const message = (
   if (
     !missingGeneralColumn ||
     !missingGeneralColumn[0]?.missingCols ||
-    missingGeneralColumn[0].missingCols.length === 0
+    !missingGeneralColumn[1]?.missingCols ||
+    missingGeneralColumn[0].missingCols.length === 0 ||
+    missingGeneralColumn[1].missingCols.length === 0
   ) {
     if (
       !missingTotalColumn ||
       !missingTotalColumn[0]?.missingCols ||
-      missingTotalColumn[0].missingCols.length === 0
+      !missingTotalColumn[1]?.missingCols ||
+      missingTotalColumn[0].missingCols.length === 0 ||
+      missingTotalColumn[1].missingCols.length === 0
     ) {
       if (
         !missingSpecialColumn ||
         !missingSpecialColumn[0]?.missingCols ||
-        missingSpecialColumn[0].missingCols.length === 0
+        !missingSpecialColumn[1]?.missingCols ||
+        missingSpecialColumn[0].missingCols.length === 0 ||
+        missingSpecialColumn[1].missingCols.length === 0
       ) {
         return null
       } else {
@@ -136,21 +142,103 @@ export const showGraph = ({
       {!noVisible
         ? <MissingDataColumnMessageDialog
             key={missingDialogKey++}
+            // visible={
+            //   (!missingGeneralColumn ||
+            //     !missingGeneralColumn[0]?.missingCols ||
+            //     missingGeneralColumn[0].missingCols.length === 0) &&
+            //   (!missingTotalColumn ||
+            //     !missingTotalColumn[0]?.missingCols ||
+            //     missingTotalColumn[0].missingCols.length === 0) &&
+            //   (!missingSpecialColumn ||
+            //     !missingSpecialColumn[0]?.missingCols ||
+            //     missingSpecialColumn[0].missingCols.length === 0)
+            //     ? false
+            //     : noVisible
+            //       ? false
+            //       : true
+            // }
+
             visible={
               (!missingGeneralColumn ||
                 !missingGeneralColumn[0]?.missingCols ||
-                missingGeneralColumn[0].missingCols.length === 0) &&
+                missingGeneralColumn[0].missingCols.length === 0 &&
+                (!missingGeneralColumn[1] ||
+                 !missingGeneralColumn[1]?.missingCols ||
+                 missingGeneralColumn[1].missingCols.length === 0)) &&
               (!missingTotalColumn ||
                 !missingTotalColumn[0]?.missingCols ||
-                missingTotalColumn[0].missingCols.length === 0) &&
+                missingTotalColumn[0].missingCols.length === 0 &&
+                (!missingTotalColumn[1] ||
+                 !missingTotalColumn[1]?.missingCols ||
+                 missingTotalColumn[1].missingCols.length === 0)) &&
               (!missingSpecialColumn ||
                 !missingSpecialColumn[0]?.missingCols ||
-                missingSpecialColumn[0].missingCols.length === 0)
+                missingSpecialColumn[0].missingCols.length === 0 &&
+                (!missingSpecialColumn[1] ||
+                 !missingSpecialColumn[1]?.missingCols ||
+                 missingSpecialColumn[1].missingCols.length === 0))
                 ? false
                 : noVisible
                   ? false
                   : true
             }
+
+
+            // visible={
+            //   (!missingGeneralColumn ||
+            //     !missingGeneralColumn[0]?.missingCols ||
+            //     (
+            //       missingGeneralColumn[1] !== undefined &&
+            //       !missingGeneralColumn[1]?.missingCols
+            //     ) ||
+            //     missingGeneralColumn[0].missingCols.length === 0 ||
+            //     (
+            //       missingGeneralColumn[1] !== undefined &&
+            //       missingGeneralColumn[1].missingCols.length === 0
+            //     )
+            //   ) &&
+            //   (!missingTotalColumn ||
+            //     (!missingTotalColumn[0]?.missingCols &&
+            //     (missingTotalColumn[1] !== undefined && !missingTotalColumn[1]?.missingCols)) ||
+            //     (missingTotalColumn[0].missingCols.length === 0 &&
+            //     missingTotalColumn[1].missingCols.length === 0)) &&
+            //   (!missingSpecialColumn ||
+            //     (!missingSpecialColumn[0]?.missingCols &&
+            //     !missingSpecialColumn[1]?.missingCols) ||
+            //     (missingSpecialColumn[0].missingCols.length === 0 &&
+            //     missingSpecialColumn[1].missingCols.length === 0))
+            //     ? false
+            //     : noVisible
+            //       ? false
+            //       : true
+            // }
+
+
+
+            // visible={true}
+            // visible={
+            //   (!missingGeneralColumn ||
+            //     (!missingGeneralColumn[0]?.missingCols ||
+            //     !missingGeneralColumn[1]?.missingCols) &&
+            //     (missingGeneralColumn[0].missingCols.length === 0 ||
+            //     missingGeneralColumn[1].missingCols.length === 0)) &&
+            //   (!missingTotalColumn ||
+            //     (!missingTotalColumn[0]?.missingCols ||
+            //     !missingTotalColumn[1]?.missingCols) &&
+            //     (missingTotalColumn[0].missingCols.length === 0 ||
+            //     missingTotalColumn[1].missingCols.length === 0)) &&
+            //   (!missingSpecialColumn ||
+            //     (!missingSpecialColumn[0]?.missingCols ||
+            //     !missingSpecialColumn[1]?.missingCols) &&
+            //     (missingSpecialColumn[0].missingCols.length === 0 ||
+            //     missingSpecialColumn[1].missingCols.length === 0))
+            //     ? false
+            //     : noVisible
+            //       ? false
+            //       : true
+            // }
+
+
             missingGeneralColumn={missingGeneralColumn}
             missingTotalColumn={missingTotalColumn}
             missingSpecialColumn={missingSpecialColumn}
@@ -225,7 +313,7 @@ export const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
       console.log("alcool:", AlcoholSelect(selectedItem, medicalData, temps, doShowWarning))
       return AlcoholSelect(selectedItem, medicalData, temps, doShowWarning)
     case GraphType.depression:
-      console.log("depression:", DepressionSelect(selectedItem, medicalData, temps, doShowWarning))
+      console.log("dépression:", DepressionSelect(selectedItem, medicalData, temps, doShowWarning))
       return DepressionSelect(selectedItem, medicalData, temps, doShowWarning)
     default:
       break

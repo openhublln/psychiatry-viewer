@@ -33,9 +33,9 @@ import Styles from '../chartcomponents.module.css'
  */
 const createBalanceBar = ({ data, maxValues, dataName, scales, graphType, ticksCallback, drawGrid, stepSize }) => {
   // ! DOES NOT WORK
-  if (graphType == "depression") {
-    dataName = ""
-  }
+  // if (graphType == "depression") {
+  //   dataName = ""
+  // }
   let normalizedDataSet = []
   let labelName = []
   const keys = Object.keys(data)
@@ -626,7 +626,7 @@ export const showConsommationsSubstancesBar = ({
 }
 
 /**
- * Dispaly the external alliance therapy data
+ * Display the external alliance therapy data
  * @returns The bar chart
  */
 export const showExterneAllianceTherapBar = ({

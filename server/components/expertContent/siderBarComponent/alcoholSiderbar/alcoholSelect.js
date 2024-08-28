@@ -85,7 +85,9 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         temps: temps,
         dataName: 'Dépression (PHQ9) : Évolution',
         dataColumns: DataColumns.phq9.columns,
+        missingDataColumns: DataColumns.phq9.generalColumns,
         maxValue: 27,
+        doShowWarning: doShowWarning,
         ticksCallback: function (value) {
           switch (value) {
             case 0:
@@ -165,7 +167,9 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         temps: temps,
         dataName: 'Anxiété (GAD7): Évolution',
         dataColumns: DataColumns.gad7.columns,
+        missingDataColumns: DataColumns.gad7.generalColumns,
         maxValue: 21,
+        // doShowWarning: doShowWarning,
         ticksCallback: function (value) {
           switch (value) {
             case 0:
@@ -223,8 +227,10 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
         temps: temps,
         dataName: 'Insomnie (ISI): Évolution',
         dataColumns: DataColumns.isi.columns,
+        missingDataColumns: DataColumns.isi.generalColumns,
         maxValue: 28,
-        ticksCallback: function (value) {
+        doShowWarning: doShowWarning,
+        ticksCallback: function(value) {
           switch (value) {
             case 0:
               return ScoreSegmentLabels.absente
@@ -277,7 +283,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
       return showDisplayEvolutionLine({
         medicalData: medicalData,
         temps: temps,
-        dataName: "L'Auto efficatité (GSES)",
+        dataName: "L'Auto efficacité (GSES)",
         dataColumns: DataColumns.gse.columns,
         maxValue: 100,
         ticksCallback: null,

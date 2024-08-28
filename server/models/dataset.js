@@ -124,10 +124,10 @@ export const DataColumns = {
     ],
     columns: ['ocdsm_obs', 'ocdsm_comp', 'ocdsm_tot'],
   },
-  phq9: { name: ['Dépression'], columns: ['phq9_tot'], maxTotal: 27 },
-  gad7: { name: ['Anxiété'], columns: ['gad7_tot'], maxTotal: 21 },
+  phq9: { name: ['Dépression'], generalColumns: ['phq9_q1', 'phq9_q2', 'phq9_q3', 'phq9_q4', 'phq9_q5', 'phq9_q6', 'phq9_q7', 'phq9_q8', 'phq9_q9'], columns: ['phq9_tot'], maxTotal: 27 },
+  gad7: { name: ['Anxiété'], generalColumns: ['gad7_q1', 'gad7_q2', 'gad7_q3', 'gad7_q2', 'gad7_q3', 'gad7_q4', 'gad7_q5', 'gad7_q6', 'gad7_q7'], columns: ['gad7_tot'], maxTotal: 21 },
   hsi: { name: ['Hypersomnolence'], columns: ['hsi_tot'], maxTotal: 36 },
-  isi: { name: ['Insomnie'], columns: ['isi_tot'], maxTotal: 28 },
+  isi: { name: ['Insomnie'], generalColumns: ['isi_q1a', 'isi_q1b', 'isi_q1c', 'isi_q2', 'isi_q3', 'isi_q4', 'isi_q5'], columns: ['isi_tot'], maxTotal: 28 },
   uppsp20: {
     name: [
       ['Urgence', 'négative'],
