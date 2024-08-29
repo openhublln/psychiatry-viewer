@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { readSystemConfigData } from '../../utils/readConfig'
-// import { Hospitals } from '../../models/userModel'
+import { Hospitals } from '../../models/userModel'
 
 // The api getting depression data
 // Project NRMMDE(New Relapse Model for Major Depressive Episode)
@@ -8,12 +8,13 @@ import { readSystemConfigData } from '../../utils/readConfig'
 export const nrmmdeGetRecords = async (user) => {
   const token = readSystemConfigData().depressionToken
   const redcapEndpoint = readSystemConfigData().redcapEndpoint
+  let filterPrefix = null
   // let filterPrefix = 'BV'
-  // if (user.hospital === Hospitals.BV) {
-  //   filterPrefix = 'BV_'
-  // } else {
-  //   filterPrefix = 'SL_'
-  // }
+  if (user.hospital === Hospitals.BV) {
+    filterPrefix = 'BV_'
+  } else {
+    filterPrefix = 'SL_'
+  }
 
   const params = new URLSearchParams()
   params.append('token', token)
@@ -33,13 +34,12 @@ export const nrmmdeGetRecords = async (user) => {
   return Object.entries(
     data.reduce((st, record) => {
       const name = record.record_id
-      // const foundPrefix = name.startsWith(filterPrefix)
-      // if (foundPrefix) {
+      st[name] = st[name] || []
+      st[name].push(record)
+      // if (name.startsWith(filterPrefix)) {
       //   st[name] = st[name] || []
       //   st[name].push(record)
       // }
-      st[name] = st[name] || []
-      st[name].push(record)
       return st
     }, {}),
   ).map(([name, records]) => {
