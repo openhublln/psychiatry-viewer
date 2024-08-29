@@ -157,7 +157,7 @@ export default class MissingDataColumnMessageDialog extends React.Component {
     }
   }
 
-  // create the speical table data
+  // create the special table data
   createTableData({
     missingGeneralColumn = null,
     missingTotalColumn = null,
@@ -206,7 +206,7 @@ export default class MissingDataColumnMessageDialog extends React.Component {
         <Modal
           title="This graph is incomplete because the following information is missing:"
           className="displayDataColumnMissingModal"
-          open={this.state.visible}
+          open={this.state.visible} // ! SWITCHING THIS TO {true} displays the expected warnings
           closable={false}
           destroyOnClose={true}
           onOk={() =>

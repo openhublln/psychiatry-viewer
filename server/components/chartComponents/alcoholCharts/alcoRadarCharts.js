@@ -9,7 +9,7 @@ import { RadarLineChart } from '../basicCharts/radarLineChart'
 import { Space } from 'antd'
 
 /**
- * The evoluation change for the alcool resume
+ * The evolution change for the alcool resume
  * @param {Object} medicalData - The medical data
  * @param {Object} temps - The time steps in array
  * @param {boolean} doShowWarning - control the display of the warning message
@@ -173,26 +173,26 @@ export const showAlcoForceFragilityRadar = ({
   )
   // Force data
   const forceDataT1 = getDataSetByDataNames(
-    medicalData, 
-    time[0], 
+    medicalData,
+    time[0],
     forceDataNamesT1,
   )
   const forceDataT2 = getDataSetByDataNames(
-    medicalData, 
-    time[1], 
+    medicalData,
+    time[1],
     forceDataNamesT2,
   )
   const fragilityData = [...fragilityDataT1.dataSet, ...fragilityDataT2.dataSet]
   const forceData = [...forceDataT1.dataSet, ...forceDataT2.dataSet]
 
   const modifiedData = [
-    (fragilityData[1] / 27) * 10, // PHQ-9 
+    (fragilityData[1] / 27) * 10, // PHQ-9
     (fragilityData[2] / 21) * 10, // GAD-7
-    (fragilityData[3] / 28) * 10, // ISI 
-    (fragilityData[4] / 32) * 10, // OCDS 
+    (fragilityData[3] / 28) * 10, // ISI
+    (fragilityData[4] / 32) * 10, // OCDS
     (100 - ((fragilityData[5] / 30) * 100)) / 10, // Bearni
     (fragilityData[0] / 80) * 10, // CERQ 1
-    
+
     (forceData[0] / 100) * 10, // CERQ
     (((forceData[4] - 10) * 100) / 30) / 10, // GSE
     (forceData[1] / 36) * 10, // SSQ-6
@@ -231,7 +231,7 @@ export const showAlcoForceFragilityRadar = ({
     'Santé physique',
     'Environnement',
   ]
-  
+
   const rightColor = RadarDataColors.greenRGBString
   const leftColor = RadarDataColors.redRGBString
 

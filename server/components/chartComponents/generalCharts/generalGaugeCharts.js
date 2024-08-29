@@ -146,8 +146,8 @@ export const autoEfficacityGauge = ({
       value: readValue ? readValue : null,
     }
   })
-  console.log("DATA", data)
-  console.log("DATA 0 VALUE", data[0]['value'])
+  // console.log("DATA", data)
+  // console.log("DATA 0 VALUE", data[0]['value'])
   const missingTotalDataColumn = getMissingDataColumn(data, time)
 
   const graph = (
@@ -220,7 +220,7 @@ export const showReseauSocialGauge = ({ medicalData, temps }) => {
             ScoreSegmentLabels.populationgeneral,
             ScoreSegmentLabels.nothing,
           ]}
-          dataName={'Disponiblité'}
+          dataName={'Disponibilité'}
           segmentStops={[0, 20, 20.6, 54]}
           maxValue={54}
           withColor={false}
