@@ -15,7 +15,7 @@ export const ColumnFilter = ({ column }) => {
         value={filterValue || ''}
         onChange={(e) => setFilter(e.target.value)}
         style={{
-          color: 'black',
+          color: 'white',
           height: '30px',
         }}
       />
