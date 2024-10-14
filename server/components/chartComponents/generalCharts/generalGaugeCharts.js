@@ -5,7 +5,6 @@ import { DataColumns, ScoreSegmentLabels } from '../../../models/dataset'
 import { Space } from 'antd'
 import Styles from '../chartcomponents.module.css'
 import {
-  getNormalizedValue,
   getGraduationValue,
 } from '../../../lib/datalib/calculateData'
 /**
@@ -131,7 +130,6 @@ export const autoEfficacityGauge = ({
   dataName,
   doShowWarning,
 }) => {
-  let missingTotalColumn = []
   let data = DataColumns.gse.columns.map((cname) => {
     const readValue = getGraduationValue(
       medicalData,
@@ -146,8 +144,6 @@ export const autoEfficacityGauge = ({
       value: readValue ? readValue : null,
     }
   })
-  // console.log("DATA", data)
-  // console.log("DATA 0 VALUE", data[0]['value'])
   const missingTotalDataColumn = getMissingDataColumn(data, time)
 
   const graph = (

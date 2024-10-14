@@ -44,7 +44,6 @@ export function LineChart({
   }
   }
   const options = {
-    
     responsive: true,
     plugins: {
       title: {

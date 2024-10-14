@@ -56,7 +56,6 @@ const SidebarControl = (props) => {
       // data comes from redcap API
       temps = data.medicalData.map((md) => md.redcap_event_name)
     }
-
     return temps
   }
 

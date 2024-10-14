@@ -1,6 +1,5 @@
 import MissingDataColumnMessageDialog from './missingDataColumnMessageDialog'
 import colorLib from '@kurkle/color'
-// import React from 'react';
 
 export const emptyValue = (data) => {
   return data === undefined || data === null || isNaN(data) || data === ''
@@ -128,7 +127,6 @@ const message = (
 }
 
 // ! function that ultimately returns the visualization content to be displayed in the frontend
-//showPopup=true, // add a new param to hide popup dialog in case noVisible has a different purpose?
 export const showGraph = ({
   missingGeneralColumn = null,
   missingTotalColumn = null,
@@ -142,22 +140,6 @@ export const showGraph = ({
       {!noVisible
         ? <MissingDataColumnMessageDialog
             key={missingDialogKey++}
-            // visible={
-            //   (!missingGeneralColumn ||
-            //     !missingGeneralColumn[0]?.missingCols ||
-            //     missingGeneralColumn[0].missingCols.length === 0) &&
-            //   (!missingTotalColumn ||
-            //     !missingTotalColumn[0]?.missingCols ||
-            //     missingTotalColumn[0].missingCols.length === 0) &&
-            //   (!missingSpecialColumn ||
-            //     !missingSpecialColumn[0]?.missingCols ||
-            //     missingSpecialColumn[0].missingCols.length === 0)
-            //     ? false
-            //     : noVisible
-            //       ? false
-            //       : true
-            // }
-
             visible={
               (!missingGeneralColumn ||
                 !missingGeneralColumn[0]?.missingCols ||
@@ -182,63 +164,6 @@ export const showGraph = ({
                   ? false
                   : true
             }
-
-
-            // visible={
-            //   (!missingGeneralColumn ||
-            //     !missingGeneralColumn[0]?.missingCols ||
-            //     (
-            //       missingGeneralColumn[1] !== undefined &&
-            //       !missingGeneralColumn[1]?.missingCols
-            //     ) ||
-            //     missingGeneralColumn[0].missingCols.length === 0 ||
-            //     (
-            //       missingGeneralColumn[1] !== undefined &&
-            //       missingGeneralColumn[1].missingCols.length === 0
-            //     )
-            //   ) &&
-            //   (!missingTotalColumn ||
-            //     (!missingTotalColumn[0]?.missingCols &&
-            //     (missingTotalColumn[1] !== undefined && !missingTotalColumn[1]?.missingCols)) ||
-            //     (missingTotalColumn[0].missingCols.length === 0 &&
-            //     missingTotalColumn[1].missingCols.length === 0)) &&
-            //   (!missingSpecialColumn ||
-            //     (!missingSpecialColumn[0]?.missingCols &&
-            //     !missingSpecialColumn[1]?.missingCols) ||
-            //     (missingSpecialColumn[0].missingCols.length === 0 &&
-            //     missingSpecialColumn[1].missingCols.length === 0))
-            //     ? false
-            //     : noVisible
-            //       ? false
-            //       : true
-            // }
-
-
-
-            // visible={true}
-            // visible={
-            //   (!missingGeneralColumn ||
-            //     (!missingGeneralColumn[0]?.missingCols ||
-            //     !missingGeneralColumn[1]?.missingCols) &&
-            //     (missingGeneralColumn[0].missingCols.length === 0 ||
-            //     missingGeneralColumn[1].missingCols.length === 0)) &&
-            //   (!missingTotalColumn ||
-            //     (!missingTotalColumn[0]?.missingCols ||
-            //     !missingTotalColumn[1]?.missingCols) &&
-            //     (missingTotalColumn[0].missingCols.length === 0 ||
-            //     missingTotalColumn[1].missingCols.length === 0)) &&
-            //   (!missingSpecialColumn ||
-            //     (!missingSpecialColumn[0]?.missingCols ||
-            //     !missingSpecialColumn[1]?.missingCols) &&
-            //     (missingSpecialColumn[0].missingCols.length === 0 ||
-            //     missingSpecialColumn[1].missingCols.length === 0))
-            //     ? false
-            //     : noVisible
-            //       ? false
-            //       : true
-            // }
-
-
             missingGeneralColumn={missingGeneralColumn}
             missingTotalColumn={missingTotalColumn}
             missingSpecialColumn={missingSpecialColumn}
@@ -269,7 +194,6 @@ export const showGraph = ({
   )
 }
 
-
 export const getTemps = (data) => {
   let temps = []
 
@@ -293,17 +217,6 @@ export const getTemps = (data) => {
   return temps
 }
 
-  
-//   {
-//   // Example logic to generate or filter graphs
-//   return selectedValues.map(value => {
-//     // Generate or filter your graph based on the value
-//     return <div key={value}>Graph for {value}</div>;
-//   });
-// };
-
-
-// !
 export const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
   const medicalData = props.patientData
   const temps = getTemps(medicalData)

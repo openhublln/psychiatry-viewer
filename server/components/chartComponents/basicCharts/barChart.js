@@ -9,9 +9,7 @@ import {
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import gradient from 'chartjs-plugin-gradient'
-import { GraphType } from '../../../models/dataset'
 import { getScoreSegment } from '../../../lib/datalib/calculateData'
-import { max, min } from 'lodash-es'
 
 ChartJS.register(
   CategoryScale,
@@ -158,8 +156,6 @@ export function BarChart({
     return vArray
   }
 
-  console.log(getValues(series))
-
   const data = {
     labels: labelName,
     datasets: [
@@ -267,14 +263,12 @@ export const showBarChart = ({
         (item) => {
           if(tooltipForcedValue != null) return tooltipForcedValue
           let value = isHorizontal ? item.parsed.x : item.parsed.y
-          
+
          return Math.floor(value * 10) / 10 +
           '%' +
           ' of ' +
           maxValues[item.dataIndex]
         }
-
-        // Math.round(item.parsed.y * maxValues[item.dataIndex]) / 100
       }
       graphType={graphType}
       isHorizontal = {isHorizontal}

@@ -1,10 +1,8 @@
 import { getDataByName } from '../../../lib/datalib/parseData'
 import { GaugeChart } from '../basicCharts/gaugeChart'
 import { DataColumns, ScoreSegmentLabels } from '../../../models/dataset'
-// import { emptyValue, showGraph } from 'antd'
 import Styles from '../chartcomponents.module.css'
 import {
-  getMissingDataColumn,
   showGraph,
   emptyValue,
 } from '../../componentsUtils/visualizationGraph'
