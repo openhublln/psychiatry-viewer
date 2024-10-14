@@ -50,10 +50,7 @@ const styles = StyleSheet.create({
     height: '240px',
     border: '1pt solid #D3D3D3',
     marginBottom: '10px',
-    // marginLeft: '15%',
-    // marginHorizontal: '20',
     alignItems:'center',
-    // textAlign: 'center',
   },
   graphsView: {
     width: '100vw',
@@ -168,7 +165,7 @@ const MyFoot = ({ userName = '' }) => {
 }
 
 
-// ! SEE https://react-pdf.org/components FOR PDF-RELATED COMPONENTS AND THEIR PROPERTIES
+// ! cf. https://react-pdf.org/components FOR PDF-RELATED COMPONENTS AND THEIR PROPERTIES
 const PDFDocument = ({
   hospitalizationUnity,
   dateHospitalisation,
@@ -225,7 +222,6 @@ const PDFDocument = ({
         <View style={styles.graphsView}>
         {imageDataURLs.map((imageDataURL, index) => {
           return (
-            // <Page key={index} debug orientation="portrait" size="A4" style={styles.page}>
             <View style={styles.graphView}>
               {showVisualizationImage(imageDataURL)}
             </View>

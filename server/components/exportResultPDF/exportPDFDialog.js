@@ -1,12 +1,9 @@
 import React from 'react'
 import { Button, Modal, Space, TreeSelect, SHOW_PARENT } from 'antd'
 import { GraphType } from '../../models/dataset'
-// import { getTemps } from '../../componentsUtils/visualizationGraph/getTemps'
-// import { componentsSwitchByDisease } from '../../componentsUtils/visualizationGraph/componentsSwitchByDisease'
 import { pdf } from '@react-pdf/renderer'
 import { saveAs } from 'file-saver'
 import PDFDocument from './pdfDocument'
-import Select from './Select'
 
 import html2canvas from 'html2canvas'
 
@@ -26,8 +23,6 @@ export default class ExportPDFDialog extends React.Component {
       patientName: '',
       patientDateNaissance: '',
       comment: '',
-      // value: undefined, // ! TreeSelect value (this is what we are looking for, keys that can be passed to componentsSwitchByDisease() to get the corresponding graph)
-      // selectedNodes: [], // Selected nodes in TreeSelect
       value: this.props.value,
       selectedNodes: this.props.selectedNodes,
     }
@@ -41,29 +36,18 @@ export default class ExportPDFDialog extends React.Component {
     }
   }
 
-  // !
+  // ! HTML2CANVAS REQUIRES A NODE FROM THE DOM OF THE PAGE ITS LOADED ON (cf. https://stackoverflow.com/a/65632648)
+  // other related link: https://stackoverflow.com/a/45017234
   generatePdfDocument = async ({ fileName = '' }) => {
-    console.log("==== INSIDE generatePdfDocument ====")
     const imageElement = document.getElementById('pdf-image-element')
-    // let visibleElement = imageElement.cloneNode(true)
-    // visibleElement.style.visibility = 'visible'
-    console.log("imageElement:", imageElement)
-    // console.log("visibleElement:", visibleElement)
     let imageDataURLs = []
-    // let isSelectedCategory = {}
-    console.log("loop on each graph that should have been retrieved: ")
     for (const graphElement of imageElement.childNodes) {
-      
-      console.log("graphElement: ", graphElement)
-      // ! HTML2CANVAS REQUIRES A NODE FROM THE DOM OF THE PAGE ITS LOADED ON (cf. https://stackoverflow.com/a/65632648)
       const canvas = await html2canvas(graphElement, {
           width: graphElement.offsetWidth,
           height: graphElement.offsetHeight,
       })
       imageDataURLs.push(canvas.toDataURL())
     }
-
-    console.log("imageDataURLs (supposedly) fulfilled: ", imageDataURLs)
     const blob = await pdf(
       <PDFDocument
         graphType={this.state.graphType}
@@ -86,17 +70,6 @@ export default class ExportPDFDialog extends React.Component {
       return 'Exporter les données de visualisation de DÉPRESSION'
     }
   }
-
-  // handleTreeSelectChange = (value, label, extra) => {
-  //   console.log('value', value);
-  //   console.log('label', label);
-  //   console.log('extra', extra);
-  //   console.log('extra.allCheckedNodes', extra.allCheckedNodes);
-  //   this.setState({
-  //     value: value,
-  //     selectedNodes: extra.allCheckedNodes,
-  //   });
-  // }
 
   handleUserNameTextChange = (e) => {
     this.setState({
@@ -136,14 +109,12 @@ export default class ExportPDFDialog extends React.Component {
 
   render() {
     const { treeSelectValue, onTreeSelectChange, graphs } = this.props;
-    // TODO generate treeData dynamically based on the current view (alcohol/depression, patient/expert ?)
-    // TODO populate key and/or value to match each corresponding chart identifiers
+    // TODO generate treeData dynamically based on the current view (alcohol/depression, patient/expert?)
     const treeData = this.state.graphType == GraphType.alcohol ? [
       {
         title: 'Select/Unselect all',
         value: '0',
         key: '0',
-        // ! children here should be dynamically generated
         children: [
           {
             title: 'Echelles liées aux consommations',
@@ -416,10 +387,9 @@ export default class ExportPDFDialog extends React.Component {
         title: 'Select/Unselect all',
         value: '0',
         key: '0',
-        // ! children here should be dynamically generated (ideally ? maybe not ?)
         children: [
           {
-            title: "Les caracteristiques de l'épisode", 
+            title: "Les caracteristiques de l'épisode",
             value: "sub1",
             key: "sub1",
             children: [
@@ -759,9 +729,6 @@ export default class ExportPDFDialog extends React.Component {
               </label>
             </div>
             <div>
-
-            {/* <Select>
-            </Select> */}
             <TreeSelect
                 showSearch
                 style={{ width: '100%' }}
@@ -808,33 +775,22 @@ export default class ExportPDFDialog extends React.Component {
                 }}
               />
             </div>
-            {/* probably included in the rendered view for a PDF preview ? get rid of it if not required, as its displayed above charts which make hover unusable */}
             <div
               id="pdf-image-element"
               style={{
-                // set position/visibility to preserve export dialog => instead of this solution, display it outside viewport to be invisible for actual user
+                // display it outside viewport to be invisible for actual user
                 position: 'absolute',
-                // visibility: 'hidden',
                 zIndex: -1000,
-                // position: 'relative',
-                left: '-10000px', // as-if it's not visible
+                left: '-10000px',
                 marginTop: '-150px',
                 width: 'fit-content',
                 marginInline: 'auto',
               }}
             >
               {/* ! graphs prop == result returned by prepareExportGraphs() in SidebarControl.js */}
-              {/* {this.props.graphs.forEach((graph) => {
-                if (graph) {
-                  console.log("graph: ", graph)
-                  return graph
-                }
-              })} */}
               {/* Use map to render the graphs */}
-
               {graphs.map((graph, index) => (
                 <div key={index} style={{ width: 'min-content' }}>{graph}</div>
-                // <div key={index} style={{ width: 'min-content' }}>{componentsSwitchByDisease(graph, false)}</div>
               ))}
             </div>
           </Space>
