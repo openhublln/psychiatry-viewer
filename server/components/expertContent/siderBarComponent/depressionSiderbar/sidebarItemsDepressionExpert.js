@@ -35,7 +35,6 @@ function getDividerItem(type) {
  */
 export function DepressionSidebarItemsExpert(medicalData, temps) {
   let ctqChoix = getDataByName(medicalData, 'ctq_choix', temps[1], medicalData.name)
-  console.log("CTQ CHOIX", ctqChoix)
   return [
     getItem(
       <div className={Styles.sideBarMenuGroupTitleLabel}>
