@@ -325,18 +325,18 @@ export default class ExportPDFDialog extends React.Component {
               }
             ],
           },
-          {
-            title: 'Histoire infantile et familiale',
-            value: "historyInfFam",
-            key: "historyInfFam",
-            children: [
-              {
-                title: "La charge du passé",
-                value: "infFamilieRadar",
-                key: "infFamilieRadar",
-              }
-            ],
-          },
+          // {
+          //   title: 'Histoire infantile et familiale',
+          //   value: "historyInfFam",
+          //   key: "historyInfFam",
+          //   children: [
+          //     {
+          //       title: "La charge du passé",
+          //       value: "infFamilieRadar",
+          //       key: "infFamilieRadar",
+          //     }
+          //   ],
+          // },
           {
             title: 'Qualité de vie',
             value: 'qualityVie',

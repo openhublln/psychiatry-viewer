@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     width: '65%',
     height: '240px',
     border: '1pt solid #D3D3D3',
+    marginTop: '80px',
     marginBottom: '10px',
     alignItems:'center',
   },
