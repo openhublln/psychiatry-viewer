@@ -146,6 +146,19 @@ export const AlcoholPatientSidebarItems = [
     React.createElement(RiNodeTree),
     [
       getItem(
+        'La gestion des émotions',
+        'regEmotion',
+        React.createElement(AiOutlineSubnode),
+        [
+          getItem(
+            'Balance',
+            AlcoholItemKeys.regulationEmotionBarBlance,
+            React.createElement(FaBalanceScale),
+          ),
+        ],
+        'group',
+      ),
+      getItem(
         'L’impulsivité',
         'impulsivity',
         React.createElement(AiOutlineSubnode),
@@ -158,18 +171,19 @@ export const AlcoholPatientSidebarItems = [
         ],
         'group',
       ),
+    ],
+    'group',
+  ),
+  getDividerItem('divider'),
+  getItem(
+    <div className={Styles.sideBarMenuGroupTitleLabel}>La cognition</div>,
+    'cognition',
+    React.createElement(RiNodeTree),
+    [
       getItem(
-        'La gestion des émotions',
-        'regEmotion',
-        React.createElement(AiOutlineSubnode),
-        [
-          getItem(
-            'Balance',
-            AlcoholItemKeys.regulationEmotionBarBlance,
-            React.createElement(FaBalanceScale),
-          ),
-        ],
-        'group',
+        "En fin d'hospitalisation",
+        AlcoholItemKeys.alcoCongnitionBar,
+        React.createElement(BsBarChartFill),
       ),
     ],
     'group',
@@ -228,21 +242,6 @@ export const AlcoholPatientSidebarItems = [
     'group',
   ),
   getDividerItem('divider'),
-  getItem(
-    <div className={Styles.sideBarMenuGroupTitleLabel}>La cognition</div>,
-    'cognition',
-    React.createElement(RiNodeTree),
-    [
-      getItem(
-        "En fin d'hospitalisation",
-        AlcoholItemKeys.alcoCongnitionBar,
-        React.createElement(BsBarChartFill),
-      ),
-    ],
-    'group',
-  ),
-  getDividerItem('divider'),
- 
   getItem(
     <div className={Styles.sideBarMenuGroupTitleLabel}>
       La qualité de vie

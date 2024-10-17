@@ -52,6 +52,7 @@ export const showDepressionGauge = ({
             segmentStops={[0, 4.5, 9.5, 14.5, 19.5, 27]}
             maxValue={27}
             withColor={withColor}
+            shwoScoreInPrct={true}
           />
         }
       </div>
@@ -107,6 +108,7 @@ export const showAnxietyGauge = ({
             segmentStops={[0, 4.5, 9.5, 14.5, 21]}
             maxValue={21}
             withColor={withColor}
+            shwoScoreInPrct={true}
           />
         }
       </div>

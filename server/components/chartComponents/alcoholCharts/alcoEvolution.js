@@ -12,7 +12,7 @@ import Styles from '../chartcomponents.module.css'
 export const showAlcoCravingEvolution = ({ medicalData, temps }) => {
   return (
     <Space direction="vertical">
-      <h2 className={Styles.evolutionLabel}>Le Craving (OCDS): Évolution</h2>
+      <h2 className={Styles.evolutionLabel}>Le Craving (OCDS)</h2>
       <Space direction="horizontal">
         <div style={{ alignSelf: 'center' }}>
           {showAlcoCravingBar({

@@ -162,6 +162,19 @@ export function AlcoholExpertSidebarItems(medicalData, temps) {
       React.createElement(RiNodeTree),
       [
         getItem(
+          'La gestion des émotions',
+          'regEmotion',
+          React.createElement(AiOutlineSubnode),
+          [
+            getItem(
+              'Balance',
+              AlcoholItemKeys.regulationEmotionBarBlance,
+              React.createElement(FaBalanceScale),
+            ),
+          ],
+          'group',
+        ),
+        getItem(
           "L'impulsivité",
           'impulsivity',
           React.createElement(AiOutlineSubnode),
@@ -174,18 +187,19 @@ export function AlcoholExpertSidebarItems(medicalData, temps) {
           ],
           'group',
         ),
+      ],
+      'group',
+    ),
+    getDividerItem('divider'),
+    getItem(
+      <div className={Styles.sideBarMenuGroupTitleLabel}>La cognition</div>,
+      'cognition',
+      React.createElement(AiOutlineSubnode),
+      [
         getItem(
-          'La gestion des émotions',
-          'regEmotion',
-          React.createElement(AiOutlineSubnode),
-          [
-            getItem(
-              'Balance',
-              AlcoholItemKeys.regulationEmotionBarBlance,
-              React.createElement(FaBalanceScale),
-            ),
-          ],
-          'group',
+          "En fin d'hospitalisation",
+          AlcoholItemKeys.alcoCongnitionBar,
+          React.createElement(BsBarChartFill),
         ),
       ],
       'group',
@@ -254,20 +268,6 @@ export function AlcoholExpertSidebarItems(medicalData, temps) {
             ),
           ],
           'group',
-        ),
-      ],
-      'group',
-    ),
-    getDividerItem('divider'),
-    getItem(
-      <div className={Styles.sideBarMenuGroupTitleLabel}>La cognition</div>,
-      'cognition',
-      React.createElement(AiOutlineSubnode),
-      [
-        getItem(
-          "En fin d'hospitalisation",
-          AlcoholItemKeys.alcoCongnitionBar,
-          React.createElement(BsBarChartFill),
         ),
       ],
       'group',

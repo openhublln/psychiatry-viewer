@@ -81,7 +81,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
       return showDisplayEvolutionLine({
         medicalData: medicalData,
         temps: temps,
-        dataName: 'Dépression (PHQ9) : Évolution',
+        dataName: 'Dépression (PHQ9)',
         dataColumns: DataColumns.phq9.columns,
         missingDataColumns: DataColumns.phq9.generalColumns,
         maxValue: 27,
@@ -132,7 +132,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
       return showAlcoCravingBar({
         medicalData: medicalData,
         time: temps[0],
-        dataName: ['Le craving (OCDS)', "À l'admission"],
+        dataName: ['Le craving (OCDS)'],
         backgroundColor: '',
       })
     case AlcoholItemKeys.alcoCravingEvolution:
@@ -163,7 +163,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
       return showDisplayEvolutionLine({
         medicalData: medicalData,
         temps: temps,
-        dataName: 'Anxiété (GAD7): Évolution',
+        dataName: 'Anxiété (GAD7)',
         dataColumns: DataColumns.gad7.columns,
         missingDataColumns: DataColumns.gad7.generalColumns,
         maxValue: 21,
@@ -223,7 +223,7 @@ export const AlcoholSelect = (key, medicalData, temps, doShowWarning) => {
       return showDisplayEvolutionLine({
         medicalData: medicalData,
         temps: temps,
-        dataName: 'Insomnie (ISI): Évolution',
+        dataName: 'Insomnie (ISI)',
         dataColumns: DataColumns.isi.columns,
         missingDataColumns: DataColumns.isi.generalColumns,
         maxValue: 28,

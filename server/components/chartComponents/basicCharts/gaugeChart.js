@@ -116,7 +116,12 @@ export function GaugeChart({
   height = 390,
   index = 0,
   segmentColors = null,
+  shwoScoreInPrct = false,
 }) {
+  var ValueText = `${dataName}: ${Math.round(medicalData * 100) / 100}`
+  if (shwoScoreInPrct){
+    ValueText = `${dataName}: ${Math.round((medicalData / maxValue) * 100)} %`
+  }
   return (
     <div
       className={Styles.gaugeChartDiv}
@@ -136,7 +141,7 @@ export function GaugeChart({
         value={medicalData}
         maxSegmentLabels={scoreLabels.length}
         segments={scoreLabels.length}
-        currentValueText={`${dataName}: ${Math.round(medicalData * 100) / 100}`}
+        currentValueText={ValueText}
         customSegmentLabels={createChartSegments(scoreLabels)}
         segmentColors={
           segmentColors

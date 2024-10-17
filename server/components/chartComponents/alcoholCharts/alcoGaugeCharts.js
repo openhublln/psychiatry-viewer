@@ -58,6 +58,7 @@ export const alcoInsomnieGauge = ({
           segmentStops={[0, 7.5, 14.5, 21.5, 28]}
           maxValue={28}
           withColor={withColor}
+          shwoScoreInPrct={true}
         />
       }
     </div>
