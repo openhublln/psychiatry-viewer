@@ -722,20 +722,20 @@ export default class ExportPDFDialog extends React.Component {
             </div>
             <div>
             <TreeSelect
-                showSearch
-                style={{ width: '100%' }}
-                value={treeSelectValue}
-                dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                placeholder="Veuillez sélectionner les données à exporter"
-                allowClear
-                treeCheckable
-                treeDefaultExpandedKeys={['0']}
-                maxTagCount={3}
-                showCheckedStrategy={SHOW_PARENT}
-                // onChange={this.handleTreeSelectChange}
-                onChange={(value) => onTreeSelectChange(value)}
-                treeData={treeData}
-              />
+              showSearch
+              style={{ width: '100%' }}
+              value={treeSelectValue}
+              dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+              placeholder="Veuillez sélectionner les données à exporter"
+              allowClear
+              treeCheckable
+              treeDefaultExpandedKeys={['0']}
+              maxTagCount={3}
+              showCheckedStrategy={SHOW_PARENT}
+              // onChange={this.handleTreeSelectChange}
+              onChange={(value) => onTreeSelectChange(value)}
+              treeData={treeData}
+            />
 
             </div>
             <div className="commentSpace">

@@ -62,13 +62,13 @@ const SidebarControl = (props) => {
   const componentsSwitchByDisease = (selectedItem, doShowWarning) => {
     const medicalData = props.patientData
     const temps = getTemps(medicalData)
-    console.log("MEDICAL DATA:", medicalData)
+    // console.log("MEDICAL DATA:", medicalData)
     switch (props.disease) {
       case GraphType.alcohol:
-        console.log("alcool:", AlcoholSelect(selectedItem, medicalData, temps, doShowWarning))
+        // console.log("alcool:", AlcoholSelect(selectedItem, medicalData, temps, doShowWarning))
         return AlcoholSelect(selectedItem, medicalData, temps, doShowWarning)
       case GraphType.depression:
-        console.log("depression:", DepressionSelect(selectedItem, medicalData, temps, doShowWarning))
+        // console.log("depression:", DepressionSelect(selectedItem, medicalData, temps, doShowWarning))
         return DepressionSelect(selectedItem, medicalData, temps, doShowWarning)
       default:
         break
@@ -76,7 +76,7 @@ const SidebarControl = (props) => {
   }
 
   const onClick = (key) => {
-    console.log('key: ', key)
+    // console.log('key: ', key)
     setSelectedItem(key)
   }
 
