@@ -25,16 +25,17 @@ export default class ExportPDFDialog extends React.Component {
       comment: '',
       value: this.props.value,
       selectedNodes: this.props.selectedNodes,
+      isGeneratingPdf: false
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.visible !== this.props.visible) {
-      this.setState({
-        visible: this.props.visible,
-      })
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.visible !== this.props.visible) {
+  //     this.setState({
+  //       visible: this.props.visible,
+  //     })
+  //   }
+  // }
 
   // ! HTML2CANVAS REQUIRES A NODE FROM THE DOM OF THE PAGE ITS LOADED ON (cf. https://stackoverflow.com/a/65632648)
   // other related link: https://stackoverflow.com/a/45017234
@@ -103,9 +104,9 @@ export default class ExportPDFDialog extends React.Component {
     })
   }
 
-  onClose = (e) => {
-    this.setState({ visible: false })
-  }
+  // onClose = (e) => {
+  //   this.setState({ visible: false })
+  // }
 
   render() {
     const { treeSelectValue, onTreeSelectChange, graphs } = this.props;
@@ -651,30 +652,21 @@ export default class ExportPDFDialog extends React.Component {
               {this.getGraphTypeName()}
             </h3>
           }
-          open={this.state.visible}
+          open={this.props.isModalVisible}
           closable={false}
-          destroyOnClose={true}
-          onOk={() =>
+          okText="Save"
+          onOk = {() => {
+            this.setState({ isGeneratingPdf: true });
             this.generatePdfDocument({ // !
               fileName: `${this.state.graphType}_export_result.pdf`,
             })
-          }
-          onClose={() => this.onClose()}
-          footer={[
-            <Button key="ok" onClick={() => this.onClose()}>
-              Close
-            </Button>,
-            <Button
-              key="ok"
-              onClick={() => // !
-                this.generatePdfDocument({
-                  fileName: `${this.state.graphType}_export_result.pdf`,
-                })
-              }
-            >
-              Save
-            </Button>,
-          ]}
+            .then(() => {
+              this.setState({ isGeneratingPdf: false });
+            })
+          }}
+          confirmLoading={this.state.isGeneratingPdf}
+          onCancel={this.props.handleCancel}
+          cancelText="Close"
           style={{
             width: '550px',
           }}

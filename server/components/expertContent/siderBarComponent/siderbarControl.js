@@ -20,7 +20,7 @@ const { Content, Sider } = Layout
 const SidebarControl = (props) => {
   const [selectedItem, setSelectedItem] = useState(null)
   const [showExportPDFDialog, setShowExportPDFDialog] = useState(false)
-  const [exportPDFDialogKey, setExportPDFDialogKey] = useState(0)
+  // const [exportPDFDialogKey, setExportPDFDialogKey] = useState(0)
 
   const [treeSelectValue, setTreeSelectValue] = useState([]);
   const [graphs, setGraphs] = useState([]);
@@ -107,10 +107,15 @@ const SidebarControl = (props) => {
     }
   }
 
-  const handleExportResult = () => {
-    setExportPDFDialogKey(exportPDFDialogKey + 1)
-    setShowExportPDFDialog(true)
-  }
+  // Function to open Modal
+  const showModal = () => {
+    setShowExportPDFDialog(true);
+  };
+
+  // Function to close Modal
+  const handleCancel = () => {
+    setShowExportPDFDialog(false);
+  };
 
   // Function to prepare export graphs based on selected values
   const prepareExportGraphs = (selectedValues) => {
@@ -141,7 +146,7 @@ const SidebarControl = (props) => {
             </Button>
             <Button
               className={Styles.exportResultBtn}
-              onClick={() => handleExportResult()}
+              onClick={() => showModal()}
               icon={React.createElement(TiExport)}
             >
               Export Result
@@ -169,8 +174,9 @@ const SidebarControl = (props) => {
         </Space>
       </Content>
       <ExportPDFDialog
-        key={exportPDFDialogKey}
-        visible={showExportPDFDialog}
+        // key={exportPDFDialogKey}
+        isModalVisible={showExportPDFDialog}
+        handleCancel={handleCancel}
         userName={props.user.username}
         graphType={props.disease}
         graphs={graphs}
